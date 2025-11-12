@@ -3,7 +3,7 @@
 ![python](https://img.shields.io/badge/python-3.8.10-blue?logo=python&logoColor=blue)
 ![Fastapi](https://img.shields.io/badge/Fastapi-0.121.1-green?logo=Fastapi)
 
-[! [Alt text](static/favicon.png)](https://github.com/HUOfire/FastAPI-DENNISCHEN/blob/main/static/favicon.png)
+[![API docs](static/favicon.png)](https://github.com/HUOfire/FastAPI-DENNISCHEN/blob/main/static/favicon.png)
 
 ## 主要简介
 
