@@ -1,7 +1,9 @@
-from fastapi import FastAPI
-import uvicorn, os, logging
-from apps import FilesManage
+from fastapi import FastAPI, Request, Response, status
+import uvicorn, logging
+from apps import FilesManage, login
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 from fastapi.openapi.docs import get_swagger_ui_html
 
 # 配置标准库logging
@@ -21,11 +23,11 @@ app = FastAPI(
 )
 
 # 挂载本地静态资源
-if os.path.exists("static/swagger-ui"):
-    app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/static", StaticFiles(directory="static"), name="static")
+templates = Jinja2Templates(directory="templates")
 
 app.include_router(FilesManage, prefix="/files", tags=["文件管理"])
-
+app.include_router(login, tags=["登录管理"]) # 该路由不能加前缀，否则会导致验证失败
 
 @app.get("/docs", summary="Swagger UI", tags=["接口文档"], include_in_schema=False)
 async def custom_swagger_ui_html():
@@ -44,6 +46,31 @@ async def custom_swagger_ui_html():
             "persistAuthorization": True  # 保持认证状态
         }
     )
+
+
+@app.get("/login", summary="登录页面", response_class=HTMLResponse)
+async def read_item(request: Request):
+    # print(request.method)
+    return templates.TemplateResponse(
+        "login.html",
+        context={
+            'request': request,
+            'login_tip': '用户登录'
+        }
+    )
+
+
+@app.get("/login-token", summary="登录页面", response_class=HTMLResponse)
+async def read_item(request: Request):
+    # print(request.method)
+    return templates.TemplateResponse(
+        "index.html",
+        context={
+            'request': request,
+            'login_tip': '用户登录'
+        }
+    )
+
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, log_level="info", reload=True)

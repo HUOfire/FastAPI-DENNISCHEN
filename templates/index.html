@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Token认证系统</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <div class="max-w-md mx-auto mt-20 bg-white rounded-xl shadow-2xl p-8">
+        <div class="text-center mb-8">
+            <i class="fas fa-key text-blue-600 text-4xl mb-4"></i>
+            <h2 class="text-3xl font-bold text-gray-800">Token获取</h2>
+            <p class="text-gray-600 mt-2">输入账户密码获取访问令牌</p>
+        </div>
+
+        <form id="loginForm" class="space-y-6">
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-user mr-2 text-blue-500"></i>用户名
+                </label>
+                <input type="text" id="username" name="username" required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                    placeholder="请输入用户名" value="johndoe">
+            </div>
+
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
+                    <i class="fas fa-lock mr-2 text-blue-500"></i>密码
+                </label>
+                <input type="password" id="password" name="password" required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
+                    placeholder="请输入密码" value="secret">
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label for="client_id" class="block text-sm font-medium text-gray-700 mb-2">Client ID</label>
+                    <input type="text" id="client_id" name="client_id"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        placeholder="可选">
+                </div>
+                <div>
+                    <label for="client_secret" class="block text-sm font-medium text-gray-700 mb-2">Client Secret</label>
+                    <input type="password" id="client_secret" name="client_secret"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        placeholder="可选">
+                </div>
+            </div>
+
+            <div>
+                <label for="scope" class="block text-sm font-medium text-gray-700 mb-2">Scope</label>
+                <input type="text" id="scope" name="scope"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
+                        placeholder="可选权限范围">
+            </div>
+
+            <button type="submit"
+                class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-4 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200">
+                <i class="fas fa-key mr-2"></i>获取Token
+            </button>
+        </form>
+
+        <div id="resultSection" class="mt-8 p-6 bg-gray-50 rounded-lg hidden">
+            <h3 class="text-xl font-semibold text-gray-800 mb-4">Token获取结果</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">访问令牌：</label>
+                    <div class="bg-white p-4 rounded border">
+                        <code id="accessToken" class="text-sm break-all"></code>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">刷新令牌：</label>
+                    <div class="bg-white p-4 rounded border">
+                        <code id="refreshToken" class="text-sm break-all"></code>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Token类型：</label>
+                    <span id="tokenType" class="text-sm"></span>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">过期时间：</label>
+                    <span id="expiresIn" class="text-sm"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/js/auth.js"></script>
+</body>
+</html>
+
