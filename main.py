@@ -1,10 +1,14 @@
-from fastapi import FastAPI, Request, Response, status
-import uvicorn, logging
-from apps import FilesManage, login
-from fastapi.responses import HTMLResponse, JSONResponse
+import logging
+
+import uvicorn
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from fastapi.openapi.docs import get_swagger_ui_html
+from starlette.responses import HTMLResponse
+
+from apps import FilesManage
+from security import jwt_router, cok_router
+from security.cookie import templates
 
 # 配置标准库logging
 logging.basicConfig(
@@ -22,55 +26,40 @@ app = FastAPI(
     redoc_url=None
 )
 
+origins = [
+    "http://localhost:3000",
+    "https://localhost:3000",
+    "http://127.0.0.1:3000",
+    "https://127.0.0.1:3000",
+]
+
+# 添加CORS中间件
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 或使用 ["*"] 允许所有源
+    allow_credentials=False,
+    allow_methods=["*"],  # 允许所有HTTP方法
+    allow_headers=["*"],  # 允许所有请求头
+)
+
 # 挂载本地静态资源
 app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+
 
 app.include_router(FilesManage, prefix="/files", tags=["文件管理"])
-app.include_router(login, tags=["登录管理"]) # 该路由不能加前缀，否则会导致验证失败
+app.include_router(jwt_router, tags=["JWT认证管理"]) # 该路由不能加前缀，否则会导致验证失败
+app.include_router(cok_router, tags=["Cookie认证管理"])
 
-@app.get("/docs", summary="Swagger UI", tags=["接口文档"], include_in_schema=False)
-async def custom_swagger_ui_html():
-    return get_swagger_ui_html(
-        openapi_url=app.openapi_url,
-        title=app.title + " - Swagger UI",
-        oauth2_redirect_url=app.swagger_ui_oauth2_redirect_url,
-        swagger_js_url="/static/swagger-ui/swagger-ui-bundle.js",
-        swagger_css_url="/static/swagger-ui/swagger-ui.css",
-        swagger_favicon_url="/static/swagger-ui/favicon.png",
-        swagger_ui_parameters={
-            "defaultModelsExpandDepth": -1,  # 隐藏模型部分
-            "docExpansion": "none",  # 默认折叠所有操作
-            "filter": True,  # 启用搜索过滤
-            "showExtensions": True,
-            "persistAuthorization": True  # 保持认证状态
-        }
-    )
-
-
-@app.get("/login", summary="登录页面", response_class=HTMLResponse)
-async def read_item(request: Request):
+@app.get("/", summary="登录页面", response_class=HTMLResponse, tags=["Cookie认证管理"])
+async def goto_login_page(request: Request):
     # print(request.method)
     return templates.TemplateResponse(
-        "login.html",
+        "pageto.html",
         context={
             'request': request,
-            'login_tip': '用户登录'
+            'login_tip': '前往登录'
         }
     )
-
-
-@app.get("/login-token", summary="登录页面", response_class=HTMLResponse)
-async def read_item(request: Request):
-    # print(request.method)
-    return templates.TemplateResponse(
-        "index.html",
-        context={
-            'request': request,
-            'login_tip': '用户登录'
-        }
-    )
-
 
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, log_level="info", reload=True)

@@ -2,94 +2,61 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Token认证系统</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <title>Fastapi-后台管理</title>
+     <!-- 引入icon -->
+    <link rel="shortcut icon" href="../static/image/favicon.png">
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+    <script src="../static/js/jquery-3.5.1.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/index.js"></script>
+
 </head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
-    <div class="max-w-md mx-auto mt-20 bg-white rounded-xl shadow-2xl p-8">
-        <div class="text-center mb-8">
-            <i class="fas fa-key text-blue-600 text-4xl mb-4"></i>
-            <h2 class="text-3xl font-bold text-gray-800">Token获取</h2>
-            <p class="text-gray-600 mt-2">输入账户密码获取访问令牌</p>
-        </div>
-
-        <form id="loginForm" class="space-y-6">
-            <div>
-                <label for="username" class="block text-sm font-medium text-gray-700 mb-2">
-                    <i class="fas fa-user mr-2 text-blue-500"></i>用户名
-                </label>
-                <input type="text" id="username" name="username" required
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                    placeholder="请输入用户名" value="johndoe">
-            </div>
-
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700 mb-2">
-                    <i class="fas fa-lock mr-2 text-blue-500"></i>密码
-                </label>
-                <input type="password" id="password" name="password" required
-                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-200"
-                    placeholder="请输入密码" value="secret">
-            </div>
-
-            <div class="grid grid-cols-2 gap-4">
-                <div>
-                    <label for="client_id" class="block text-sm font-medium text-gray-700 mb-2">Client ID</label>
-                    <input type="text" id="client_id" name="client_id"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        placeholder="可选">
-                </div>
-                <div>
-                    <label for="client_secret" class="block text-sm font-medium text-gray-700 mb-2">Client Secret</label>
-                    <input type="password" id="client_secret" name="client_secret"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        placeholder="可选">
-                </div>
-            </div>
-
-            <div>
-                <label for="scope" class="block text-sm font-medium text-gray-700 mb-2">Scope</label>
-                <input type="text" id="scope" name="scope"
-                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-                        placeholder="可选权限范围">
-            </div>
-
-            <button type="submit"
-                class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-4 rounded-lg font-semibold hover:from-blue-700 hover:to-indigo-700 transition-all duration-200">
-                <i class="fas fa-key mr-2"></i>获取Token
-            </button>
-        </form>
-
-        <div id="resultSection" class="mt-8 p-6 bg-gray-50 rounded-lg hidden">
-            <h3 class="text-xl font-semibold text-gray-800 mb-4">Token获取结果</h3>
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">访问令牌：</label>
-                    <div class="bg-white p-4 rounded border">
-                        <code id="accessToken" class="text-sm break-all"></code>
+<body>
+    <!-- 导航栏start -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- 导航栏logo start -->
+        <img src="../static/image/logo.png" alt="logo" width="139" height="50" class="d-inline-block align-top">
+        <!-- 导航栏logo end -->
+        <a class="navbar-brand" href="/index">Fastapi</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/index">首页 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/logs">日志管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/docs">接口文档</a>
+                </li>
+            </ul>
+            <!-- 右侧登录信息 start -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" Href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../static/image/tx.jpg" class="navbar-avatar" alt="用户头像">
+                        <span class="ml-2">用户名</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">修改密码</a>
+                        <!-- 退出后禁止回退 -->
+                        <a class="dropdown-item" onclick="logout()" >退出</a>
                     </div>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">刷新令牌：</label>
-                    <div class="bg-white p-4 rounded border">
-                        <code id="refreshToken" class="text-sm break-all"></code>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Token类型：</label>
-                    <span id="tokenType" class="text-sm"></span>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-2">过期时间：</label>
-                    <span id="expiresIn" class="text-sm"></span>
-                </div>
-            </div>
+                </li>
+            </ul>
+            <!-- 右侧登录信息 end -->
         </div>
+    </nav>
+    <!-- 导航栏end -->
+    <!-- 主体内容start -->
+    <H1 class="text-center">Bootstrap 4 with FastAPI</H1>
+    <div class="container mt-4">
+        <h1 class="display-4 text-center"></h1>
     </div>
+    <div id="message"></div>
 
-    <script src="/static/js/auth.js"></script>
 </body>
 </html>
-
