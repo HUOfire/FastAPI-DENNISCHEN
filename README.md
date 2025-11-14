@@ -11,7 +11,7 @@ FastAPI-DENNISCHEN 是基于 FastAPI 框架的 Dennis Chen 项目的脚手架。
 
 ## 主要功能
 
-- 集成 JWT 认证  -待完成
+- 集成 JWT 认证  -进度95%
 - 集成 Redis 缓存 -待完成
 - 集成 Swagger 文档 -进度75%
 - 集成部署 -待完成
