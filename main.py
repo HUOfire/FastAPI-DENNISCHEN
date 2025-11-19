@@ -26,6 +26,7 @@ app = FastAPI(
     redoc_url=None
 )
 
+# 设置跨域请求的白名单
 origins = [
     "http://localhost:3000",
     "https://localhost:3000",
@@ -36,10 +37,10 @@ origins = [
 # 添加CORS中间件
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 或使用 ["*"] 允许所有源
+    allow_origins= origins,    # 或使用 ["*"] 允许所有源
     allow_credentials=False,
-    allow_methods=["*"],  # 允许所有HTTP方法
-    allow_headers=["*"],  # 允许所有请求头
+    allow_methods=["*"],       # 允许所有HTTP方法
+    allow_headers=["*"],       # 允许所有请求头
 )
 
 # 挂载本地静态资源
