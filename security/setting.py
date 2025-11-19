@@ -1,5 +1,7 @@
-from pydantic import BaseModel
+
 from typing import Union
+
+from pydantic import BaseModel
 
 
 class Config:

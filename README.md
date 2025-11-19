@@ -26,4 +26,9 @@ FastAPI-DENNISCHEN 是基于 FastAPI 框架的 Dennis Chen 项目的脚手架。
 [![API docs](img/docs.png)](https://github.com/HUOfire/FastAPI-DENNISCHEN)
 
 ## 日志
-[![API docs](img/logs.png)](https://github.com/HUOfire/FastAPI-DENNISCHEN)
+### 日志文件
+[![API docs](img/logs1.png)](https://github.com/HUOfire/FastAPI-DENNISCHEN)
+### 日志管理
+
+### 日志前端展示
+

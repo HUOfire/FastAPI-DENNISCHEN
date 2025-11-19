@@ -1,21 +1,46 @@
-import logging
-
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import HTMLResponse
 
+from apilog import log_decorator
+from apilog.log_config import LogConfig
+from apilog.log_middleware import LoggerRecord, log_record
 from apps import FilesManage
 from security import jwt_router, cok_router
 from security.cookie import templates
 
-# 配置标准库logging
-logging.basicConfig(
-    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
-    level=logging.INFO,
-    handlers=[logging.StreamHandler()]
-)
+from contextlib import asynccontextmanager
+
+# 初始化日志配置
+log_config = LogConfig()
+logger = log_config.setup_logging()
+log_manager = LoggerRecord()
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    应用生命周期管理器
+    - 启动阶段：初始化日志系统和共享资源
+    - 运行阶段：处理请求
+    - 关闭阶段：清理资源和保存日志
+    """
+    # 启动逻辑
+    logger.info("应用启动中...")
+    log_manager.start()
+
+    # 设置共享状态（可用于路由访问）
+    app.state.logger = logger
+    app.state.log_manager = log_manager
+
+    yield  # 应用运行阶段
+
+    # 关闭逻辑
+    logger.info("应用关闭中...")
+    log_manager.stop()
+
 
 # 创建FastAPI实例
 app = FastAPI(
@@ -23,8 +48,12 @@ app = FastAPI(
     description="DENNISCHEN - FastAPI接口文档",
     version="1.0.0",
     docs_url=None,
-    redoc_url=None
+    redoc_url=None,
+    lifespan=lifespan
 )
+
+# 添加日志中间件
+app.middleware("http")(log_record)
 
 # 设置跨域请求的白名单
 origins = [
@@ -52,6 +81,7 @@ app.include_router(jwt_router, tags=["JWT认证管理"]) # 该路由不能加前
 app.include_router(cok_router, tags=["Cookie认证管理"])
 
 @app.get("/", summary="登录页面", response_class=HTMLResponse, tags=["Cookie认证管理"])
+@log_decorator(save_response=True)
 async def goto_login_page(request: Request):
     # print(request.method)
     return templates.TemplateResponse(
