@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI 日志管理系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/logs.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- 导航栏 -->
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center">
+                    <i class="fas fa-book text-blue-500 text-xl mr-3"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">FastAPI 日志管理系统</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span id="current-time" class="text-gray-600"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <div class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+            <!-- 侧边栏过滤器 -->
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h2 class="text-lg font-semibold text-gray-800 mb-4">日志过滤器</h2>
+
+                    <div class="space-y-4">
+                        <!-- 日志级别过滤 -->
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">日志级别</label>
+                            <select id="level-filter" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">所有级别</option>
+                                <option value="DEBUG">DEBUG</option>
+                                <option value="INFO">INFO</option>
+                                <option value="WARNING">WARNING</option>
+                                <option value="ERROR">ERROR</option>
+                            </select>
+                        </div>
+                    </div>
+
+                <!-- 模块过滤 -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">模块</label>
+                    <select id="module-filter" class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">所有模块</option>
+                        <option value="auth">认证模块</option>
+                        <option value="database">数据库模块</option>
+                        <option value="api">API模块</option>
+                        <option value="system">系统模块</option>
+                        <option value="user">用户模块</option>
+                    </select>
+                </div>
+
+                <!-- 关键词搜索 -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">关键词搜索</label>
+                    <input type="text" id="keyword-search"
+                           class="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           placeholder="输入搜索关键词...">
+                </div>
+
+                <!-- 日期范围 -->
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">开始日期</label>
+                    <input type="date" id="start-date" class="w-full border border-gray-300 rounded-md px-3 py-2">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">结束日期</label>
+                    <input type="date" id="end-date" class="w-full border border-gray-300 rounded-md px-3 py-2">
+                </div>
+
+                <!-- 操作按钮 -->
+                <div class="space-y-2 pt-4">
+                    <button onclick="applyFilters()" class="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200">
+                        <i class="fas fa-filter mr-2"></i>应用过滤器
+                    </button>
+                    <button onclick="createTestLogs()" class="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600 transition duration-200">
+                        <i class="fas fa-plus mr-2"></i>创建测试日志
+                    </button>
+                    <button onclick="clearLogs()" class="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-200">
+                        <i class="fas fa-trash mr-2"></i>清空日志
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 主内容区域 -->
+        <div class="lg:col-span-3">
+            <div class="bg-white rounded-lg shadow">
+                <!-- 工具栏 -->
+                <div class="border-b border-gray-200 px-6 py-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-sm text-gray-600">总计: </span>
+                            <span id="total-logs" class="font-semibold">0</span>
+                            <span class="text-sm text-gray-600">条日志</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="refreshLogs()" class="bg-gray-100 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-200 transition duration-200">
+                            <i class="fas fa-sync-alt mr-2"></i>刷新
+                        </button>
+                    </div>
+                </div>
+
+                <!-- 日志表格 -->
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                时间戳
+                                </th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">级别</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">模块</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">消息</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logs-container" class="bg-white divide-y divide-gray-200">
+                            <!-- 日志数据将通过JavaScript动态填充 -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="/static/js/logs.js"></script>
+</body>
+</html>

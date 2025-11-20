@@ -6,7 +6,7 @@ class LogConfig:
     """日志配置类"""
 
     def __init__(self):
-        self.log_dir = "./logs"
+        self.log_dir = "./apilog"
         self.ensure_log_directory()
 
     def ensure_log_directory(self):
@@ -42,7 +42,7 @@ class LogConfig:
 
         # 设置格式
         formatter = logging.Formatter(
-            '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+            '%(asctime)s,%(name)s,%(levelname)s,%(message)s'
         )
         console_handler.setFormatter(formatter)
         file_handler.setFormatter(formatter)

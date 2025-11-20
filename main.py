@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from starlette.responses import HTMLResponse
 
-from apilog import log_decorator
+from apilog import log_decorator, logs_router
 from apilog.log_config import LogConfig
 from apilog.log_middleware import LoggerRecord, log_record
 from apps import FilesManage
@@ -79,6 +79,8 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 app.include_router(FilesManage, prefix="/files", tags=["文件管理"])
 app.include_router(jwt_router, tags=["JWT认证管理"]) # 该路由不能加前缀，否则会导致验证失败
 app.include_router(cok_router, tags=["Cookie认证管理"])
+app.include_router(logs_router,prefix="/apilog", tags=["日志管理"])
+
 
 @app.get("/", summary="登录页面", response_class=HTMLResponse, tags=["Cookie认证管理"])
 @log_decorator(save_response=True)
