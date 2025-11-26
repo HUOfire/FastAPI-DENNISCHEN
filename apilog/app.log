@@ -17,3 +17,602 @@
 2025-11-26 16:49:10,338,uvicorn,INFO,日志系统关闭
 2025-11-26 16:49:10,339,uvicorn.error,INFO,Application shutdown complete.
 2025-11-26 16:49:10,339,uvicorn.error,INFO,Finished server process [2996]
+2025-12-10 13:02:30,983,uvicorn.error,INFO,Started server process [3472]
+2025-12-10 13:02:30,990,uvicorn.error,INFO,Waiting for application startup.
+2025-12-10 13:02:30,990,uvicorn,INFO,应用启动中...
+2025-12-10 13:02:30,991,uvicorn,INFO,日志系统初始化完成
+2025-12-10 13:02:30,991,uvicorn.error,INFO,Application startup complete.
+2025-12-10 13:02:55,422,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-10 13:02:55,472,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.03s
+2025-12-10 13:02:56,123,uvicorn,INFO,请求开始: GET http://localhost:8000/static/css/styles.css
+2025-12-10 13:02:56,223,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/script.js
+2025-12-10 13:02:57,048,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/script.js 状态码: 200 耗时: 0.82s
+2025-12-10 13:02:57,049,uvicorn,INFO,请求完成: GET http://localhost:8000/static/css/styles.css 状态码: 200 耗时: 0.93s
+2025-12-10 13:02:57,364,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-10 13:02:57,365,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-10 13:02:57,370,uvicorn,INFO,请求开始: GET http://localhost:8000/favicon.ico
+2025-12-10 13:02:57,371,uvicorn,INFO,请求完成: GET http://localhost:8000/favicon.ico 状态码: 404 耗时: 0.00s
+2025-12-10 13:02:58,803,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2025-12-10 13:02:59,191,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.39s
+2025-12-10 13:03:00,232,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-10 13:03:00,293,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.06s
+2025-12-10 13:03:00,388,uvicorn,INFO,请求开始: GET http://localhost:8000/static/css/bootstrap.css
+2025-12-10 13:03:00,389,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/jquery-3.5.1.min.js
+2025-12-10 13:03:00,395,uvicorn,INFO,请求完成: GET http://localhost:8000/static/css/bootstrap.css 状态码: 200 耗时: 0.01s
+2025-12-10 13:03:00,405,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/jquery-3.5.1.min.js 状态码: 200 耗时: 0.02s
+2025-12-10 13:03:00,461,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/bootstrap.min.js
+2025-12-10 13:03:00,465,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/bootstrap.min.js 状态码: 200 耗时: 0.00s
+2025-12-10 13:03:00,469,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/index.js
+2025-12-10 13:03:00,471,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/index.js 状态码: 200 耗时: 0.00s
+2025-12-10 13:03:00,622,uvicorn,INFO,请求开始: GET http://localhost:8000/static/image/tx.jpg
+2025-12-10 13:03:00,636,uvicorn,INFO,请求完成: GET http://localhost:8000/static/image/tx.jpg 状态码: 200 耗时: 0.01s
+2025-12-10 13:03:00,655,uvicorn,INFO,请求开始: GET http://localhost:8000/static/image/logo.png
+2025-12-10 13:03:00,669,uvicorn,INFO,请求完成: GET http://localhost:8000/static/image/logo.png 状态码: 200 耗时: 0.01s
+2025-12-10 13:03:00,873,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-10 13:03:00,874,uvicorn,INFO,请求开始: GET http://localhost:8000/static/image/favicon.png
+2025-12-10 13:03:00,876,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-10 13:03:00,881,uvicorn,INFO,请求完成: GET http://localhost:8000/static/image/favicon.png 状态码: 200 耗时: 0.01s
+2025-12-10 13:03:07,716,uvicorn,INFO,请求开始: GET http://localhost:8000/logs
+2025-12-10 13:03:07,717,uvicorn,INFO,请求完成: GET http://localhost:8000/logs 状态码: 404 耗时: 0.00s
+2025-12-10 13:03:12,101,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2025-12-10 13:03:12,102,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2025-12-10 13:03:12,176,uvicorn,INFO,请求开始: GET http://localhost:8000/static/swagger-ui/swagger-ui.css
+2025-12-10 13:03:12,177,uvicorn,INFO,请求开始: GET http://localhost:8000/static/swagger-ui/swagger-ui-bundle.js
+2025-12-10 13:03:12,285,uvicorn,INFO,请求完成: GET http://localhost:8000/static/swagger-ui/swagger-ui.css 状态码: 200 耗时: 0.11s
+2025-12-10 13:03:12,298,uvicorn,INFO,请求完成: GET http://localhost:8000/static/swagger-ui/swagger-ui-bundle.js 状态码: 200 耗时: 0.12s
+2025-12-10 13:03:13,103,uvicorn,INFO,请求开始: GET http://localhost:8000/static/swagger-ui/favicon.png
+2025-12-10 13:03:13,104,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2025-12-10 13:03:13,218,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.11s
+2025-12-10 13:03:13,221,uvicorn,INFO,请求完成: GET http://localhost:8000/static/swagger-ui/favicon.png 状态码: 200 耗时: 0.12s
+2025-12-10 13:35:39,180,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs?date=2025-12-10&level=INFO
+2025-12-10 13:35:39,222,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs?date=2025-12-10&level=INFO 状态码: 200 耗时: 0.04s
+2025-12-10 16:30:41,104,uvicorn.error,INFO,Shutting down
+2025-12-10 16:30:41,315,uvicorn.error,INFO,Waiting for application shutdown.
+2025-12-10 16:30:41,536,uvicorn,INFO,应用关闭中...
+2025-12-10 16:30:41,537,uvicorn,INFO,日志系统关闭
+2025-12-10 16:30:41,545,uvicorn.error,INFO,Application shutdown complete.
+2025-12-10 16:30:41,569,uvicorn.error,INFO,Finished server process [3472]
+2025-12-11 16:39:55,915,uvicorn.error,INFO,Started server process [11512]
+2025-12-11 16:39:55,933,uvicorn.error,INFO,Waiting for application startup.
+2025-12-11 16:39:55,966,uvicorn,INFO,应用启动中...
+2025-12-11 16:39:56,031,uvicorn,INFO,日志系统初始化完成
+2025-12-11 16:39:56,037,uvicorn.error,INFO,Application startup complete.
+2025-12-11 16:40:04,138,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2025-12-11 16:40:04,139,uvicorn,INFO,函数 goto_login_page 开始执行
+2025-12-11 16:40:04,144,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x000001A898917AF0>
+2025-12-11 16:40:04,154,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.01s
+2025-12-11 16:40:04,782,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-11 16:40:04,831,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.05s
+2025-12-11 16:40:05,257,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-11 16:40:05,259,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-11 16:40:07,314,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2025-12-11 16:40:07,640,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.33s
+2025-12-11 16:40:08,692,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-11 16:40:08,705,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.01s
+2025-12-11 16:40:09,125,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-11 16:40:09,128,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-11 16:40:13,547,uvicorn,INFO,请求开始: GET http://localhost:8000/logs
+2025-12-11 16:40:13,548,uvicorn,INFO,请求完成: GET http://localhost:8000/logs 状态码: 404 耗时: 0.00s
+2025-12-11 16:40:28,436,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2025-12-11 16:40:28,438,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2025-12-11 16:40:28,979,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2025-12-11 16:40:29,067,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.09s
+2025-12-11 16:41:34,823,uvicorn,INFO,请求开始: GET http://localhost:8000/logs
+2025-12-11 16:41:34,825,uvicorn,INFO,请求完成: GET http://localhost:8000/logs 状态码: 404 耗时: 0.00s
+2025-12-11 16:41:44,622,uvicorn.error,INFO,Shutting down
+2025-12-11 16:41:44,732,uvicorn.error,INFO,Waiting for application shutdown.
+2025-12-11 16:41:44,732,uvicorn,INFO,应用关闭中...
+2025-12-11 16:41:44,732,uvicorn,INFO,日志系统关闭
+2025-12-11 16:41:44,733,uvicorn.error,INFO,Application shutdown complete.
+2025-12-11 16:41:44,733,uvicorn.error,INFO,Finished server process [11512]
+2025-12-11 16:41:55,519,uvicorn.error,INFO,Started server process [584]
+2025-12-11 16:41:55,519,uvicorn.error,INFO,Waiting for application startup.
+2025-12-11 16:41:55,520,uvicorn,INFO,应用启动中...
+2025-12-11 16:41:55,520,uvicorn,INFO,日志系统初始化完成
+2025-12-11 16:41:55,520,uvicorn.error,INFO,Application startup complete.
+2025-12-11 16:41:57,330,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2025-12-11 16:41:57,331,uvicorn,INFO,函数 goto_login_page 开始执行
+2025-12-11 16:41:57,334,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x00000169CE127AF0>
+2025-12-11 16:41:57,335,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.00s
+2025-12-11 16:41:57,468,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-11 16:41:57,481,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.01s
+2025-12-11 16:41:57,616,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-11 16:41:57,617,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-11 16:41:58,880,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2025-12-11 16:41:59,211,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.33s
+2025-12-11 16:42:00,258,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-11 16:42:00,278,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.02s
+2025-12-11 16:42:00,403,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-11 16:42:00,404,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-11 16:42:02,877,uvicorn,INFO,请求开始: GET http://localhost:8000/logs
+2025-12-11 16:42:02,878,uvicorn,INFO,请求完成: GET http://localhost:8000/logs 状态码: 404 耗时: 0.00s
+2025-12-11 16:42:38,524,uvicorn,INFO,请求开始: GET http://localhost:8000/logs
+2025-12-11 16:42:38,526,uvicorn,INFO,请求完成: GET http://localhost:8000/logs 状态码: 404 耗时: 0.00s
+2025-12-11 16:42:44,820,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-11 16:42:44,823,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2025-12-11 16:42:44,965,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-11 16:42:44,970,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-11 16:42:47,078,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-11 16:42:47,097,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.02s
+2025-12-11 16:42:47,222,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-11 16:42:47,224,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-11 16:42:52,707,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-11 16:42:52,722,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.01s
+2025-12-11 16:44:24,835,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-11 16:44:24,844,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.01s
+2025-12-11 16:44:24,942,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-11 16:44:25,813,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 200 耗时: 0.87s
+2025-12-11 16:44:29,197,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-11 16:44:29,198,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-11 16:44:29,234,uvicorn,INFO,请求开始: GET http://localhost:8000/static/css/bootstrap.css.map
+2025-12-11 16:44:29,236,uvicorn,INFO,请求完成: GET http://localhost:8000/static/css/bootstrap.css.map 状态码: 200 耗时: 0.00s
+2025-12-11 16:45:23,462,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-11 16:45:23,466,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-11 16:45:23,528,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-11 16:45:23,537,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 304 耗时: 0.01s
+2025-12-11 16:45:24,591,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-11 16:45:24,593,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-11 16:45:27,092,uvicorn,INFO,请求开始: POST http://localhost:8000/api/logout
+2025-12-11 16:45:27,093,uvicorn,INFO,请求完成: POST http://localhost:8000/api/logout 状态码: 200 耗时: 0.00s
+2025-12-11 16:45:27,129,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-11 16:45:27,130,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2025-12-11 16:45:27,289,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-11 16:45:27,290,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-11 16:45:29,534,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2025-12-11 16:45:30,114,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.58s
+2025-12-11 16:45:31,169,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-11 16:45:31,171,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2025-12-11 16:45:31,305,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-11 16:45:31,306,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-11 16:46:29,220,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2025-12-11 16:46:29,222,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2025-12-11 16:46:29,725,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2025-12-11 16:46:29,806,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.08s
+2025-12-11 16:46:34,102,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-11 16:46:34,104,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-11 16:46:34,177,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-11 16:46:34,179,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 304 耗时: 0.00s
+2025-12-11 16:46:51,677,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-11 16:46:51,678,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-11 17:00:14,050,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-11 17:00:14,054,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-11 17:00:14,286,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-11 17:00:14,288,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-11 17:00:14,289,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-11 17:00:14,362,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 200 耗时: 0.07s
+2025-12-11 17:00:35,905,uvicorn.error,INFO,Shutting down
+2025-12-11 17:00:36,014,uvicorn.error,INFO,Waiting for application shutdown.
+2025-12-11 17:00:36,015,uvicorn,INFO,应用关闭中...
+2025-12-11 17:00:36,015,uvicorn,INFO,日志系统关闭
+2025-12-11 17:00:36,015,uvicorn.error,INFO,Application shutdown complete.
+2025-12-11 17:00:36,015,uvicorn.error,INFO,Finished server process [584]
+2025-12-13 10:56:09,692,uvicorn.error,INFO,Started server process [7496]
+2025-12-13 10:56:09,693,uvicorn.error,INFO,Waiting for application startup.
+2025-12-13 10:56:09,693,uvicorn,INFO,应用启动中...
+2025-12-13 10:56:09,694,uvicorn,INFO,日志系统初始化完成
+2025-12-13 10:56:09,704,uvicorn.error,INFO,Application startup complete.
+2025-12-13 10:56:29,693,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-13 10:56:29,758,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.05s
+2025-12-13 10:56:29,885,uvicorn,INFO,请求开始: GET http://localhost:8000/static/css/styles.css
+2025-12-13 10:56:29,886,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/script.js
+2025-12-13 10:56:30,232,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/script.js 状态码: 304 耗时: 0.35s
+2025-12-13 10:56:30,234,uvicorn,INFO,请求完成: GET http://localhost:8000/static/css/styles.css 状态码: 304 耗时: 0.35s
+2025-12-13 10:56:30,325,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 10:56:30,325,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-13 10:56:30,335,uvicorn,INFO,请求开始: GET http://localhost:8000/favicon.ico
+2025-12-13 10:56:30,336,uvicorn,INFO,请求完成: GET http://localhost:8000/favicon.ico 状态码: 404 耗时: 0.00s
+2025-12-13 10:56:32,129,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2025-12-13 10:56:32,284,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.15s
+2025-12-13 10:56:33,313,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 10:56:33,357,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.04s
+2025-12-13 10:56:33,451,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/index.js
+2025-12-13 10:56:33,455,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/index.js 状态码: 304 耗时: 0.00s
+2025-12-13 10:56:33,654,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 10:56:33,655,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-13 10:56:36,605,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 10:56:36,649,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.04s
+2025-12-13 10:56:36,728,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 10:56:36,732,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 200 耗时: 0.00s
+2025-12-13 10:56:46,653,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 10:56:46,654,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:03:37,049,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:03:37,050,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:04:40,502,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 11:04:40,503,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 401 耗时: 0.00s
+2025-12-13 11:04:40,852,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:04:40,853,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:04:47,050,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2025-12-13 11:04:47,051,uvicorn,INFO,函数 goto_login_page 开始执行
+2025-12-13 11:04:47,117,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x000001D779730FA0>
+2025-12-13 11:04:47,117,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.07s
+2025-12-13 11:04:47,305,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:04:47,306,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:04:47,317,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-13 11:04:47,319,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2025-12-13 11:04:47,561,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:04:47,562,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:04:47,772,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 11:04:47,773,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-13 11:04:49,127,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2025-12-13 11:04:49,396,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.27s
+2025-12-13 11:04:50,441,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 11:04:50,443,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2025-12-13 11:04:50,958,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:04:50,959,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:04:51,012,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 11:04:51,013,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-13 11:04:56,591,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2025-12-13 11:04:56,592,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2025-12-13 11:04:56,955,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:04:56,956,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:04:57,056,uvicorn,INFO,请求开始: GET http://localhost:8000/static/swagger-ui/swagger-ui.css.map
+2025-12-13 11:04:57,059,uvicorn,INFO,请求完成: GET http://localhost:8000/static/swagger-ui/swagger-ui.css.map 状态码: 404 耗时: 0.00s
+2025-12-13 11:04:57,446,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2025-12-13 11:04:57,538,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.09s
+2025-12-13 11:05:18,163,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/get_logs?date=2025-12-13
+2025-12-13 11:05:18,227,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/get_logs?date=2025-12-13 状态码: 200 耗时: 0.06s
+2025-12-13 11:06:02,657,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2025-12-13 11:06:02,658,uvicorn,INFO,函数 goto_login_page 开始执行
+2025-12-13 11:06:02,659,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x000001D7797AE910>
+2025-12-13 11:06:02,659,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.00s
+2025-12-13 11:06:02,783,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-13 11:06:02,784,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2025-12-13 11:06:02,961,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 11:06:02,963,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-13 11:06:04,969,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 11:06:04,970,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2025-12-13 11:06:05,192,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 11:06:05,194,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-13 11:06:10,842,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 11:06:10,843,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 11:18:20,271,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:18:20,272,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:21:37,632,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 11:21:37,634,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 11:21:38,124,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:21:38,125,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:24:36,816,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 11:24:36,820,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 11:24:36,972,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:24:36,972,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:30:59,240,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 11:30:59,243,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 11:30:59,511,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:30:59,512,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:47:35,822,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 11:47:35,824,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 11:47:36,153,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:47:36,154,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:51:13,787,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 11:51:13,789,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 11:51:13,897,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:51:13,899,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:53:35,598,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 11:53:35,602,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 11:53:35,869,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:53:35,870,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 11:59:26,191,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 11:59:26,195,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 11:59:26,530,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 11:59:26,531,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:01:37,736,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:01:37,739,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:01:38,077,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:01:38,078,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:06:26,050,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:06:26,052,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:06:26,162,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:06:26,162,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:12:58,195,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:12:58,197,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:12:58,552,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:12:58,554,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:13:57,622,uvicorn.error,INFO,Shutting down
+2025-12-13 12:13:57,733,uvicorn.error,INFO,Waiting for application shutdown.
+2025-12-13 12:13:57,734,uvicorn,INFO,应用关闭中...
+2025-12-13 12:13:57,734,uvicorn,INFO,日志系统关闭
+2025-12-13 12:13:57,735,uvicorn.error,INFO,Application shutdown complete.
+2025-12-13 12:13:57,737,uvicorn.error,INFO,Finished server process [7496]
+2025-12-13 12:14:20,606,uvicorn.error,INFO,Started server process [9496]
+2025-12-13 12:14:20,607,uvicorn.error,INFO,Waiting for application startup.
+2025-12-13 12:14:20,607,uvicorn,INFO,应用启动中...
+2025-12-13 12:14:20,608,uvicorn,INFO,日志系统初始化完成
+2025-12-13 12:14:20,608,uvicorn.error,INFO,Application startup complete.
+2025-12-13 12:14:23,209,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:14:23,214,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:14:23,480,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:14:23,481,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:14:43,164,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2025-12-13 12:14:43,165,uvicorn,INFO,函数 goto_login_page 开始执行
+2025-12-13 12:14:43,167,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x0000026D2ABD78B0>
+2025-12-13 12:14:43,168,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.00s
+2025-12-13 12:14:43,278,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-13 12:14:43,280,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2025-12-13 12:14:43,462,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:14:43,463,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-13 12:14:44,527,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2025-12-13 12:14:44,677,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.15s
+2025-12-13 12:14:45,724,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 12:14:45,727,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2025-12-13 12:14:45,898,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:14:45,900,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-13 12:14:47,406,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:14:47,407,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:14:49,988,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:14:49,988,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:15:21,810,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2025-12-13 12:15:21,811,uvicorn,INFO,函数 goto_login_page 开始执行
+2025-12-13 12:15:21,812,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x0000026D2ABE59A0>
+2025-12-13 12:15:21,813,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.00s
+2025-12-13 12:15:22,308,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-13 12:15:22,311,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2025-12-13 12:15:22,726,uvicorn,INFO,请求开始: GET http://localhost:8000/static/css/styles.css
+2025-12-13 12:15:22,728,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/script.js
+2025-12-13 12:15:23,136,uvicorn,INFO,请求完成: GET http://localhost:8000/static/css/styles.css 状态码: 200 耗时: 0.41s
+2025-12-13 12:15:23,139,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/script.js 状态码: 200 耗时: 0.41s
+2025-12-13 12:15:24,131,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:15:24,132,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-13 12:15:24,607,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2025-12-13 12:15:24,845,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.24s
+2025-12-13 12:15:25,872,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 12:15:25,874,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2025-12-13 12:15:26,245,uvicorn,INFO,请求开始: GET http://localhost:8000/static/css/bootstrap.css
+2025-12-13 12:15:26,247,uvicorn,INFO,请求完成: GET http://localhost:8000/static/css/bootstrap.css 状态码: 200 耗时: 0.00s
+2025-12-13 12:15:26,252,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/jquery-3.5.1.min.js
+2025-12-13 12:15:26,273,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/jquery-3.5.1.min.js 状态码: 200 耗时: 0.02s
+2025-12-13 12:15:26,317,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/bootstrap.min.js
+2025-12-13 12:15:26,320,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/bootstrap.min.js 状态码: 200 耗时: 0.00s
+2025-12-13 12:15:26,566,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/index.js
+2025-12-13 12:15:26,592,uvicorn,INFO,请求开始: GET http://localhost:8000/static/image/tx.jpg
+2025-12-13 12:15:26,596,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/index.js 状态码: 200 耗时: 0.03s
+2025-12-13 12:15:26,748,uvicorn,INFO,请求完成: GET http://localhost:8000/static/image/tx.jpg 状态码: 200 耗时: 0.16s
+2025-12-13 12:15:26,982,uvicorn,INFO,请求开始: GET http://localhost:8000/static/image/logo.png
+2025-12-13 12:15:26,985,uvicorn,INFO,请求完成: GET http://localhost:8000/static/image/logo.png 状态码: 200 耗时: 0.00s
+2025-12-13 12:15:27,039,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:15:27,041,uvicorn,INFO,请求开始: GET http://localhost:8000/static/image/favicon.png
+2025-12-13 12:15:27,041,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-13 12:15:27,051,uvicorn,INFO,请求完成: GET http://localhost:8000/static/image/favicon.png 状态码: 200 耗时: 0.01s
+2025-12-13 12:15:29,054,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:15:29,055,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:15:29,058,uvicorn,INFO,请求开始: GET http://localhost:8000/static/css/bootstrap.css.map
+2025-12-13 12:15:29,060,uvicorn,INFO,请求完成: GET http://localhost:8000/static/css/bootstrap.css.map 状态码: 200 耗时: 0.00s
+2025-12-13 12:15:32,227,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:15:32,229,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:15:32,615,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 12:15:32,617,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 200 耗时: 0.00s
+2025-12-13 12:15:32,684,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:15:32,686,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:16:26,212,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:16:26,215,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:16:26,433,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:16:26,434,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:16:26,439,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 12:16:26,442,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 304 耗时: 0.00s
+2025-12-13 12:26:03,604,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:26:03,606,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:26:03,789,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:26:03,790,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:26:03,793,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 12:26:03,803,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 200 耗时: 0.01s
+2025-12-13 12:26:32,685,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/get_logs?date=2025-12-13&level=&keyword=
+2025-12-13 12:26:32,731,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/get_logs?date=2025-12-13&level=&keyword= 状态码: 200 耗时: 0.05s
+2025-12-13 12:29:17,343,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:29:17,347,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:29:17,930,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:29:17,931,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:29:17,942,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 12:29:17,944,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 200 耗时: 0.00s
+2025-12-13 12:29:22,982,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/get_logs?date=2025-12-12&level=&keyword=
+2025-12-13 12:29:23,018,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/get_logs?date=2025-12-12&level=&keyword= 状态码: 200 耗时: 0.04s
+2025-12-13 12:29:32,544,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:29:32,545,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:29:32,805,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:29:32,806,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:29:32,808,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 12:29:32,813,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 304 耗时: 0.00s
+2025-12-13 12:30:04,534,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword=
+2025-12-13 12:30:04,574,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword= 状态码: 200 耗时: 0.04s
+2025-12-13 12:31:49,659,uvicorn.error,INFO,Shutting down
+2025-12-13 12:31:49,768,uvicorn.error,INFO,Waiting for application shutdown.
+2025-12-13 12:31:49,770,uvicorn,INFO,应用关闭中...
+2025-12-13 12:31:49,770,uvicorn,INFO,日志系统关闭
+2025-12-13 12:31:49,770,uvicorn.error,INFO,Application shutdown complete.
+2025-12-13 12:31:49,771,uvicorn.error,INFO,Finished server process [9496]
+2025-12-13 12:32:24,342,uvicorn.error,INFO,Started server process [10044]
+2025-12-13 12:32:24,342,uvicorn.error,INFO,Waiting for application startup.
+2025-12-13 12:32:24,343,uvicorn,INFO,应用启动中...
+2025-12-13 12:32:24,343,uvicorn,INFO,日志系统初始化完成
+2025-12-13 12:32:24,343,uvicorn.error,INFO,Application startup complete.
+2025-12-13 12:32:28,051,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:32:28,057,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.01s
+2025-12-13 12:32:28,314,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:32:28,315,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 12:32:28,316,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:32:28,908,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 304 耗时: 0.59s
+2025-12-13 12:32:40,413,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword=
+2025-12-13 12:32:40,455,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword= 状态码: 200 耗时: 0.04s
+2025-12-13 12:34:27,089,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:34:27,092,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:34:27,363,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:34:27,364,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:34:27,367,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 12:34:27,371,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 304 耗时: 0.00s
+2025-12-13 12:34:33,144,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword=
+2025-12-13 12:34:33,181,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword= 状态码: 200 耗时: 0.04s
+2025-12-13 12:40:52,110,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:40:52,113,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:40:52,533,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:40:52,534,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:40:52,540,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 12:40:52,543,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 200 耗时: 0.00s
+2025-12-13 12:40:55,645,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword=
+2025-12-13 12:40:55,681,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword= 状态码: 200 耗时: 0.04s
+2025-12-13 12:44:04,770,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:44:04,774,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:44:04,943,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 12:44:04,947,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 200 耗时: 0.00s
+2025-12-13 12:44:04,952,uvicorn,INFO,请求开始: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json
+2025-12-13 12:44:04,954,uvicorn,INFO,请求完成: GET http://localhost:8000/.well-known/appspecific/com.chrome.devtools.json 状态码: 404 耗时: 0.00s
+2025-12-13 12:44:09,866,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword=
+2025-12-13 12:44:09,902,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword= 状态码: 200 耗时: 0.04s
+2025-12-13 12:47:06,170,uvicorn.error,INFO,Shutting down
+2025-12-13 12:47:06,282,uvicorn.error,INFO,Waiting for application shutdown.
+2025-12-13 12:47:06,283,uvicorn,INFO,应用关闭中...
+2025-12-13 12:47:06,283,uvicorn,INFO,日志系统关闭
+2025-12-13 12:47:06,284,uvicorn.error,INFO,Application shutdown complete.
+2025-12-13 12:47:06,285,uvicorn.error,INFO,Finished server process [10044]
+2025-12-13 12:49:06,232,uvicorn.error,INFO,Started server process [7224]
+2025-12-13 12:49:06,233,uvicorn.error,INFO,Waiting for application startup.
+2025-12-13 12:49:06,233,uvicorn,INFO,应用启动中...
+2025-12-13 12:49:06,233,uvicorn,INFO,日志系统初始化完成
+2025-12-13 12:49:06,234,uvicorn.error,INFO,Application startup complete.
+2025-12-13 12:49:06,439,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2025-12-13 12:49:06,441,uvicorn,INFO,函数 goto_login_page 开始执行
+2025-12-13 12:49:06,446,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x000002645E018910>
+2025-12-13 12:49:06,447,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.01s
+2025-12-13 12:49:06,557,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-13 12:49:06,559,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2025-12-13 12:49:06,647,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/script.js
+2025-12-13 12:49:07,067,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/script.js 状态码: 304 耗时: 0.42s
+2025-12-13 12:49:07,100,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:49:07,100,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-13 12:49:08,567,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2025-12-13 12:49:08,852,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.28s
+2025-12-13 12:49:09,891,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 12:49:09,895,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2025-12-13 12:49:10,002,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:49:10,003,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-13 12:49:13,558,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 12:49:13,559,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2025-12-13 12:49:13,656,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:49:13,658,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-13 12:49:15,242,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:49:15,245,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:49:15,311,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 12:49:15,313,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 200 耗时: 0.00s
+2025-12-13 12:49:16,658,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 12:49:16,659,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2025-12-13 12:49:16,779,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:49:16,781,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-13 12:49:18,819,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:49:18,820,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:49:42,116,uvicorn,INFO,请求开始: POST http://localhost:8000/api/logout
+2025-12-13 12:49:42,117,uvicorn,INFO,请求完成: POST http://localhost:8000/api/logout 状态码: 200 耗时: 0.00s
+2025-12-13 12:49:42,163,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-13 12:49:42,164,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2025-12-13 12:49:42,297,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:49:42,298,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-13 12:49:48,791,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 12:49:48,791,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 401 耗时: 0.00s
+2025-12-13 12:49:53,547,uvicorn,INFO,请求开始: GET http://localhost:8000/logs
+2025-12-13 12:49:53,548,uvicorn,INFO,请求完成: GET http://localhost:8000/logs 状态码: 404 耗时: 0.00s
+2025-12-13 12:50:11,097,uvicorn,INFO,请求开始: GET http://localhost:8000/logs
+2025-12-13 12:50:11,098,uvicorn,INFO,请求完成: GET http://localhost:8000/logs 状态码: 404 耗时: 0.00s
+2025-12-13 12:50:18,624,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 12:50:18,625,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 401 耗时: 0.00s
+2025-12-13 12:50:25,683,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-13 12:50:25,684,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2025-12-13 12:50:25,804,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:50:25,805,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-13 12:50:27,662,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2025-12-13 12:50:27,967,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.31s
+2025-12-13 12:50:29,032,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 12:50:29,033,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2025-12-13 12:50:29,147,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:50:29,149,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-13 12:50:33,654,uvicorn,INFO,请求开始: GET http://localhost:8000/logs
+2025-12-13 12:50:33,658,uvicorn,INFO,请求完成: GET http://localhost:8000/logs 状态码: 404 耗时: 0.00s
+2025-12-13 12:50:57,620,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 12:50:57,622,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2025-12-13 12:50:57,747,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:50:57,748,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-13 12:50:59,931,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:50:59,932,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:50:59,995,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 12:50:59,998,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 304 耗时: 0.00s
+2025-12-13 12:51:09,564,uvicorn,INFO,请求开始: POST http://localhost:8000/api/logout
+2025-12-13 12:51:09,565,uvicorn,INFO,请求完成: POST http://localhost:8000/api/logout 状态码: 200 耗时: 0.00s
+2025-12-13 12:51:09,585,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-13 12:51:09,586,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2025-12-13 12:51:09,707,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:51:09,708,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-13 12:51:13,985,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:51:13,986,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:53:50,229,uvicorn.error,INFO,Shutting down
+2025-12-13 12:53:50,325,uvicorn.error,INFO,Waiting for application shutdown.
+2025-12-13 12:53:50,325,uvicorn,INFO,应用关闭中...
+2025-12-13 12:53:50,326,uvicorn,INFO,日志系统关闭
+2025-12-13 12:53:50,326,uvicorn.error,INFO,Application shutdown complete.
+2025-12-13 12:53:50,326,uvicorn.error,INFO,Finished server process [7224]
+2025-12-13 12:53:59,987,uvicorn.error,INFO,Started server process [6328]
+2025-12-13 12:53:59,988,uvicorn.error,INFO,Waiting for application startup.
+2025-12-13 12:53:59,991,uvicorn,INFO,应用启动中...
+2025-12-13 12:53:59,991,uvicorn,INFO,日志系统初始化完成
+2025-12-13 12:53:59,991,uvicorn.error,INFO,Application startup complete.
+2025-12-13 12:54:01,501,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:54:01,502,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 401 耗时: 0.00s
+2025-12-13 12:54:07,236,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-13 12:54:07,241,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2025-12-13 12:54:07,319,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/script.js
+2025-12-13 12:54:07,670,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/script.js 状态码: 304 耗时: 0.35s
+2025-12-13 12:54:07,711,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:54:07,712,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-13 12:54:09,046,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2025-12-13 12:54:09,177,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.13s
+2025-12-13 12:54:10,212,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 12:54:10,215,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2025-12-13 12:54:10,332,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:54:10,334,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-13 12:54:11,912,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:54:11,915,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:54:12,019,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 12:54:12,023,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 304 耗时: 0.00s
+2025-12-13 12:54:16,158,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword=
+2025-12-13 12:54:16,204,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword= 状态码: 200 耗时: 0.05s
+2025-12-13 12:54:28,092,uvicorn,INFO,请求开始: POST http://localhost:8000/api/logout
+2025-12-13 12:54:28,093,uvicorn,INFO,请求完成: POST http://localhost:8000/api/logout 状态码: 200 耗时: 0.00s
+2025-12-13 12:54:28,113,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-13 12:54:28,114,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2025-12-13 12:54:28,198,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:54:28,199,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-13 12:54:30,983,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:54:30,984,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 401 耗时: 0.00s
+2025-12-13 12:54:39,294,uvicorn.error,INFO,Shutting down
+2025-12-13 12:54:39,405,uvicorn.error,INFO,Waiting for application shutdown.
+2025-12-13 12:54:39,405,uvicorn,INFO,应用关闭中...
+2025-12-13 12:54:39,406,uvicorn,INFO,日志系统关闭
+2025-12-13 12:54:39,406,uvicorn.error,INFO,Application shutdown complete.
+2025-12-13 12:54:39,406,uvicorn.error,INFO,Finished server process [6328]
+2025-12-13 12:55:58,357,uvicorn.error,INFO,Started server process [7180]
+2025-12-13 12:55:58,357,uvicorn.error,INFO,Waiting for application startup.
+2025-12-13 12:55:58,358,uvicorn,INFO,应用启动中...
+2025-12-13 12:55:58,358,uvicorn,INFO,日志系统初始化完成
+2025-12-13 12:55:58,358,uvicorn.error,INFO,Application startup complete.
+2025-12-13 12:56:06,323,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-13 12:56:06,331,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.01s
+2025-12-13 12:56:06,414,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:56:06,415,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-13 12:56:07,775,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2025-12-13 12:56:07,949,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.17s
+2025-12-13 12:56:09,000,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2025-12-13 12:56:09,003,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2025-12-13 12:56:09,154,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:56:09,157,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2025-12-13 12:56:10,816,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2025-12-13 12:56:10,819,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2025-12-13 12:56:10,871,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2025-12-13 12:56:11,257,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 304 耗时: 0.39s
+2025-12-13 12:56:14,437,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword=
+2025-12-13 12:56:14,482,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/get_logs?date=2025-12-10&level=&keyword= 状态码: 200 耗时: 0.05s
+2025-12-13 12:57:45,071,uvicorn,INFO,请求开始: POST http://localhost:8000/api/logout
+2025-12-13 12:57:45,072,uvicorn,INFO,请求完成: POST http://localhost:8000/api/logout 状态码: 200 耗时: 0.00s
+2025-12-13 12:57:45,095,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2025-12-13 12:57:45,096,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2025-12-13 12:57:45,195,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2025-12-13 12:57:45,196,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2025-12-13 12:57:50,573,uvicorn.error,INFO,Shutting down
+2025-12-13 12:57:50,685,uvicorn.error,INFO,Waiting for application shutdown.
+2025-12-13 12:57:50,686,uvicorn,INFO,应用关闭中...
+2025-12-13 12:57:50,687,uvicorn,INFO,日志系统关闭
+2025-12-13 12:57:50,687,uvicorn.error,INFO,Application shutdown complete.
+2025-12-13 12:57:50,690,uvicorn.error,INFO,Finished server process [7180]

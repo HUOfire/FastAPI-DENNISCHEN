@@ -2,7 +2,8 @@
 import os
 import time
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Request, Depends
+from security.cookie import templates, get_current_user
 
 logs_router = APIRouter()
 
@@ -41,22 +42,21 @@ def read_logs(date = None, level = None, keyword = None):
         return  None
 
 
-@logs_router.get("/logs")
+@logs_router.get("/get_logs")
 async def get_logs(date: str = None, level: str = None, keyword: str = None):
     logs = read_logs(date, level, keyword)
     if logs:
-        return {"code": 200, "msg": "success", "data": logs}
+        return {"code": 200, "msg": "success", "logs": logs}
     else:
-        return {"code": 404, "msg": "not found", "data": []}
+        return {"code": 404, "msg": "not found", "logs": []}
 
 
-@logs_router.get("/logs/{date}")
-async def logs_page(request: Request):
-    # print(request.method)
+@logs_router.get("/logs")
+async def logs_page(request: Request,  user: dict = Depends(get_current_user)):
     return templates.TemplateResponse(
-        "pageto.html",
+        "logs.html",
         context={
             'request': request,
-            'login_tip': '前往登录'
+            'login_tip': '日志查询'
         }
     )

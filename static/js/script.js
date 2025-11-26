@@ -58,7 +58,7 @@ window.addEventListener('load', async () => {
                     const messageDiv = document.getElementById('message');
                     messageDiv.style.display = 'block';
                     messageDiv.className = 'message success';
-                    messageDiv.innerHTML = `已登录为 ${data.user.username}，<a href="/index">进入文档</a> | <a href="javascript:void(0)" onclick="logout()">退出登录</a>`;
+                    messageDiv.innerHTML = `已登录为 ${data.user.username}，<a href="/index">进入主页</a> | <a href="javascript:void(0)" onclick="logout()">退出登录</a>`;
             }
         }
         catch (error) {

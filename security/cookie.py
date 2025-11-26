@@ -102,7 +102,7 @@ async def login(login_data: LoginRequest, response: Response):
         key="auth_token",
         value=access_token,
         httponly=True,
-        max_age=St.ACCESS_TOKEN_EXPIRE_MINUTES * 60,
+        max_age=St.ACCESS_TOKEN_EXPIRE_MINUTES * 60, # 单位：秒
         secure=False,  # 开发环境设为 False，生产环境设为 True
         samesite="lax",
         path="/"
