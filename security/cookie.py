@@ -162,7 +162,7 @@ async def protected_docs(
 
 
 # 公开的登录页面
-@cok_router.get("/login", response_class=HTMLResponse)
+@cok_router.get("/login", summary="登录页面", response_class=HTMLResponse)
 async def goto_login_page(request: Request):
     return templates.TemplateResponse(
         "login.html",
@@ -172,7 +172,7 @@ async def goto_login_page(request: Request):
         }
     )
 
-@cok_router.get("/index", summary="登录页面", response_class=HTMLResponse)
+@cok_router.get("/index", summary="主页", response_class=HTMLResponse)
 async def read_item(request: Request, user: dict = Depends(get_current_user)):
     return templates.TemplateResponse(
         "index.html",

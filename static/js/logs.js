@@ -13,7 +13,8 @@ async function logout() {
 
 async function seach_logs(){
      const params = new URLSearchParams({
-            date: document.getElementById('date').value,
+            str_date: document.getElementById('str_date').value,
+            end_date: document.getElementById('end_date').value,
             level: document.getElementById('level').value,
             keyword: document.getElementById('keyword').value
     });
@@ -26,7 +27,7 @@ async function seach_logs(){
             },
         });
         const data = await response.json();
-        //console.log(data);
+        console.log(data);
         if (data.code === 200) {
             const logs = data.logs;
             const table = document.getElementById('logs-table');

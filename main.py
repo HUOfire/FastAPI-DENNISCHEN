@@ -32,8 +32,8 @@ async def lifespan(app: FastAPI):
     log_manager.start()
 
     # 设置共享状态（可用于路由访问）
-    app.state.logger = logger
-    app.state.log_manager = log_manager
+    app.logger = logger
+    app.log_manager = log_manager
 
     yield  # 应用运行阶段
 
@@ -82,7 +82,7 @@ app.include_router(cok_router, tags=["Cookie认证管理"])
 app.include_router(logs_router,prefix="/apilog", tags=["日志管理"])
 
 
-@app.get("/", summary="登录页面", response_class=HTMLResponse, tags=["Cookie认证管理"])
+@app.get("/", summary="跳转页面", response_class=HTMLResponse, tags=["Cookie认证管理"])
 @log_decorator(save_response=True)
 async def goto_login_page(request: Request):
     # print(request.method)

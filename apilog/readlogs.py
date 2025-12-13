@@ -5,6 +5,8 @@ import time
 from fastapi import APIRouter, Request, Depends
 from security.cookie import templates, get_current_user
 
+from fuzzywuzzy import fuzz, process
+
 logs_router = APIRouter()
 
 def chg_date(time_str):
@@ -12,8 +14,11 @@ def chg_date(time_str):
     value6 = time.strftime("%Y-%m-%d", value5)
     return value6
 
+# 模糊匹配字符串  返回匹配度  100完全匹配
+def partial_match(str1, str2):
+    return fuzz.partial_ratio(str1, str2)
 
-def read_logs(date = None, level = None, keyword = None):
+def read_logs(str_date = None, end_date = None, level = None, keyword = None):
     log_file = "./apilog/app.log"
     list_key = ["datetime", "timeframe", "server", "level", "message"]
     result = []
@@ -24,15 +29,19 @@ def read_logs(date = None, level = None, keyword = None):
                 text = str(line).split(",")
                 if len(text)<3:
                     continue
-                if date:
-                    lin_time = text[0]+","+text[1]
-                    if chg_date(lin_time)!=date:
+                lin_time = text[0] + "," + text[1]
+                if str_date:
+                    if chg_date(lin_time) < str_date:
+                        continue
+                if end_date:
+                    if chg_date(lin_time) > end_date:
                         continue
                 if level:
                     if text[3]!=level:
                         continue
                 if keyword:
-                    if keyword not in text:
+                    t_value = partial_match(text[4], keyword)
+                    if t_value < 50:
                         continue
                 list_log = dict(zip(list_key, text))
                 result.append(list_log)
@@ -43,8 +52,10 @@ def read_logs(date = None, level = None, keyword = None):
 
 
 @logs_router.get("/get_logs")
-async def get_logs(date: str = None, level: str = None, keyword: str = None):
-    logs = read_logs(date, level, keyword)
+async def get_logs(str_date : str = None, end_date : str = None, level: str = None, keyword: str = None,
+                   user: dict = Depends(get_current_user)
+                ):
+    logs = read_logs(str_date, end_date, level, keyword)
     if logs:
         return {"code": 200, "msg": "success", "logs": logs}
     else:
