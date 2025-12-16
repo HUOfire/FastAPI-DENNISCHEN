@@ -2,6 +2,7 @@ import logging
 import time
 
 from fastapi import Request
+from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 
 
@@ -58,5 +59,19 @@ def log_record(request: Request, call_next):
     """日志记录中间件函数"""
     middleware = LogMiddleware(app = None)
     return middleware.dispatch(request, call_next)
+
+
+async def openapi_protect_middleware(request: Request, call_next):
+    # 仅拦截openapi.json路径
+    if request.url.path == "/openapi.json":
+        # 此处可替换为项目已有的JWT校验、IP白名单、内部服务鉴权逻辑
+        is_internal_request = request.client.host in ["127.0.0.1","192.168.1.112"]
+        if not is_internal_request:
+            return JSONResponse(
+                status_code=403,
+                content={"detail": "Access to openapi.json is forbidden"}
+            )
+    response = await call_next(request)
+    return response
 
 

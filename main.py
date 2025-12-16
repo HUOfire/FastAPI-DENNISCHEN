@@ -6,7 +6,7 @@ from starlette.responses import HTMLResponse
 
 from apilog import log_decorator, logs_router
 from apilog.log_config import LogConfig
-from apilog.log_middleware import LoggerRecord, log_record
+from apilog.log_middleware import LoggerRecord, log_record, openapi_protect_middleware
 from apps import FilesManage
 from security import jwt_router, cok_router
 from security.cookie import templates
@@ -54,6 +54,7 @@ app = FastAPI(
 
 # 添加日志中间件
 app.middleware("http")(log_record)
+app.middleware("http")(openapi_protect_middleware)
 
 # 设置跨域请求的白名单
 origins = [
