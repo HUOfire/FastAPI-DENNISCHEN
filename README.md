@@ -15,7 +15,7 @@ FastAPI-DENNISCHEN 是基于 FastAPI 框架的 Dennis Chen 项目的管理平台
 - 集成 Redis 缓存 -待完成
 - 集成 Swagger 文档
 - 集成部署 -待完成
-- 集成日志管理 -60%
+- 集成日志管理
 
 ## 登录认证
 [![API docs](img/login.png)](https://github.com/HUOfire/FastAPI-DENNISCHEN)
