@@ -3027,3 +3027,839 @@ AttributeError: 'dict' object has no attribute 'encode'
 2026-01-20 15:24:53,738,uvicorn,INFO,应用启动中...
 2026-01-20 15:24:53,739,uvicorn,INFO,日志系统初始化完成
 2026-01-20 15:24:53,739,uvicorn.error,INFO,Application startup complete.
+2026-08-10 11:57:17,907,uvicorn.error,INFO,Started server process [20640]
+2026-08-10 11:57:17,908,uvicorn.error,INFO,Waiting for application startup.
+2026-08-10 11:57:17,909,uvicorn,INFO,应用启动中...
+2026-08-10 11:57:17,909,uvicorn,INFO,日志系统初始化完成
+2026-08-10 11:57:17,910,uvicorn.error,INFO,Application startup complete.
+2026-08-10 11:57:27,705,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 11:57:27,713,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 401 耗时: 0.00s
+2026-08-10 11:57:27,888,uvicorn,INFO,请求开始: GET http://localhost:8000/favicon.ico
+2026-08-10 11:57:27,889,uvicorn,INFO,请求完成: GET http://localhost:8000/favicon.ico 状态码: 404 耗时: 0.00s
+2026-08-10 11:57:31,310,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2026-08-10 11:57:31,311,uvicorn,INFO,函数 goto_login_page 开始执行
+2026-08-10 11:57:31,314,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x0000021B97701520>
+2026-08-10 11:57:31,316,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.00s
+2026-08-10 11:57:31,558,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2026-08-10 11:57:31,590,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.03s
+2026-08-10 11:57:31,733,uvicorn,INFO,请求开始: GET http://localhost:8000/static/css/styles.css
+2026-08-10 11:57:31,911,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/script.js
+2026-08-10 11:57:32,402,uvicorn,INFO,请求完成: GET http://localhost:8000/static/css/styles.css 状态码: 200 耗时: 0.67s
+2026-08-10 11:57:32,403,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/script.js 状态码: 200 耗时: 0.49s
+2026-08-10 11:57:32,516,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 11:57:32,518,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2026-08-10 11:57:33,864,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2026-08-10 11:57:34,092,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.23s
+2026-08-10 11:57:35,147,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 11:57:35,151,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2026-08-10 11:57:35,283,uvicorn,INFO,请求开始: GET http://localhost:8000/static/css/bootstrap.css
+2026-08-10 11:57:35,286,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/jquery-3.5.1.min.js
+2026-08-10 11:57:35,286,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/bootstrap.min.js
+2026-08-10 11:57:35,319,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/jquery-3.5.1.min.js 状态码: 200 耗时: 0.03s
+2026-08-10 11:57:35,320,uvicorn,INFO,请求完成: GET http://localhost:8000/static/css/bootstrap.css 状态码: 200 耗时: 0.04s
+2026-08-10 11:57:35,323,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/bootstrap.min.js 状态码: 200 耗时: 0.04s
+2026-08-10 11:57:35,359,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/index.js
+2026-08-10 11:57:35,362,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/index.js 状态码: 200 耗时: 0.00s
+2026-08-10 11:57:35,364,uvicorn,INFO,请求开始: GET http://localhost:8000/static/image/tx.jpg
+2026-08-10 11:57:35,378,uvicorn,INFO,请求完成: GET http://localhost:8000/static/image/tx.jpg 状态码: 200 耗时: 0.01s
+2026-08-10 11:57:35,601,uvicorn,INFO,请求开始: GET http://localhost:8000/static/image/logo.png
+2026-08-10 11:57:35,606,uvicorn,INFO,请求完成: GET http://localhost:8000/static/image/logo.png 状态码: 200 耗时: 0.00s
+2026-08-10 11:57:35,679,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 11:57:35,682,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 11:57:35,693,uvicorn,INFO,请求开始: GET http://localhost:8000/static/image/favicon.png
+2026-08-10 11:57:35,695,uvicorn,INFO,请求完成: GET http://localhost:8000/static/image/favicon.png 状态码: 200 耗时: 0.00s
+2026-08-10 11:57:38,541,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 11:57:38,542,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2026-08-10 11:57:38,674,uvicorn,INFO,请求开始: GET http://localhost:8000/static/swagger-ui/swagger-ui.css
+2026-08-10 11:57:38,675,uvicorn,INFO,请求开始: GET http://localhost:8000/static/swagger-ui/swagger-ui-bundle.js
+2026-08-10 11:57:38,678,uvicorn,INFO,请求完成: GET http://localhost:8000/static/swagger-ui/swagger-ui.css 状态码: 200 耗时: 0.00s
+2026-08-10 11:57:38,679,uvicorn,INFO,请求完成: GET http://localhost:8000/static/swagger-ui/swagger-ui-bundle.js 状态码: 200 耗时: 0.00s
+2026-08-10 11:57:39,110,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2026-08-10 11:57:39,195,uvicorn,INFO,请求开始: GET http://localhost:8000/static/swagger-ui/favicon.png
+2026-08-10 11:57:39,197,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.09s
+2026-08-10 11:57:39,206,uvicorn,INFO,请求完成: GET http://localhost:8000/static/swagger-ui/favicon.png 状态码: 200 耗时: 0.01s
+2026-08-10 11:58:40,951,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 11:58:40,952,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2026-08-10 11:58:41,305,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2026-08-10 11:58:41,306,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.00s
+2026-08-10 11:59:36,877,uvicorn,INFO,请求开始: GET http://localhost:8000/docs1
+2026-08-10 11:59:36,878,uvicorn,INFO,请求完成: GET http://localhost:8000/docs1 状态码: 404 耗时: 0.00s
+2026-08-10 11:59:57,953,uvicorn.error,INFO,Shutting down
+2026-08-10 11:59:58,070,uvicorn.error,INFO,Waiting for application shutdown.
+2026-08-10 11:59:58,071,uvicorn,INFO,应用关闭中...
+2026-08-10 11:59:58,071,uvicorn,INFO,日志系统关闭
+2026-08-10 11:59:58,071,uvicorn.error,INFO,Application shutdown complete.
+2026-08-10 11:59:58,071,uvicorn.error,INFO,Finished server process [20640]
+2026-08-10 12:00:00,342,uvicorn.error,INFO,Started server process [7084]
+2026-08-10 12:00:00,343,uvicorn.error,INFO,Waiting for application startup.
+2026-08-10 12:00:00,343,uvicorn,INFO,应用启动中...
+2026-08-10 12:00:00,343,uvicorn,INFO,日志系统初始化完成
+2026-08-10 12:00:00,343,uvicorn.error,INFO,Application startup complete.
+2026-08-10 12:02:07,485,uvicorn.error,INFO,Started server process [20540]
+2026-08-10 12:02:07,487,uvicorn.error,INFO,Waiting for application startup.
+2026-08-10 12:02:07,487,uvicorn,INFO,应用启动中...
+2026-08-10 12:02:07,487,uvicorn,INFO,日志系统初始化完成
+2026-08-10 12:02:07,488,uvicorn.error,INFO,Application startup complete.
+2026-08-10 12:02:14,209,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:02:14,211,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2026-08-10 12:02:14,454,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2026-08-10 12:02:14,508,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.05s
+2026-08-10 12:02:19,335,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:02:19,335,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2026-08-10 12:02:19,501,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2026-08-10 12:02:19,502,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.00s
+2026-08-10 12:02:24,706,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2026-08-10 12:02:24,706,uvicorn,INFO,函数 goto_login_page 开始执行
+2026-08-10 12:02:24,709,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x000001E4CCDA6730>
+2026-08-10 12:02:24,710,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.00s
+2026-08-10 12:02:24,894,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2026-08-10 12:02:24,900,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.01s
+2026-08-10 12:02:25,111,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:02:25,114,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:02:26,468,uvicorn,INFO,请求开始: POST http://localhost:8000/api/logout
+2026-08-10 12:02:26,470,uvicorn,INFO,请求完成: POST http://localhost:8000/api/logout 状态码: 200 耗时: 0.00s
+2026-08-10 12:02:26,493,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2026-08-10 12:02:26,497,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2026-08-10 12:02:26,657,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:02:26,658,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2026-08-10 12:02:32,127,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:02:32,128,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 401 耗时: 0.00s
+2026-08-10 12:02:42,339,uvicorn,INFO,请求开始: GET http://localhost:8000/opapi.json
+2026-08-10 12:02:42,340,uvicorn,INFO,请求完成: GET http://localhost:8000/opapi.json 状态码: 404 耗时: 0.00s
+2026-08-10 12:02:49,320,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2026-08-10 12:02:49,322,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.00s
+2026-08-10 12:02:56,187,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2026-08-10 12:02:56,188,uvicorn,INFO,函数 goto_login_page 开始执行
+2026-08-10 12:02:56,189,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x000001E4CCD784C0>
+2026-08-10 12:02:56,189,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.00s
+2026-08-10 12:02:56,388,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2026-08-10 12:02:56,390,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2026-08-10 12:02:56,574,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:02:56,575,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2026-08-10 12:02:58,251,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2026-08-10 12:02:58,576,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.33s
+2026-08-10 12:02:59,609,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 12:02:59,614,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2026-08-10 12:02:59,822,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:02:59,823,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:03:01,100,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:03:01,101,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2026-08-10 12:03:01,388,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2026-08-10 12:03:01,390,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.00s
+2026-08-10 12:05:32,540,uvicorn.error,INFO,Shutting down
+2026-08-10 12:05:32,651,uvicorn.error,INFO,Waiting for application shutdown.
+2026-08-10 12:05:32,652,uvicorn,INFO,应用关闭中...
+2026-08-10 12:05:32,652,uvicorn,INFO,日志系统关闭
+2026-08-10 12:05:32,652,uvicorn.error,INFO,Application shutdown complete.
+2026-08-10 12:05:32,653,uvicorn.error,INFO,Finished server process [20540]
+2026-08-10 12:22:47,211,uvicorn.error,INFO,Started server process [296]
+2026-08-10 12:22:47,211,uvicorn.error,INFO,Waiting for application startup.
+2026-08-10 12:22:47,212,uvicorn,INFO,应用启动中...
+2026-08-10 12:22:47,212,uvicorn,INFO,日志系统初始化完成
+2026-08-10 12:22:47,212,uvicorn.error,INFO,Application startup complete.
+2026-08-10 12:22:56,942,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2026-08-10 12:22:56,943,uvicorn,INFO,函数 goto_login_page 开始执行
+2026-08-10 12:22:56,949,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x000001EA07D689A0>
+2026-08-10 12:22:56,949,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.01s
+2026-08-10 12:22:57,116,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2026-08-10 12:22:57,119,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2026-08-10 12:22:57,349,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:22:57,350,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2026-08-10 12:22:58,967,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2026-08-10 12:22:59,127,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.16s
+2026-08-10 12:23:00,155,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 12:23:00,157,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2026-08-10 12:23:00,423,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:23:00,425,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:23:02,063,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:23:02,064,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2026-08-10 12:23:13,532,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2026-08-10 12:23:13,532,uvicorn,INFO,函数 goto_login_page 开始执行
+2026-08-10 12:23:13,533,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x000001EA07D9E250>
+2026-08-10 12:23:13,533,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.00s
+2026-08-10 12:23:13,697,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2026-08-10 12:23:13,698,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2026-08-10 12:23:14,076,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:23:14,077,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:23:16,493,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 12:23:16,494,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2026-08-10 12:23:16,795,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:23:16,797,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:23:24,497,uvicorn.error,INFO,Shutting down
+2026-08-10 12:23:24,609,uvicorn.error,INFO,Waiting for application shutdown.
+2026-08-10 12:23:24,610,uvicorn,INFO,应用关闭中...
+2026-08-10 12:23:24,611,uvicorn,INFO,日志系统关闭
+2026-08-10 12:23:24,611,uvicorn.error,INFO,Application shutdown complete.
+2026-08-10 12:23:24,612,uvicorn.error,INFO,Finished server process [296]
+2026-08-10 12:24:03,757,uvicorn.error,INFO,Started server process [5312]
+2026-08-10 12:24:03,757,uvicorn.error,INFO,Waiting for application startup.
+2026-08-10 12:24:03,757,uvicorn,INFO,应用启动中...
+2026-08-10 12:24:03,758,uvicorn,INFO,日志系统初始化完成
+2026-08-10 12:24:03,758,uvicorn.error,INFO,Application startup complete.
+2026-08-10 12:24:10,754,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 12:24:10,760,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.01s
+2026-08-10 12:24:10,847,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:24:10,848,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:24:14,298,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:24:14,299,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2026-08-10 12:25:13,315,uvicorn.error,INFO,Shutting down
+2026-08-10 12:25:13,426,uvicorn.error,INFO,Waiting for application shutdown.
+2026-08-10 12:25:13,427,uvicorn,INFO,应用关闭中...
+2026-08-10 12:25:13,427,uvicorn,INFO,日志系统关闭
+2026-08-10 12:25:13,428,uvicorn.error,INFO,Application shutdown complete.
+2026-08-10 12:25:13,429,uvicorn.error,INFO,Finished server process [5312]
+2026-08-10 12:25:15,535,uvicorn.error,INFO,Started server process [5580]
+2026-08-10 12:25:15,536,uvicorn.error,INFO,Waiting for application startup.
+2026-08-10 12:25:15,536,uvicorn,INFO,应用启动中...
+2026-08-10 12:25:15,537,uvicorn,INFO,日志系统初始化完成
+2026-08-10 12:25:15,537,uvicorn.error,INFO,Application startup complete.
+2026-08-10 12:25:23,912,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:25:23,913,uvicorn,ERROR,中间件处理异常: unsupported operand type(s) for +: 'HTMLResponse' and 'str'
+2026-08-10 12:25:23,915,uvicorn.error,ERROR,Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+  |     response_sent.set()
+  |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\anyio\_backends\_asyncio.py", line 685, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\applications.py", line 1134, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    |     response_sent.set()
+    |   File "D:\Python\Python38\lib\contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\apilog\log_middleware.py", line 74, in openapi_protect_middleware
+    |     response = await call_next(request)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    |     response_sent.set()
+    |   File "D:\Python\Python38\lib\contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\apilog\log_middleware.py", line 41, in dispatch
+    |     response = await call_next(request)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 125, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 111, in app
+    |     response = await f(request)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 391, in app
+    |     raw_response = await run_endpoint_function(
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 290, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\security\cookie.py", line 175, in protected_docs
+    |     cust_swagger_ui = std_swagger_ui + but_add_script
+    | TypeError: unsupported operand type(s) for +: 'HTMLResponse' and 'str'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\applications.py", line 1134, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    response_sent.set()
+  File "D:\Python\Python38\lib\contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\apilog\log_middleware.py", line 74, in openapi_protect_middleware
+    response = await call_next(request)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    response_sent.set()
+  File "D:\Python\Python38\lib\contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\apilog\log_middleware.py", line 41, in dispatch
+    response = await call_next(request)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 125, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 111, in app
+    response = await f(request)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 391, in app
+    raw_response = await run_endpoint_function(
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 290, in run_endpoint_function
+    return await dependant.call(**values)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\security\cookie.py", line 175, in protected_docs
+    cust_swagger_ui = std_swagger_ui + but_add_script
+TypeError: unsupported operand type(s) for +: 'HTMLResponse' and 'str'
+2026-08-10 12:25:26,689,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2026-08-10 12:25:26,691,uvicorn,INFO,函数 goto_login_page 开始执行
+2026-08-10 12:25:26,694,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x000002315659B670>
+2026-08-10 12:25:26,694,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.00s
+2026-08-10 12:25:26,843,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2026-08-10 12:25:26,845,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2026-08-10 12:25:27,065,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:25:27,067,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:25:28,518,uvicorn,INFO,请求开始: POST http://localhost:8000/api/logout
+2026-08-10 12:25:28,519,uvicorn,INFO,请求完成: POST http://localhost:8000/api/logout 状态码: 200 耗时: 0.00s
+2026-08-10 12:25:28,561,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2026-08-10 12:25:28,562,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2026-08-10 12:25:28,719,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:25:28,721,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2026-08-10 12:25:29,593,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2026-08-10 12:25:29,877,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.28s
+2026-08-10 12:25:30,925,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 12:25:30,928,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2026-08-10 12:25:31,145,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:25:31,146,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:25:32,892,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:25:32,893,uvicorn,ERROR,中间件处理异常: unsupported operand type(s) for +: 'HTMLResponse' and 'str'
+2026-08-10 12:25:32,894,uvicorn.error,ERROR,Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+  |     response_sent.set()
+  |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\anyio\_backends\_asyncio.py", line 685, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\applications.py", line 1134, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    |     response_sent.set()
+    |   File "D:\Python\Python38\lib\contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\apilog\log_middleware.py", line 74, in openapi_protect_middleware
+    |     response = await call_next(request)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    |     response_sent.set()
+    |   File "D:\Python\Python38\lib\contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\apilog\log_middleware.py", line 41, in dispatch
+    |     response = await call_next(request)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 125, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 111, in app
+    |     response = await f(request)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 391, in app
+    |     raw_response = await run_endpoint_function(
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 290, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\security\cookie.py", line 175, in protected_docs
+    |     cust_swagger_ui = std_swagger_ui + but_add_script
+    | TypeError: unsupported operand type(s) for +: 'HTMLResponse' and 'str'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\applications.py", line 1134, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    response_sent.set()
+  File "D:\Python\Python38\lib\contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\apilog\log_middleware.py", line 74, in openapi_protect_middleware
+    response = await call_next(request)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    response_sent.set()
+  File "D:\Python\Python38\lib\contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\apilog\log_middleware.py", line 41, in dispatch
+    response = await call_next(request)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 125, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 111, in app
+    response = await f(request)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 391, in app
+    raw_response = await run_endpoint_function(
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 290, in run_endpoint_function
+    return await dependant.call(**values)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\security\cookie.py", line 175, in protected_docs
+    cust_swagger_ui = std_swagger_ui + but_add_script
+TypeError: unsupported operand type(s) for +: 'HTMLResponse' and 'str'
+2026-08-10 12:25:56,485,uvicorn.error,INFO,Started server process [20904]
+2026-08-10 12:25:56,486,uvicorn.error,INFO,Waiting for application startup.
+2026-08-10 12:25:56,487,uvicorn,INFO,应用启动中...
+2026-08-10 12:25:56,488,uvicorn,INFO,日志系统初始化完成
+2026-08-10 12:25:56,488,uvicorn.error,INFO,Application startup complete.
+2026-08-10 12:26:00,774,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2026-08-10 12:26:00,775,uvicorn,INFO,函数 goto_login_page 开始执行
+2026-08-10 12:26:00,778,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x0000022B069F89D0>
+2026-08-10 12:26:00,778,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.00s
+2026-08-10 12:26:00,896,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2026-08-10 12:26:00,900,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2026-08-10 12:26:01,112,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:26:01,114,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:26:02,356,uvicorn,INFO,请求开始: POST http://localhost:8000/api/logout
+2026-08-10 12:26:02,357,uvicorn,INFO,请求完成: POST http://localhost:8000/api/logout 状态码: 200 耗时: 0.00s
+2026-08-10 12:26:02,379,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2026-08-10 12:26:02,380,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2026-08-10 12:26:02,577,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:26:02,578,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2026-08-10 12:26:03,526,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2026-08-10 12:26:03,882,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.36s
+2026-08-10 12:26:04,931,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 12:26:04,933,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2026-08-10 12:26:05,108,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:26:05,109,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:26:07,351,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:26:07,354,uvicorn,ERROR,中间件处理异常: unsupported operand type(s) for +: 'HTMLResponse' and 'str'
+2026-08-10 12:26:07,355,uvicorn.error,ERROR,Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 76, in collapse_excgroups
+  |     yield
+  |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+  |     response_sent.set()
+  |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\anyio\_backends\_asyncio.py", line 685, in __aexit__
+  |     raise BaseExceptionGroup(
+  | exceptiongroup.ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\applications.py", line 1134, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    |     response_sent.set()
+    |   File "D:\Python\Python38\lib\contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\apilog\log_middleware.py", line 74, in openapi_protect_middleware
+    |     response = await call_next(request)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    |     response_sent.set()
+    |   File "D:\Python\Python38\lib\contextlib.py", line 131, in __exit__
+    |     self.gen.throw(type, value, traceback)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 82, in collapse_excgroups
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 187, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\apilog\log_middleware.py", line 41, in dispatch
+    |     response = await call_next(request)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    |     raise app_exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    |     await self.app(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 735, in app
+    |     await route.handle(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    |     await self.app(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 125, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 111, in app
+    |     response = await f(request)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 391, in app
+    |     raw_response = await run_endpoint_function(
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 290, in run_endpoint_function
+    |     return await dependant.call(**values)
+    |   File "E:\PYTHON_PG\FastAPI-DENNISCHEN\security\cookie.py", line 175, in protected_docs
+    |     cust_swagger_ui = std_swagger_ui + but_add_script
+    | TypeError: unsupported operand type(s) for +: 'HTMLResponse' and 'str'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\uvicorn\protocols\http\h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\applications.py", line 1134, in __call__
+    await super().__call__(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\cors.py", line 85, in __call__
+    await self.app(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    response_sent.set()
+  File "D:\Python\Python38\lib\contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\apilog\log_middleware.py", line 74, in openapi_protect_middleware
+    response = await call_next(request)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 189, in __call__
+    response_sent.set()
+  File "D:\Python\Python38\lib\contextlib.py", line 131, in __exit__
+    self.gen.throw(type, value, traceback)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_utils.py", line 82, in collapse_excgroups
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 187, in __call__
+    response = await self.dispatch_func(request, call_next)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\apilog\log_middleware.py", line 41, in dispatch
+    response = await call_next(request)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 163, in call_next
+    raise app_exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\base.py", line 149, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\middleware\asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 715, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 735, in app
+    await route.handle(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 125, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 111, in app
+    response = await f(request)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 391, in app
+    raw_response = await run_endpoint_function(
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\.venv\lib\site-packages\fastapi\routing.py", line 290, in run_endpoint_function
+    return await dependant.call(**values)
+  File "E:\PYTHON_PG\FastAPI-DENNISCHEN\security\cookie.py", line 175, in protected_docs
+    cust_swagger_ui = std_swagger_ui + but_add_script
+TypeError: unsupported operand type(s) for +: 'HTMLResponse' and 'str'
+2026-08-10 12:26:42,243,uvicorn.error,INFO,Shutting down
+2026-08-10 12:26:42,355,uvicorn.error,INFO,Waiting for application shutdown.
+2026-08-10 12:26:42,355,uvicorn,INFO,应用关闭中...
+2026-08-10 12:26:42,356,uvicorn,INFO,日志系统关闭
+2026-08-10 12:26:42,356,uvicorn.error,INFO,Application shutdown complete.
+2026-08-10 12:26:42,356,uvicorn.error,INFO,Finished server process [20904]
+2026-08-10 12:26:50,440,uvicorn.error,INFO,Started server process [21404]
+2026-08-10 12:26:50,441,uvicorn.error,INFO,Waiting for application startup.
+2026-08-10 12:26:50,441,uvicorn,INFO,应用启动中...
+2026-08-10 12:26:50,441,uvicorn,INFO,日志系统初始化完成
+2026-08-10 12:26:50,441,uvicorn.error,INFO,Application startup complete.
+2026-08-10 12:26:50,745,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:26:50,747,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2026-08-10 12:26:51,180,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2026-08-10 12:26:51,241,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.06s
+2026-08-10 12:27:06,192,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2026-08-10 12:27:06,192,uvicorn,INFO,函数 goto_login_page 开始执行
+2026-08-10 12:27:06,196,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x0000023D16FD0FA0>
+2026-08-10 12:27:06,197,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.00s
+2026-08-10 12:27:06,456,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2026-08-10 12:27:06,458,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2026-08-10 12:27:06,638,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:27:06,639,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:27:08,409,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 12:27:08,412,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2026-08-10 12:27:08,582,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:27:08,586,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:27:09,914,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:27:09,916,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2026-08-10 12:27:10,221,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2026-08-10 12:27:10,223,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.00s
+2026-08-10 12:30:11,581,uvicorn.error,INFO,Shutting down
+2026-08-10 12:30:11,692,uvicorn.error,INFO,Waiting for application shutdown.
+2026-08-10 12:30:11,693,uvicorn,INFO,应用关闭中...
+2026-08-10 12:30:11,693,uvicorn,INFO,日志系统关闭
+2026-08-10 12:30:11,694,uvicorn.error,INFO,Application shutdown complete.
+2026-08-10 12:30:11,695,uvicorn.error,INFO,Finished server process [21404]
+2026-08-10 12:30:20,313,uvicorn.error,INFO,Started server process [4288]
+2026-08-10 12:30:20,313,uvicorn.error,INFO,Waiting for application startup.
+2026-08-10 12:30:20,314,uvicorn,INFO,应用启动中...
+2026-08-10 12:30:20,314,uvicorn,INFO,日志系统初始化完成
+2026-08-10 12:30:20,314,uvicorn.error,INFO,Application startup complete.
+2026-08-10 12:30:27,359,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2026-08-10 12:30:27,360,uvicorn,INFO,函数 goto_login_page 开始执行
+2026-08-10 12:30:27,363,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x000001D7DF8F89D0>
+2026-08-10 12:30:27,364,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.00s
+2026-08-10 12:30:27,459,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2026-08-10 12:30:27,461,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2026-08-10 12:30:27,745,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:30:27,747,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:30:29,404,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 12:30:29,407,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2026-08-10 12:30:29,592,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:30:29,593,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:30:31,037,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:30:31,039,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2026-08-10 12:30:31,357,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2026-08-10 12:30:31,405,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.05s
+2026-08-10 12:30:33,754,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 12:30:33,755,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2026-08-10 12:30:34,151,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:30:34,154,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:19,521,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:31:19,522,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 401 耗时: 0.00s
+2026-08-10 12:31:32,589,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:31:32,590,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 401 耗时: 0.00s
+2026-08-10 12:31:35,927,uvicorn,INFO,请求开始: GET http://localhost:8000/
+2026-08-10 12:31:35,928,uvicorn,INFO,函数 goto_login_page 开始执行
+2026-08-10 12:31:35,929,uvicorn,INFO,函数 goto_login_page 执行完成，响应数据: <starlette.templating._TemplateResponse object at 0x000001D7DF8F8CD0>
+2026-08-10 12:31:35,929,uvicorn,INFO,请求完成: GET http://localhost:8000/ 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:36,077,uvicorn,INFO,请求开始: GET http://localhost:8000/login
+2026-08-10 12:31:36,079,uvicorn,INFO,请求完成: GET http://localhost:8000/login 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:36,270,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:31:36,271,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 401 耗时: 0.00s
+2026-08-10 12:31:37,479,uvicorn,INFO,请求开始: POST http://localhost:8000/api/login
+2026-08-10 12:31:37,639,uvicorn,INFO,请求完成: POST http://localhost:8000/api/login 状态码: 200 耗时: 0.16s
+2026-08-10 12:31:37,639,uvicorn.error,INFO,Shutting down
+2026-08-10 12:31:37,747,uvicorn.error,INFO,Waiting for application shutdown.
+2026-08-10 12:31:37,747,uvicorn,INFO,应用关闭中...
+2026-08-10 12:31:37,748,uvicorn,INFO,日志系统关闭
+2026-08-10 12:31:37,748,uvicorn.error,INFO,Application shutdown complete.
+2026-08-10 12:31:37,748,uvicorn.error,INFO,Finished server process [4288]
+2026-08-10 12:31:39,695,uvicorn.error,INFO,Started server process [13032]
+2026-08-10 12:31:39,696,uvicorn.error,INFO,Waiting for application startup.
+2026-08-10 12:31:39,696,uvicorn,INFO,应用启动中...
+2026-08-10 12:31:39,696,uvicorn,INFO,日志系统初始化完成
+2026-08-10 12:31:39,697,uvicorn.error,INFO,Application startup complete.
+2026-08-10 12:31:39,766,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 12:31:39,771,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.01s
+2026-08-10 12:31:39,952,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:31:39,954,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:41,031,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:31:41,035,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:41,344,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2026-08-10 12:31:41,392,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.05s
+2026-08-10 12:31:43,162,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 12:31:43,165,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:43,425,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:31:43,427,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:44,752,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:31:44,754,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:45,082,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2026-08-10 12:31:45,087,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:46,469,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 12:31:46,471,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:46,772,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:31:46,773,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:48,451,uvicorn,INFO,请求开始: GET http://localhost:8000/docs
+2026-08-10 12:31:48,452,uvicorn,INFO,请求完成: GET http://localhost:8000/docs 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:48,745,uvicorn,INFO,请求开始: GET http://localhost:8000/openapi.json
+2026-08-10 12:31:48,746,uvicorn,INFO,请求完成: GET http://localhost:8000/openapi.json 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:54,983,uvicorn,INFO,请求开始: GET http://localhost:8000/index
+2026-08-10 12:31:54,985,uvicorn,INFO,请求完成: GET http://localhost:8000/index 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:55,330,uvicorn,INFO,请求开始: GET http://localhost:8000/api/verify
+2026-08-10 12:31:55,333,uvicorn,INFO,请求完成: GET http://localhost:8000/api/verify 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:58,310,uvicorn,INFO,请求开始: GET http://localhost:8000/apilog/logs
+2026-08-10 12:31:58,312,uvicorn,INFO,请求完成: GET http://localhost:8000/apilog/logs 状态码: 200 耗时: 0.00s
+2026-08-10 12:31:58,402,uvicorn,INFO,请求开始: GET http://localhost:8000/static/js/logs.js
+2026-08-10 12:31:58,867,uvicorn,INFO,请求完成: GET http://localhost:8000/static/js/logs.js 状态码: 200 耗时: 0.46s
+2026-08-10 12:32:08,999,uvicorn.error,INFO,Shutting down
+2026-08-10 12:32:09,111,uvicorn.error,INFO,Waiting for application shutdown.
+2026-08-10 12:32:09,112,uvicorn,INFO,应用关闭中...
+2026-08-10 12:32:09,113,uvicorn,INFO,日志系统关闭
+2026-08-10 12:32:09,113,uvicorn.error,INFO,Application shutdown complete.
+2026-08-10 12:32:09,114,uvicorn.error,INFO,Finished server process [13032]
