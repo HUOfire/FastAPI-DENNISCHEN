@@ -145,7 +145,7 @@ async def protected_docs(
         user: dict = Depends(get_current_user)
 ):
     """受 Cookie 保护的 API 文档页面"""
-    return get_swagger_ui_html(
+    std_swagger_ui = get_swagger_ui_html(
         openapi_url="/openapi.json",
         title="受保护的API文档",
         swagger_js_url="/static/swagger-ui/swagger-ui-bundle.js",
@@ -159,6 +159,22 @@ async def protected_docs(
             "persistAuthorization": True # 记住授权状态
         }
     )
+    but_add_script = """
+    <script>
+		window.onload = function() {
+			// 动态添加跳转按钮
+			const btn = document.createElement('a');
+			btn.innerText = '跳转至首页';
+			btn.href = '/index';
+			btn.target = '_blank';
+			btn.style.cssText = 'position:fixed;top:20px;right:20px;padding:10px 20px;background:#007bff;color:white;text-decoration:none;border-radius:4px;z-index:9999;';
+			document.body.appendChild(btn);
+			};
+	</script>
+    """
+    cust_swagger_ui = std_swagger_ui.body.decode("utf-8") + but_add_script
+    return cust_swagger_ui
+
 
 
 # 公开的登录页面
