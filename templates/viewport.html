@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAMON货运签收单查看器</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 隐藏滚动条但保留功能 */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* 全屏查看器过渡效果 */
+        #lightbox {
+            transition: opacity 0.3s ease-in-out;
+        }
+        #lightbox.hidden-lightbox {
+            opacity: 0;
+            pointer-events: none;
+        }
+        #lightbox.visible-lightbox {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* 变换动画过渡 */
+        #lightbox-img {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: grab;
+			/* 核心自适应配置：图片默认适配窗口，不溢出 */
+            max-width: 80% !important;
+            max-height: 80% !important;
+            width: auto !important;
+            height: auto !important;
+            object-fit: contain !important;
+        }
+        #lightbox-img:active {
+            cursor: grabbing;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col">
+
+    <!-- 头部 -->
+    <header class="bg-white shadow-sm sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-camera-retro text-indigo-600 text-xl"></i>
+                <h1 class="text-xl font-bold text-gray-900">DAMON货运签收单查看器</h1>
+            </div>
+            <div class="text-sm text-gray-500">
+                共 <span id="total-count">0</span> 张图片
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区：图片网格 -->
+    <main class="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-8">
+        <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+            <!-- 图片将通过 JS 动态插入 -->
+        </div>
+        
+        <!-- 空状态 -->
+        <div id="empty-state" class="hidden flex flex-col items-center justify-center py-20 text-gray-400">
+            <i class="fa-regular fa-image text-6xl mb-4"></i>
+            <p>暂无图片数据</p>
+        </div>
+    </main>
+
+    <!-- 全屏查看器 (Lightbox) -->
+    <div id="lightbox" class="fixed inset-0 z-50 bg-black/95 hidden-lightbox flex flex-col items-center justify-center">
+        
+        <!-- 顶部工具栏 -->
+        <div class="absolute top-0 left-0 right-0 p-4 flex justify-between items-center text-white/80 z-50">
+            <button onclick="closeLightbox()" class="hover:text-white transition p-2 bg-black/20 rounded-full backdrop-blur-sm">
+                <i class="fa-solid fa-arrow-left mr-1"></i> 返回
+            </button>
+            <div class="text-sm font-mono bg-black/20 px-3 py-1 rounded-full backdrop-blur-sm" id="lightbox-counter">1 / 10</div>
+            <div class="flex gap-2">
+                 <button onclick="rotateImage(-90)" class="hover:text-white transition p-2 bg-black/20 rounded-full backdrop-blur-sm" title="向左旋转 (R)">
+                    <i class="fa-solid fa-rotate-left"></i>
+                </button>
+                <button onclick="rotateImage(90)" class="hover:text-white transition p-2 bg-black/20 rounded-full backdrop-blur-sm" title="向右旋转 (Shift+R)">
+                    <i class="fa-solid fa-rotate-right"></i>
+                </button>
+                <button onclick="resetTransform()" class="hover:text-white transition p-2 bg-black/20 rounded-full backdrop-blur-sm" title="重置 (0)">
+                    <i class="fa-solid fa-compress"></i>
+                </button>
+                <button onclick="zoomImage(0.2)" class="hover:text-white transition p-2 bg-black/20 rounded-full backdrop-blur-sm" title="放大 (+)">
+                    <i class="fa-solid fa-magnifying-glass-plus"></i>
+                </button>
+                <button onclick="zoomImage(-0.2)" class="hover:text-white transition p-2 bg-black/20 rounded-full backdrop-blur-sm" title="缩小 (-)">
+                    <i class="fa-solid fa-magnifying-glass-minus"></i>
+                </button>
+                <button onclick="downloadCurrentImage()" class="hover:text-white transition p-2 bg-black/20 rounded-full backdrop-blur-sm" title="下载">
+                    <i class="fa-solid fa-download">
+                </button>
+            </div>
+        </div>
+
+        <!-- 图片容器 -->
+        <div class="relative w-full h-full flex items-center justify-center p-4 sm:p-10 overflow-hidden" id="lightbox-container">
+            <img id="lightbox-img" src="" alt="Full view" class="max-w-full max-h-full object-contain rounded shadow-2xl select-none">
+            
+            <!-- 左右切换按钮 -->
+            <button onclick="changeImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-4 rounded-full backdrop-blur-sm transition hidden sm:block z-40">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button onclick="changeImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 text-white p-4 rounded-full backdrop-blur-sm transition hidden sm:block z-40">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- 底部提示 -->
+        <div class="absolute bottom-4 text-white/50 text-xs sm:text-sm z-40 text-center">
+            滚轮缩放 | 拖拽移动 | 键盘 ← → 切换 | Esc 关闭
+        </div>
+    </div>
+
+    <script>
+        // --- 配置与数据 ---
+        const imageData = {{ items | safe }};
+        console.log(imageData)
+
+        let currentIndex = 0;
+        let currentRotation = 0; 
+        let currentScale = 1;
+        let currentTranslateX = 0;
+        let currentTranslateY = 0;
+        
+        // 拖拽相关变量
+        let isDragging = false;
+        let startX = 0;
+        let startY = 0;
+
+        const galleryGrid = document.getElementById('gallery-grid');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxContainer = document.getElementById('lightbox-container');
+        const lightboxCounter = document.getElementById('lightbox-counter');
+        const totalCountEl = document.getElementById('total-count');
+        const emptyState = document.getElementById('empty-state');
+
+        // --- 初始化 ---
+        function init() {
+            if (imageData.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            totalCountEl.textContent = imageData.length;
+            renderGallery();
+            setupKeyboardEvents();
+            setupMouseEvents();
+            setupWheelEvent();
+        }
+
+        // --- 渲染网格 ---
+        function renderGallery() {
+            galleryGrid.innerHTML = '';
+            imageData.forEach((img, index) => {
+                const card = document.createElement('div');
+                card.className = "group relative aspect-[4/3] overflow-hidden rounded-lg shadow-sm hover:shadow-md transition cursor-pointer bg-gray-200";
+                card.onclick = () => openLightbox(index);
+                
+                const imgEl = document.createElement('img');
+                imgEl.src = img.src;
+                imgEl.alt = img.alt;
+                imgEl.className = "w-full h-full object-cover transform group-hover:scale-105 transition duration-500";
+                imgEl.loading = "lazy"; 
+                
+                const overlay = document.createElement('div');
+                overlay.className = "absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center";
+                overlay.innerHTML = `<i class="fa-solid fa-expand text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition duration-300"></i>`;
+
+                card.appendChild(imgEl);
+                card.appendChild(overlay);
+                galleryGrid.appendChild(card);
+            });
+        }
+
+        // --- 查看器逻辑 ---
+        function openLightbox(index) {
+            currentIndex = index;
+            resetTransform();
+            updateLightboxContent();
+            
+            lightbox.classList.remove('hidden-lightbox');
+            void lightbox.offsetWidth; 
+            lightbox.classList.add('visible-lightbox');
+            
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('visible-lightbox');
+            lightbox.classList.add('hidden-lightbox');
+            document.body.style.overflow = '';
+            
+            setTimeout(() => {
+                lightboxImg.src = '';
+            }, 300);
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            
+            if (currentIndex >= imageData.length) {
+                currentIndex = 0;
+            } else if (currentIndex < 0) {
+                currentIndex = imageData.length - 1;
+            }
+            
+            resetTransform();
+            updateLightboxContent();
+        }
+
+        function updateLightboxContent() {
+            const data = imageData[currentIndex];
+            lightboxImg.style.opacity = '0.5';
+            
+            setTimeout(() => {
+                lightboxImg.src = data.src;
+                lightboxImg.alt = data.alt;
+                lightboxCounter.textContent = `${currentIndex + 1} / ${imageData.length}`;
+                lightboxImg.onload = () => {
+                    lightboxImg.style.opacity = '1';
+                };
+            }, 150);
+        }
+
+        // --- 变换功能 (旋转、缩放、平移) ---
+        function rotateImage(degrees) {
+            currentRotation += degrees;
+            applyTransform();
+        }
+
+        function zoomImage(delta) {
+            let newScale = currentScale + delta;
+            // 限制缩放范围 0.1x 到 5x
+            newScale = Math.min(Math.max(newScale, 0.1), 5);
+            currentScale = newScale;
+            applyTransform();
+        }
+
+        function resetTransform() {
+            currentRotation = 0;
+            currentScale = 1;
+            currentTranslateX = 0;
+            currentTranslateY = 0;
+            applyTransform();
+        }
+
+        function applyTransform() {
+            // 组合变换：先平移，再旋转，最后缩放
+            lightboxImg.style.transform = `translate(${currentTranslateX}px, ${currentTranslateY}px) rotate(${currentRotation}deg) scale(${currentScale})`;
+        }
+
+        function downloadCurrentImage() {
+            const data = imageData[currentIndex];
+            const a = document.createElement('a');
+            a.href = data.src;
+            a.download = `image-${currentIndex + 1}.jpg`;
+            a.target = '_blank';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // --- 交互事件 ---
+        
+        // 鼠标滚轮缩放
+        function setupWheelEvent() {
+            lightbox.addEventListener('wheel', (e) => {
+                if (lightbox.classList.contains('hidden-lightbox')) return;
+                e.preventDefault();
+                // 向上滚动放大，向下滚动缩小
+                const delta = e.deltaY > 0 ? -0.1 : 0.1;
+                zoomImage(delta);
+            }, { passive: false });
+        }
+
+        // 鼠标拖拽平移
+        function setupMouseEvents() {
+            lightboxImg.addEventListener('mousedown', (e) => {
+                if (lightbox.classList.contains('hidden-lightbox')) return;
+                isDragging = true;
+                startX = e.clientX - currentTranslateX;
+                startY = e.clientY - currentTranslateY;
+                lightboxImg.style.cursor = 'grabbing';
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                currentTranslateX = e.clientX - startX;
+                currentTranslateY = e.clientY - startY;
+                applyTransform();
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+                lightboxImg.style.cursor = 'grab';
+            });
+        }
+
+        // 点击背景关闭
+        lightbox.addEventListener('click', (e) => {
+            if(e.target === lightbox || e.target === lightboxContainer) closeLightbox();
+        });
+
+        // 键盘支持
+        function setupKeyboardEvents() {
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('hidden-lightbox')) return;
+                
+                switch(e.key) {
+                    case 'Escape':
+                        closeLightbox();
+                        break;
+                    case 'ArrowLeft':
+                        changeImage(-1);
+                        break;
+                    case 'ArrowRight':
+                        changeImage(1);
+                        break;
+                    case 'r':
+                    case 'R':
+                        if (e.shiftKey) {
+                            rotateImage(90);
+                        } else {
+                            rotateImage(-90);
+                        }
+                        break;
+                    case '0':
+                        resetTransform();
+                        break;
+                    case '+':
+                    case '=':
+                        zoomImage(0.2);
+                        break;
+                    case '-':
+                    case '_':
+                        zoomImage(-0.2);
+                        break;
+                }
+            });
+        }
+
+        // 启动
+        init();
+    </script>
+</body>
+</html>

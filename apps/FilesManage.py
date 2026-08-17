@@ -1,12 +1,21 @@
 import os
-from fastapi import APIRouter, HTTPException, status, Response
+import json
+from fastapi import APIRouter, HTTPException, status, Response, Request
 from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
 
 # 文件存储目录
 UPLOAD_DIR = "Z:/"
 
 # 文件管理系统API路由
 FilesManage = APIRouter()
+
+
+# 挂载本地静态资源
+FilesManage.mount("/static", StaticFiles(directory="static"), name="static")
+
+templates = Jinja2Templates(directory="templates")
 
 
 @FilesManage.get("/browse/{path:str}/{vcr:str}", response_class=HTMLResponse, summary="获取目录文件列表详情")
@@ -75,3 +84,31 @@ async def test(path: str = None, vcr: str = None, response: Response = Response(
     else:
         response.status_code = status.HTTP_200_OK
         return {"status_code": 200, "title": "成功", "message": "存在文件"}
+
+
+@FilesManage.get("/browse-view/{path:str}/{vcr:str}", response_class=HTMLResponse, summary="获取目录文件列表详情")
+async def browse_files(request: Request, path: str = "", vcr: str = ""):
+    """文件目录浏览接口"""
+    base_url = str(request.base_url)
+    full_path = os.path.join(os.path.join(UPLOAD_DIR, path), vcr)
+    if not os.path.exists(full_path):
+        raise HTTPException(404, detail="目录不存在")
+
+    items = []
+    for item in os.listdir(full_path):
+        item_id = 1
+        items.append({
+            "id": item_id,
+            "alt": item,
+            "src": f"{base_url}files/preview/{path}/{vcr}/{item}"
+        })
+        item_id += 1
+    json_data = json.dumps(items)
+    print(json_data)
+    return templates.TemplateResponse(
+        "viewport.html",
+        context={
+            'request': request,
+            'items': json_data
+        }
+    )
