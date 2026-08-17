@@ -166,7 +166,7 @@ async def protected_docs(
 			const btn = document.createElement('a');
 			btn.innerText = '跳转至首页';
 			btn.href = '/index';
-			btn.target = '_blank';
+			//btn.target = '_blank';
 			btn.style.cssText = 'position:fixed;top:20px;right:20px;padding:10px 20px;background:#007bff;color:white;text-decoration:none;border-radius:4px;z-index:9999;';
 			document.body.appendChild(btn);
 			};

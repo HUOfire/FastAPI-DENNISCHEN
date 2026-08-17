@@ -53,8 +53,8 @@ app = FastAPI(
 )
 
 # 添加日志中间件
-app.middleware("http")(log_record)
-app.middleware("http")(openapi_protect_middleware)
+app.middleware("http")(log_record)                    # 日志中间件
+app.middleware("http")(openapi_protect_middleware)    # 拦截限制访问中间件
 
 # 设置跨域请求的白名单
 origins = [
