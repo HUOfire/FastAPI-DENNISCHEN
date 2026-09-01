@@ -32,8 +32,8 @@
             transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: grab;
             /* 核心自适应配置：图片默认适配窗口，不溢出 */
-            max-width: 95% !important;
-            max-height: 95% !important;
+            max-width: 100% !important;
+            max-height: 100% !important;
             width: auto !important;
             height: auto !important;
             object-fit: contain !important;
@@ -62,7 +62,7 @@
                 <h1 class="text-xl font-bold text-gray-900">{{vals.vcr}}</h1>
             </div>
             <div class="text-sm text-gray-500">
-                共 <span id="total-count">0</span> 张图片
+                共 <span id="total-count">0</span> 个附件
             </div>
         </div>
     </header>
@@ -190,12 +190,22 @@
                 const imgWrap = document.createElement('div');
                 imgWrap.className = "aspect-[4/3] overflow-hidden";
 
+                if (img.src.toLowerCase().endsWith('.pdf')){
+                    const embed = document.createElement('embed');
+                    embed.src = img.src;
+                    embed.type = 'application/pdf';
+                    embed.width = '100%';
+                    embed.height = '600px'; // 需指定高度
+                    imgWrap.appendChild(embed);
+                }else{
                 const imgEl = document.createElement('img');
                 imgEl.src = img.src;
                 imgEl.alt = img.alt;
                 imgEl.title = img.alt; // 鼠标悬停缩略图显示提示
                 imgEl.className = "w-full h-full object-cover transform group-hover:scale-105 transition duration-500";
                 imgEl.loading = "lazy";
+                imgWrap.appendChild(imgEl);
+                }
 
                 const overlay = document.createElement('div');
                 overlay.className = "absolute inset-0 bg-black/0 group-hover:bg-black/20 transition duration-300 flex items-center justify-center";
@@ -206,15 +216,33 @@
                 captionEl.className = "img-caption p-2 text-sm text-gray-700 bg-white/90";
                 captionEl.textContent = img.alt;
 
-                imgWrap.appendChild(imgEl);
                 card.appendChild(imgWrap);
                 card.appendChild(overlay);
                 card.appendChild(captionEl);
-                card.onclick = () => openLightbox(index);
+                card.onclick = () => handleItemClick(index);
                 galleryGrid.appendChild(card);
             });
         }
+        // --- 新增PDF判断处理 ---
+        function handleItemClick(index) {
+                const item = imageData[index];
+                const isPdf = item.src.toLowerCase().endsWith('.pdf');
 
+                if (isPdf) {
+                    // 【策略变更】如果是 PDF，直接在新标签页打开原生预览
+                    openPdfNative(item.src);
+                } else {
+                    // 【原有逻辑】如果是图片，打开自定义查看器
+                    openLightbox(index);
+                }
+        }
+
+        // 新增：原生 PDF 打开函数
+        function openPdfNative(url) {
+            // window.open 会利用浏览器默认行为打开 PDF
+            // 大多数现代浏览器会直接在标签页内展示 PDF 阅读器
+            window.open(url, '_blank');
+        }
         // --- 查看器逻辑 ---
         function openLightbox(index) {
             currentIndex = index;
@@ -332,7 +360,7 @@
         }
 
         // --- 交互事件 ---
-        
+
         // 鼠标滚轮缩放
         function setupWheelEvent() {
             lightbox.addEventListener('wheel', (e) => {
@@ -377,7 +405,7 @@
         function setupKeyboardEvents() {
             document.addEventListener('keydown', (e) => {
                 if (lightbox.classList.contains('hidden-lightbox')) return;
-                
+
                 switch(e.key) {
                     case 'Escape':
                         closeLightbox();

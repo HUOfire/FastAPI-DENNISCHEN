@@ -98,8 +98,8 @@ async def browse_files(request: Request, path: str = "", vcr: str = ""):
         "vcr": vcr
     }
     items = []
+    item_id = 1
     for item in os.listdir(full_path):
-        item_id = 1
         items.append({
             "id": item_id,
             "src": f"{base_url}files/preview/{path}/{vcr}/{item}",
@@ -107,7 +107,6 @@ async def browse_files(request: Request, path: str = "", vcr: str = ""):
         })
         item_id += 1
     json_data = json.dumps(items)
-    # json_vals = json.dumps(vals)
     return templates.TemplateResponse(
         "viewport.html",
         context={
