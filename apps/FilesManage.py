@@ -93,22 +93,26 @@ async def browse_files(request: Request, path: str = "", vcr: str = ""):
     full_path = os.path.join(os.path.join(UPLOAD_DIR, path), vcr)
     if not os.path.exists(full_path):
         raise HTTPException(404, detail="目录不存在")
-
+    vals ={
+        "path": path,
+        "vcr": vcr
+    }
     items = []
     for item in os.listdir(full_path):
         item_id = 1
         items.append({
             "id": item_id,
-            "alt": item,
-            "src": f"{base_url}files/preview/{path}/{vcr}/{item}"
+            "src": f"{base_url}files/preview/{path}/{vcr}/{item}",
+            "alt": item
         })
         item_id += 1
     json_data = json.dumps(items)
-    print(json_data)
+    # json_vals = json.dumps(vals)
     return templates.TemplateResponse(
         "viewport.html",
         context={
             'request': request,
-            'items': json_data
+            'items': json_data,
+            'vals': vals
         }
     )
