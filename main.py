@@ -76,9 +76,9 @@ app.add_middleware(
 # 挂载本地静态资源
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-
+# prefix路由路径会影响前端获取服务根路径,如需调整,还需在对应路由下的templates前端页面文件调整调用的static路径
 app.include_router(FilesManage, prefix="/files", tags=["文件管理"])
-app.include_router(jwt_router, tags=["JWT认证管理"]) # 该路由不能加前缀，否则会导致验证失败
+app.include_router(jwt_router, tags=["JWT认证管理"]) # 该路由不能加前缀,否则会导致验证失败
 app.include_router(cok_router, tags=["Cookie认证管理"])
 app.include_router(logs_router,prefix="/apilog", tags=["日志管理"])
 
