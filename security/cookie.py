@@ -1,4 +1,5 @@
 import datetime
+from datetime import datetime, timezone ,timedelta
 
 import jwt
 from fastapi import APIRouter, Depends, HTTPException, status, Request, Response
@@ -25,7 +26,7 @@ templates = Jinja2Templates(directory="templates")
 
 def create_access_token(data: dict):
     to_encode = data.copy()
-    expire = datetime.datetime.now() + datetime.timedelta(minutes=St.ACCESS_TOKEN_EXPIRE_MINUTES)
+    expire = datetime.now(timezone.utc) + timedelta(minutes=St.ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, St.SECRET_KEY, algorithm=St.ALGORITHM)
     return encoded_jwt
@@ -35,9 +36,11 @@ def verify_token(token: str):
     try:
         payload = jwt.decode(token, St.SECRET_KEY, algorithms=[St.ALGORITHM])
         username: str = payload.get("sub")
+        exp_timestamp = payload.get("exp")
+        expire_datetime = datetime.fromtimestamp(exp_timestamp, tz=timezone.utc)
         if username is None:
             return None
-        return username
+        return username, expire_datetime
     except InvalidTokenError:
         return None
 
@@ -58,14 +61,14 @@ async def get_current_user(request: Request):
             detail="Not authenticated"
         )
 
-    username = verify_token(token)
+    username, expire_datetime = verify_token(token)
     if not username:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid token"
         )
 
-    return {"username": username, "role": "user"}
+    return {"username": username, "role": "user", "expire_datetime": expire_datetime}
 
 
 def get_user(db, username: str):
