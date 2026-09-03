@@ -91,7 +91,7 @@ def authenticate_user(fake_db, username: str, password: str):
     return {"username": user.username, "role": user.role}
 
 
-@cok_router.post("/api/login")
+@cok_router.post("/api/login", summary="登录操作")
 async def login(login_data: LoginRequest, response: Response):
     user_role = authenticate_user(St.fake_users_db,login_data.username, login_data.password)
     if not user_role:
@@ -118,7 +118,7 @@ async def login(login_data: LoginRequest, response: Response):
     }
 
 # 注销登录
-@cok_router.post("/api/logout")
+@cok_router.post("/api/logout", summary="注销操作")
 async def logout(response: Response):
     # 清除 Cookie
     response.delete_cookie(
@@ -128,12 +128,12 @@ async def logout(response: Response):
     return {"message": "退出登录成功"}
 
 # 验证登录状态
-@cok_router.get("/api/verify")
+@cok_router.get("/api/verify", summary="验证cookie")
 async def verify_token_endpoint(user: dict = Depends(get_current_user)):
     return {"valid": True, "user": user}
 
 # 受保护的 API
-@cok_router.get("/api/protected-data")
+@cok_router.get("/api/protected-data", summary="保护数据案例")
 async def get_protected_data(user: dict = Depends(get_current_user)):
     return {
         "message": "这是受保护的数据",

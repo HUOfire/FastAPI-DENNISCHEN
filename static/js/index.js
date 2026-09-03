@@ -1,4 +1,5 @@
 let targetDate = undefined
+let diff = 0
 
 // 页面加载时检查是否已登录
 window.addEventListener('load', async () => {
@@ -11,15 +12,13 @@ window.addEventListener('load', async () => {
         if (response.ok) {
             // 已登录，显示提示
             const data = await response.json();
-            //data.datetime = undefined;
-            console.log('登时效验证成功:', data.user);
+            /*
             const messageDiv = document.getElementById('message');
             messageDiv.className = 'display-4 text-center';
             messageDiv.textContent = `${data.user.username}欢迎回来！`;
             messageDiv.style.display = 'block';
-            console.log(data.user.expire_datetime)
+             */
             targetDate = new Date(data.user.expire_datetime);
-            console.log(targetDate)
         }
     } catch (error) {
         // 未登录或 token 无效，忽略错误
@@ -48,27 +47,32 @@ async function logout() {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 获取所有需要鉴权的导航链接
+    function updateTimer() {
+         const now = new Date();
+         diff = targetDate - now; // 毫秒差值
+    }
+
+    // 5. 启动定时器 (每秒刷新)
+
+    setInterval(updateTimer, 1000);
+    updateTimer(); // 立即执行一次，避免页面加载时的1秒空白
+        // 获取所有需要鉴权的导航链接
     const links = document.querySelectorAll('#navbarNav .nav-link');
-    console.log('test_01');
     links.forEach(link => {
-        console.log('test_02');
         link.addEventListener('click', function(e) {
             e.preventDefault(); // 1. 阻止默认跳转
-            console.log('test_03');
-            const targetUrl = this.getAttribute('data-target') || this.getAttribute('href');
-            console.log('test_04');
+            const targetUrl = this.getAttribute('data-target') || this.getAttribute('href')|| this.getAttribute('onclick');
             // 2. 验证 Cookie 是否有效
-            if (isCookieValid()) {
+            if (diff > 0) {
                 // 有效：手动跳转
-                console.log('有效即将跳转');
+                //console.log('有效即将跳转');
                 setTimeout(() => {
                             window.location.href = targetUrl;
                 }, 1000);
 
             } else {
                 // 无效：显示弹窗
-                console.log('无效即将弹窗');
+                //console.log('无效即将弹窗');
                 setTimeout(() => {
                             showExpirationModal(targetUrl);
                 }, 1000);
@@ -76,41 +80,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    function updateTimer() {
-         const now = new Date();
-         const diff = targetDate - now; // 毫秒差值
-         console.log(targetDate,diff)
-
-        const card = document.getElementById('timer');
-         if (!card) {
-            console.warn("Element with id 'timer' not found.");
-            return;
-        }
-         // 2. 判断是否结束
-         if (diff <= 0) {
-                 document.getElementById("timer").innerText = "已结束";
-                 return;
-         }
-
-         // 3. 计算天、时、分、秒
-         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-         const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-         let str_date = String(hours) + 'H:' + String(minutes) + 'M:' + String(seconds) + 'S'
-         // 4. 格式化输出 (补零)
-
-         card.className = 'display-4 text-center';
-         card.innerText = `登录有效时间剩余：${str_date}`;
-         card.style.display = 'block';
-         //document.getElementById("timer").innerText = `登录有效时间剩余：${str_date}`;
-    }
-
-    // 5. 启动定时器 (每秒刷新)
-    setInterval(updateTimer, 1000);
-    updateTimer(); // 立即执行一次，避免页面加载时的1秒空白
 });
 
 // 模拟 Cookie 验证函数
@@ -128,6 +97,7 @@ function isCookieValid() {
     */
     // 方法 B: 如果 Cookie 是 HttpOnly，需发送 AJAX 请求验证
     console.log('test_api');
+
     return fetch('/api/verify', { method: 'GET', credentials: 'include' })
         .then(res => res.ok)
         .catch(() => false);
@@ -153,6 +123,46 @@ function showExpirationModal(redirectAfterLogin) {
         // 点击确定后跳转登录页
         // 可以将原目标地址作为参数传给登录页，登录后再跳回来
         window.location.href = `/login`;
+    }
+}
+
+async function seach_logs(){
+     const params = new URLSearchParams({
+            str_date: document.getElementById('str_date').value,
+            end_date: document.getElementById('end_date').value,
+            level: document.getElementById('level').value,
+            keyword: document.getElementById('keyword').value
+    });
+    try {
+        const response = await fetch(`/apilog/get_logs?${params}`, {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const data = await response.json();
+        console.log(data);
+        if (data.code === 200) {
+            const logs = data.logs;
+            const table = document.getElementById('logs-table');
+            table.innerHTML = '';
+            logs.forEach(log => {
+                const row = table.insertRow();
+                const datetimeCell = row.insertCell();
+                const levelCell = row.insertCell();
+                const messageCell = row.insertCell();
+                datetimeCell.innerHTML = log.datetime;
+                levelCell.innerHTML = log.level;
+                messageCell.innerHTML = log.message;
+            });
+        }
+        else {
+            console.error('Search logs error:', data.message);
+        }
+    }
+    catch (error) {
+        console.error('Search logs error:', error);
     }
 }
 

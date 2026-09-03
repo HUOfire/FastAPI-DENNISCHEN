@@ -86,7 +86,7 @@ async def test(path: str = None, vcr: str = None, response: Response = Response(
         return {"status_code": 200, "title": "成功", "message": "存在文件"}
 
 
-@FilesManage.get("/browse-view/{path:str}/{vcr:str}", response_class=HTMLResponse, summary="获取目录文件列表详情")
+@FilesManage.get("/browse-view/{path:str}/{vcr:str}", response_class=HTMLResponse, summary="附件浏览页")
 async def browse_files(request: Request, path: str = "", vcr: str = ""):
     """文件目录浏览接口"""
     base_url = str(request.base_url)
