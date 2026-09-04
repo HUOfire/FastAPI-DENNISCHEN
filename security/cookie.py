@@ -162,20 +162,7 @@ async def protected_docs(
             "persistAuthorization": True # 记住授权状态
         }
     )
-    but_add_script = """
-    <script>
-		window.onload = function() {
-			// 动态添加跳转按钮
-			const btn = document.createElement('a');
-			btn.innerText = '跳转至首页';
-			btn.href = '/index';
-			//btn.target = '_blank';
-			btn.style.cssText = 'position:fixed;top:20px;right:20px;padding:10px 20px;background:#007bff;color:white;text-decoration:none;border-radius:4px;z-index:9999;';
-			document.body.appendChild(btn);
-			};
-	</script>
-    """
-    cust_swagger_ui = std_swagger_ui.body.decode("utf-8") + but_add_script
+    cust_swagger_ui = std_swagger_ui.body.decode("utf-8")
     return cust_swagger_ui
 
 
@@ -197,6 +184,17 @@ async def read_item(request: Request, user: dict = Depends(get_current_user)):
         "index.html",
         context={
             'request': request,
-            'login_tip': '用户登录'
+            "user": user
+        }
+    )
+
+
+@cok_router.get("/docs_iframe", summary="主页", response_class=HTMLResponse)
+async def read_item(request: Request, user: dict = Depends(get_current_user)):
+    return templates.TemplateResponse(
+        "docs.html",
+        context={
+            'request': request,
+            "user": user
         }
     )

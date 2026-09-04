@@ -68,6 +68,6 @@ async def logs_page(request: Request,  user: dict = Depends(get_current_user)):
         "logs.html",
         context={
             'request': request,
-            'login_tip': '日志查询'
+            "user": user
         }
     )

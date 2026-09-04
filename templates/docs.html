@@ -2,11 +2,14 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
+    <title>Fastapi-后台管理</title>
+     <!-- 引入icon -->
     <link rel="shortcut icon" href="../static/image/favicon.png">
     <link rel="stylesheet" href="../static/css/bootstrap.css">
     <script src="../static/js/jquery-3.5.1.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
-    <title>FastAPI-日志管理</title>
+    <script src="../static/js/index.js"></script>
+
 </head>
 <body>
     <!-- 导航栏start -->
@@ -33,13 +36,14 @@
             <!-- 右侧登录信息 start -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" Href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img src="../static/image/tx.jpg" class="navbar-avatar" alt="用户头像">
                         <span class="ml-2">用户名</span>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="#">修改密码</a>
-                        <a class="dropdown-item" onclick="logout()">退出</a>
+                        <!-- 退出后禁止回退 -->
+                        <a class="dropdown-item" onclick="logout()" >退出</a>
                     </div>
                 </li>
             </ul>
@@ -47,36 +51,13 @@
         </div>
     </nav>
     <!-- 导航栏end -->
-<h1 class="text-center">FastAPI 日志管理</h1>
-<!-- 日志查询界面查询获取数据 start -->
-<div class="container mt-4">
-    <label for="str_date">开始日期</label>
-    <input type="date" id="str_date" class="form-control mb-2" placeholder="开始日期">
-    <label for="end_date">结束日期</label>
-    <input type="date" id="end_date" class="form-control mb-2" placeholder="结束日期">
-    <label for="level">级别</label>
-    <input type="text" id="level" class="form-control mb-2" placeholder="级别">
-    <label for="keyword">关键字</label>
-    <input type="text" id="keyword" class="form-control mb-2" placeholder="关键字">
-        <!-- 通过按钮触发日志查询 -->
-        <button type="button" class="btn btn-primary mb-2" onclick="seach_logs()">查询</button>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>时间</th>
-                    <th>级别</th>
-                    <th>信息</th>
-                </tr>
-            </thead>
-            <tbody id="logs-table">
-                <!-- 日志数据将被动态插入到这里 -->
-            </tbody>
-        </table>
+    <!-- 主体内容start -->
+    <div class="iframe-wrapper">
+        <div class="embed-responsive embed-responsive-16by9">
+            <iframe id="docsFrame" class="embed-responsive-item" title="swagger_docs"></iframe>
+        </div>
     </div>
-<!-- 日志查询界面查询获取数据 end -->
     <div id="date-message" hidden>{{user.expire_datetime}}</div>
-<script src="../static/js/index.js"></script>
-
     <!-- 模态框 -->
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -103,5 +84,6 @@
             </div>
         </div>
     </div>
+
 </body>
 </html>

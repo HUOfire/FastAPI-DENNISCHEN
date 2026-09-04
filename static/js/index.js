@@ -1,35 +1,30 @@
-let targetDate = undefined
 let diff = 0
 
 // 页面加载时检查是否已登录
 window.addEventListener('load', async () => {
-
     try {
-        const response = await fetch('/api/verify', {
-            credentials: 'include'
-        });
+            const response = await fetch('/api/verify', {
+                credentials: 'include'
+            });
 
-        if (response.ok) {
-            // 已登录，显示提示
-            const data = await response.json();
-            /*
-            const messageDiv = document.getElementById('message');
-            messageDiv.className = 'display-4 text-center';
-            messageDiv.textContent = `${data.user.username}欢迎回来！`;
-            messageDiv.style.display = 'block';
-             */
-            targetDate = new Date(data.user.expire_datetime);
+            if (response.ok) {
+                    // 已登录，显示提示
+                    const data = await response.json();
+                    const messageDiv = document.getElementById('message');
+                    if(messageDiv){
+                        messageDiv.style.display = 'block';
+                        messageDiv.className = 'message success';
+                        messageDiv.innerHTML = `已登录为 ${data.user.username}，<a href="/index">进入主页</a> | <a href="javascript:void(0)" onclick="logout()">退出登录</a>`;
+                    }else{
+                        console.log("非登录页面")
+                    }
+            }
         }
-    } catch (error) {
-        // 未登录或 token 无效，忽略错误
-        console.error('登时效验证错误:', error);
-        window.window.location.href = "/login";
-    }
+        catch (error) {
+            // 未登录或 token 无效，忽略错误
+            console.error('登时效验证错误:', error);
+        }
 });
-
-
-
-
 
 async function logout() {
     try {
@@ -44,14 +39,32 @@ async function logout() {
         }
 }
 
-
-
+//获取界面DOM元素
 document.addEventListener('DOMContentLoaded', function() {
+    const timeStr = document.getElementById('date-message').textContent;
+    let targetDate = new Date(timeStr);
     function updateTimer() {
-         const now = new Date();
-         diff = targetDate - now; // 毫秒差值
+        const now = new Date();
+        diff = targetDate - now; // 毫秒差值
     }
 
+    const $modal = $('#loginModal');
+    const $confirmBtn = $('#confirmLoginBtn');
+    const element = document.getElementById('docsFrame');
+    //判断iframe标签是否存在，决定是否加载页面内容
+    if (element) {
+        document.getElementById('docsFrame').src = "/docs";
+    } else {
+        console.log('元素不存在');
+    }
+    // 初始化模态框配置
+    // backdrop: 'static' 防止点击背景关闭
+    // keyboard: false 防止按ESC键关闭
+    $modal.modal({
+        backdrop: 'static',
+        keyboard: false,
+        show: false // 初始不显示
+    });
     // 5. 启动定时器 (每秒刷新)
 
     setInterval(updateTimer, 1000);
@@ -68,55 +81,24 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.location.href = targetUrl;
             } else {
                 // 无效：显示弹窗
-                showExpirationModal(targetUrl);
+                $modal.modal('show');
+                $confirmBtn.on('click', function() {
+                // 1. 可选：添加加载状态反馈
+                const originalText = $confirmBtn.text();
+                $confirmBtn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm mr-2"></span>跳转中...');
+
+                // 2. 执行跳转逻辑
+                // 使用 setTimeout 模拟短暂的UI反馈，然后跳转
+                setTimeout(function() {
+                    window.location.href = '/login';
+                }, 800);
+            });
             }
         });
     });
 });
 
-// 模拟 Cookie 验证函数
-function isCookieValid() {
-    // 方法 A: 如果 Cookie 非 HttpOnly，直接读取判断
-    /*
-    const token = getCookie('auth_token');
-    if (!token) return false;
 
-    // 如果有存储过期时间，也可以在此比对时间戳
-    // const expiry = getCookie('auth_token_expiry');
-    // if (expiry && new Date().getTime() > parseInt(expiry)) return false;
-
-    return true;
-    */
-    // 方法 B: 如果 Cookie 是 HttpOnly，需发送 AJAX 请求验证
-    console.log('test_api');
-
-    return fetch('/api/verify', { method: 'GET', credentials: 'include' })
-        .then(res => res.ok)
-        .catch(() => false);
-
-}
-
-// 辅助函数：获取 Cookie
-/*
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
-*/
-// 显示弹窗逻辑
-function showExpirationModal(redirectAfterLogin) {
-    // 这里可以使用你项目中的 UI 库弹窗，或者原生 confirm
-    // 注意：原生 confirm 会阻塞线程，体验较好但样式不可控
-    const userConfirmed = confirm("登录已过期，请重新登录");
-    console.log('登录已过期，请重新登录');
-
-    if (userConfirmed) {
-        // 点击确定后跳转登录页
-        // 可以将原目标地址作为参数传给登录页，登录后再跳回来
-        window.location.href = `/login`;
-    }
-}
 
 async function seach_logs(){
      const params = new URLSearchParams({

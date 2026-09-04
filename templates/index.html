@@ -30,7 +30,7 @@
                     <a class="nav-link" href="/apilog/logs">日志管理</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/docs">接口文档</a>
+                    <a class="nav-link" href="/docs_iframe">接口文档</a>
                 </li>
             </ul>
             <!-- 右侧登录信息 start -->
@@ -55,6 +55,33 @@
     <H1 class="text-center">Bootstrap 4 with FastAPI</H1>
     <div class="container mt-4">
         <h1 class="display-4 text-center"></h1>
+    </div>
+    <div id="date-message" hidden>{{user.expire_datetime}}</div>
+    <!-- 模态框 -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">需要登录</h5>
+                    <!-- 移除了右上角的关闭按钮 (data-dismiss="modal")，确保用户只能点击确定 -->
+                </div>
+                <div class="modal-body text-center py-4">
+                    <div class="mb-3">
+                        <svg width="64" height="64" viewBox="0 0 16 16" fill="#007bff" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                        </svg>
+                    </div>
+                    <h5>会话已过期或未登录</h5>
+                    <p class="text-muted">为了保障您的账户安全，执行此操作前请先登录。</p>
+                </div>
+                <div class="modal-footer justify-content-center border-top-0 pb-4">
+                    <!-- 关键：移除 data-dismiss="modal"，完全由 JS 控制关闭和跳转 -->
+                    <button type="button" class="btn btn-confirm btn-primary" id="confirmLoginBtn">
+                        前往登录
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </body>
