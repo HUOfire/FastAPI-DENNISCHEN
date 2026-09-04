@@ -12,10 +12,9 @@ FastAPI-DENNISCHEN 是基于 FastAPI 框架的 Dennis Chen 项目的管理平台
 ## 主要功能
 
 - 集成 JWT 和 cookie 认证
-- 集成 Redis 缓存 -待完成
 - 集成 受保护的Swagger 文档,受保护的"/openapi.json"
-- 集成部署 -待完成
-- 集成日志管理
+- 集成 日志管理
+- 前端页面cookie验证控制
 
 ## 登录认证
 [![API docs](img/login.png)](https://github.com/HUOfire/FastAPI-DENNISCHEN)
@@ -33,4 +32,8 @@ FastAPI-DENNISCHEN 是基于 FastAPI 框架的 Dennis Chen 项目的管理平台
 
 ### 日志前端展示
 [![API docs](img/logs2.png)](https://github.com/HUOfire/FastAPI-DENNISCHEN)
+
+## 前端页面cookie验证控制
+[![API docs](img/infbox01.png)](https://github.com/HUOfire/FastAPI-DENNISCHEN)
+
 
