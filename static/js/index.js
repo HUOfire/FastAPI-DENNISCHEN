@@ -65,18 +65,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // 2. 验证 Cookie 是否有效
             if (diff > 0) {
                 // 有效：手动跳转
-                //console.log('有效即将跳转');
-                setTimeout(() => {
-                            window.location.href = targetUrl;
-                }, 1000);
-
+                window.location.href = targetUrl;
             } else {
                 // 无效：显示弹窗
-                //console.log('无效即将弹窗');
-                setTimeout(() => {
-                            showExpirationModal(targetUrl);
-                }, 1000);
-
+                showExpirationModal(targetUrl);
             }
         });
     });
