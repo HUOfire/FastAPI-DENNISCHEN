@@ -116,7 +116,6 @@ async function seach_logs(){
             },
         });
         const data = await response.json();
-        console.log(data);
         if (data.code === 200) {
             const logs = data.logs;
             const table = document.getElementById('logs-table');
