@@ -95,7 +95,7 @@ def verify_token(token: str = Depends(oauth2_scheme)):
         )
 
 
-@jwt_router.post("/jwt_token")
+@jwt_router.post("/token")
 async def login_for_jwt_access_token(
     form_data: Annotated[OAuth2PasswordRequestForm, Depends()],
 ):

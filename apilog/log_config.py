@@ -64,4 +64,7 @@ class Logged_Paths:
     """
     定义需要记录详细日志的路径列表
     """
-    LOGGED_PATHS = ["/login", "/items/", "/api/verify", "/api/protected-data"]
+    LOGGED_PATHS = ["/api/login",
+                    "/users/me/",
+                    "/api/protected-data"
+                    ]
