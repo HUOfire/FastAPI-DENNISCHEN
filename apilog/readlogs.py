@@ -1,6 +1,7 @@
 # 作为前端调取日志信息的接口
 import os
 import time
+from datetime import date
 
 from fastapi import APIRouter, Request, Depends
 from security.cookie import templates, get_current_user
@@ -19,8 +20,8 @@ def partial_match(str1, str2):
     return fuzz.partial_ratio(str1, str2)
 
 def read_logs(str_date = None, end_date = None, level = None, keyword = None):
-    log_file = "./apilog/app.log"
-    list_key = ["datetime", "timeframe", "server", "level", "message"]
+    log_file = f"./logs/{date.today()}.log"
+    list_key = ["datetime", "timeframe", "level", "message"]
     result = []
     if os.path.exists(log_file):
         with open(log_file, "r", encoding="utf-8") as f:
@@ -37,13 +38,14 @@ def read_logs(str_date = None, end_date = None, level = None, keyword = None):
                     if chg_date(lin_time) > end_date:
                         continue
                 if level:
-                    if text[3]!=level:
+                    if text[2]!=level:
                         continue
                 if keyword:
-                    t_value = partial_match(text[4], keyword)
+                    t_value = partial_match(text[3], keyword)
                     if t_value < 50:
                         continue
                 list_log = dict(zip(list_key, text))
+                print(list_log)
                 result.append(list_log)
     if result:
         return result
@@ -71,3 +73,7 @@ async def logs_page(request: Request,  user: dict = Depends(get_current_user)):
             "user": user
         }
     )
+
+
+if __name__ == "__main__":
+    read_logs()

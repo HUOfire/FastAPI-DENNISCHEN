@@ -1,6 +1,7 @@
 import logging
 import os
 from logging.handlers import RotatingFileHandler
+from datetime import date
 
 
 log_dir = "./apilog"
@@ -22,7 +23,7 @@ def setup_logging():
 
     # 文件处理器 - 按天轮转，保留7天
     file_handler = RotatingFileHandler(
-        f"{log_dir}/app.log",
+        f"./logs/{date.today()}.log",
         maxBytes=1024 * 1024 * 5,  # 5MB
         backupCount=5,
         encoding="utf-8"

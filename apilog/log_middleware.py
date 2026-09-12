@@ -136,7 +136,7 @@ class LogMiddleware(BaseHTTPMiddleware):
             "duration_ms": round(process_time * 1000, 2)
         }
 
-        logger.info(json.dumps(log_entry, ensure_ascii=False))
+        logger.info(log_entry)
         return new_response
 
 
