@@ -23,7 +23,7 @@ def setup_logging():
 
     # 文件处理器 - 按天轮转，保留7天
     file_handler = RotatingFileHandler(
-        f"./logs/{date.today()}.log",
+        f"./logs/app.log",
         maxBytes=1024 * 1024 * 5,  # 5MB
         backupCount=5,
         encoding="utf-8"
@@ -32,7 +32,9 @@ def setup_logging():
 
     # 设置格式
     formatter = logging.Formatter(
-        "%(asctime)s - %(levelname)s - %(message)s"
+        "%(asctime)s - %(levelname)s - %(message)s",
+        datefmt = '%Y-%m-%d %H:%M:%S',
+        style = '%'
     )
     console_handler.setFormatter(formatter)
     file_handler.setFormatter(formatter)

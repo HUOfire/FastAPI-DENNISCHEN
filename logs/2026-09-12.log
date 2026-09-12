@@ -1,2 +1,0 @@
-2026-09-12 16:15:18,838 - INFO - {'path': '/api/login', 'request_body': '{"username": "system", "password": "&zwnj;***MASKED***&zwnj;"}', 'status_code': 200, 'response_body': '{"message": "登录成功", "user": {"username": "system", "role": "admin"}, "token_type": "bearer"}', 'duration_ms': 334.11}
-2026-09-12 16:15:30,788 - INFO - {'path': '/users/me/', 'request_body': '', 'status_code': 401, 'response_body': '{"detail": "Could not validate credentials"}', 'duration_ms': 1.0}

@@ -31,34 +31,15 @@ def mask_sensitive_data(data):
         return data
 
 
-def safe_desensitize_body(body_str: str, max_len: int = 2000) -> str:
+def safe_desensitize_body(body_dict: dict) :
     """
     安全地反序列化、脱敏并重新序列化 Body
     """
-    if not body_str:
-        return ""
+    for key in SENSITIVE_KEYS:
+        if key in body_dict:
+            body_dict[key] ="&zwnj;***MASKED***&zwnj;"
 
-    # 限制长度，防止超大 Body 导致性能问题
-    if len(body_str) > max_len:
-        return f"<Body Truncated, Length: {len(body_str)}>"
-
-    try:
-        # 尝试解析 JSON
-        data = json.loads(body_str)
-        # 执行脱敏
-        masked_data = mask_sensitive_data(data)
-        # 重新序列化为字符串
-        return json.dumps(masked_data, ensure_ascii=False)
-    except (json.JSONDecodeError, TypeError):
-        # 如果不是 JSON，尝试简单的正则替换（针对 form-data 或纯文本）
-        # 注意：正则替换不如 JSON 解析精准，仅作兜底
-        masked_str = body_str
-        for key in SENSITIVE_KEYS:
-            # 匹配 key=value 或 "key": "value" 格式
-            pattern = rf'("{key}"\s*:\s*"[^"]*"|{key}=[^&\s]*)'
-            masked_str = re.sub(pattern, lambda m: m.group(0).split('=') + '=&zwnj;***' if '=' in m.group(
-                0) else f'"{key}": "***&zwnj;"', masked_str, flags=re.IGNORECASE)
-        return masked_str
+    return body_dict
 
 
 
@@ -85,9 +66,9 @@ class LogMiddleware(BaseHTTPMiddleware):
         body_bytes = await request.body()
 
         try:
-            request_body_raw = body_bytes.decode("utf-8")
+            request_body_raw = json.loads(body_bytes)
         except Exception:
-            request_body_raw = "<Binary Data>"
+            request_body_raw = {"detail_request_body": "空或错误的二进制请求体"}
 
         # 【关键步骤】对请求 Body 进行脱敏
         safe_request_body = safe_desensitize_body(request_body_raw)
@@ -117,9 +98,9 @@ class LogMiddleware(BaseHTTPMiddleware):
             new_response = response
 
         try:
-            response_body_raw = response_body_bytes.decode("utf-8")
+            response_body_raw = json.loads(response_body_bytes)
         except Exception:
-            response_body_raw = "<Binary Data>"
+            response_body_raw = {"detail_request_body": "空或错误的二进制响应体"}
 
         # 【关键步骤】对响应 Body 进行脱敏
         safe_response_body = safe_desensitize_body(response_body_raw)
