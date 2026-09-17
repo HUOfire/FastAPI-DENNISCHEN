@@ -39,7 +39,7 @@ def read_logs(str_date = None, end_date = None, level = None):
                     if end_date:
                         if chg_date(lin_time) > end_date:
                             continue
-                    if level:
+                    if level != "全部":
                         if lin_level != level:
                             continue
                     try:

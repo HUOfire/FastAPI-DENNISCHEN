@@ -1,15 +1,149 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <link rel="shortcut icon" href="../static/image/favicon.png">
-    <link rel="stylesheet" href="../static/css/bootstrap.css">
-    <script src="../static/js/jquery-3.5.1.min.js"></script>
-    <script src="../static/js/bootstrap.min.js"></script>
-    <title>FastAPI-日志管理</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon" href="../static/image/favicon.png">
+<link rel="stylesheet" href="../static/css/bootstrap.css">
+<script src="../static/js/jquery-3.5.1.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<title>FastAPI-日志管理</title>
+<style>
+  body {
+    background-color: #ffffff;
+    font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif;
+  }
+
+  /* ============================================================
+     ★ 修改点（核心）★
+     修改前：.content-wrapper 有一个为侧边栏预留的 margin-left，
+            导致整个内容容器（含表格）整体偏右。
+     修改后：去掉 margin-left，改用 margin: 0 auto + 最大宽度，
+            让内容容器在页面中水平居中。
+     ============================================================ */
+
+  /* ---- 修改后（居中）样式 ---- */
+  .content-wrapper {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 20px 0 30px;
+  }
+
+  /* 内容容器：限宽 + 水平居中 */
+  .container-fluid {
+    max-width: 1600px;        /* 限制最大宽度，可按实际需要调整 */
+    margin-left: auto;        /* 左右外边距自动均分 → 居中 */
+    margin-right: auto;
+  }
+
+  /* 表格卡片本身也确保居中（兜底，防止卡片有残留偏移） */
+  .card.log-card {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* 页面标题区 */
+  .page-header {
+    margin-bottom: 18px;
+  }
+  .page-header h4 {
+    font-weight: 600;
+    color: #333;
+  }
+
+  /* 筛选表单 */
+  .filter-bar {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+  }
+  .filter-bar label {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 0;
+    margin-right: 6px;
+  }
+  .filter-bar .form-control {
+    height: 34px;
+    font-size: 14px;
+  }
+
+  /* 深色统计卡片 */
+  .stat-card {
+    background-color: #333333;
+    color: #fff;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+  .stat-card .stat-label {
+    font-size: 13px;
+    color: #b8b8b8;
+    margin-bottom: 4px;
+  }
+  .stat-card .stat-value {
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+  /* 表格卡片 */
+  .card.log-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    background-color: #f2f2f2;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  }
+  .card.log-card .card-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    font-weight: 600;
+    color: #333;
+  }
+  .table-log {
+    background-color: #ffffff;
+    font-size: 13px;
+  }
+  .table-log thead th {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    color: #444;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .table-log td {
+    color: #343a40;
+    vertical-align: middle;
+  }
+  .table-log .req-body {
+    font-family: Consolas, Menlo, monospace;
+    font-size: 12px;
+    color: #495057;
+    max-width: 420px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .badge-level {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+  .time-col {
+    white-space: nowrap;
+    color: #6c757d;
+    font-size: 12px;
+  }
+  .ms-col {
+    white-space: nowrap;
+    color: #6c757d;
+  }
+
+</style>
 </head>
-<body>
-    <!-- 导航栏start -->
+<body class="">
+
+ <!-- 导航栏start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <!-- 导航栏logo start -->
         <img src="../static/image/logo.png" alt="logo" width="139" height="50" class="d-inline-block align-top">
@@ -47,36 +181,92 @@
         </div>
     </nav>
     <!-- 导航栏end -->
-<h1 class="text-center">FastAPI 日志管理</h1>
-<!-- 日志查询界面查询获取数据 start -->
-<div class="container mt-4">
-    <label for="str_date">开始日期</label>
-    <input type="date" id="str_date" class="form-control mb-2" placeholder="开始日期">
-    <label for="end_date">结束日期</label>
-    <input type="date" id="end_date" class="form-control mb-2" placeholder="结束日期">
-    <label for="level">级别</label>
-    <input type="text" id="level" class="form-control mb-2" placeholder="级别">
-        <!-- 通过按钮触发日志查询 -->
-        <button type="button" class="btn btn-primary mb-2" onclick="seach_logs()">查询</button>
-        <table class="table">
+
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- 页面标题 -->
+      <div class="page-header d-flex justify-content-between align-items-center">
+        <h4 class="mb-0">FastAPI 接口日志</h4>
+        <div>
+          <button class="btn btn-primary btn-sm" onclick="seach_logs()">查询</button>
+          <button class="btn btn-outline-secondary btn-sm ml-2">刷新</button>
+          <button class="btn btn-outline-secondary btn-sm ml-2">导出</button>
+        </div>
+      </div>
+
+      <!-- 日期筛选 -->
+      <div class="filter-bar d-flex align-items-center flex-wrap">
+        <label class="mr-1">起始日期</label>
+        <input type="date" id="str_date" class="form-control form-control-sm mr-3" style="width: 150px;" value="2026-09-15">
+        <label class="mr-1">结束日期</label>
+        <input type="date" id="end_date" class="form-control form-control-sm mr-3" style="width: 150px;" value="2026-09-17">
+        <label class="mr-1">日志级别</label>
+        <select id="level" class="form-control form-control-sm mr-3" style="width: 110px;">
+          <option>全部</option>
+          <option>INFO</option>
+          <option>WARNING</option>
+          <option>ERROR</option>
+        </select>
+        <span class="text-muted" style="font-size: 13px;">共 3 条记录</span>
+      </div>
+
+      <!-- 统计卡片 -->
+      <div class="row">
+        <div class="col-12 col-md-3">
+          <div class="stat-card">
+            <div class="stat-label">总请求数</div>
+            <div class="stat-value">3</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="stat-card">
+            <div class="stat-label">成功（2xx）</div>
+            <div class="stat-value">2</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="stat-card">
+            <div class="stat-label">失败（4xx/5xx）</div>
+            <div class="stat-value">1</div>
+          </div>
+        </div>
+        <div class="col-12 col-md-3">
+          <div class="stat-card">
+            <div class="stat-label">平均耗时（ms）</div>
+            <div class="stat-value">101.1</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 日志表格卡片 -->
+      <div class="card log-card">
+        <div class="card-header py-2">
+          请求日志明细
+        </div>
+        <div class="card-body p-0">
+          <table class="table table-bordered table-hover table-log mb-0">
             <thead>
-                <tr>
-                    <th>时间</th>
-                    <th>级别</th>
-                    <th>接口</th>
-                    <th>请求信息</th>
-                    <th>响应代码</th>
-                    <th>响应信息</th>
-                    <th>耗时</th>
-                </tr>
+              <tr>
+                <th style="width: 150px;">时间</th>
+                <th style="width: 80px;">级别</th>
+                <th style="width: 130px;">接口</th>
+                <th>请求体 / 请求详情</th>
+                <th style="width: 80px;">状态码</th>
+                <th>响应信息</th>
+                <th style="width: 90px;">耗时(ms)</th>
+              </tr>
             </thead>
             <tbody id="logs-table">
                 <!-- 日志数据将被动态插入到这里 -->
             </tbody>
-        </table>
+          </table>
+        </div>
+      </div>
+
     </div>
+  </div>
 <!-- 日志查询界面查询获取数据 end -->
-    <div id="date-message" hidden>{{user.expire_datetime}}</div>
+<div id="date-message" hidden>{{user.expire_datetime}}</div>
 <script src="../static/js/index.js"></script>
 
     <!-- 模态框 -->
@@ -107,3 +297,4 @@
     </div>
 </body>
 </html>
+<!--15033629382573747210091713-->

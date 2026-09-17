@@ -117,25 +117,63 @@ async function seach_logs(){
         const data = await response.json();
         if (data.code === 200) {
             const logs = data.logs;
-            console.log(logs)
             const table = document.getElementById('logs-table');
             table.innerHTML = '';
             logs.forEach(log => {
                 const row = table.insertRow();
                 const datetimeCell = row.insertCell();
                 const levelCell = row.insertCell();
+                const level_span = document.createElement('span');
+                level_span.textContent = log.level;
                 const pathCell = row.insertCell();
                 const request_bodyCell = row.insertCell();
                 const status_codeCell = row.insertCell();
+                const status_code_span = document.createElement('span');
+                status_code_span.textContent = log.status_code;
                 const response_bodyCell = row.insertCell();
                 const duration_msCell = row.insertCell();
                 datetimeCell.innerHTML = log.ltime;
-                levelCell.innerHTML = log.level;
+                levelCell.appendChild(level_span);
                 pathCell.innerHTML = log.path;
                 request_bodyCell.innerHTML = JSON.stringify(log.request_body);
-                status_codeCell.innerHTML = log.status_code;
+                status_codeCell.appendChild(status_code_span)
                 response_bodyCell.innerHTML = JSON.stringify(log.response_body);
                 duration_msCell.innerHTML = log.duration_ms
+                // 根据状态码自动换颜色
+                let badgeClass = 'badge ';
+                if (log.status_code >= 200 && log.status_code < 300) {
+                    badgeClass += 'badge-success';  // 绿色
+                } else if (log.status_code >= 300 && log.status_code < 400) {
+                    badgeClass += 'badge-info';     // 蓝色
+                } else if (log.status_code >= 400 && log.status_code < 500) {
+                    badgeClass += 'badge-warning';  // 黄色
+                } else if (log.status_code >= 500) {
+                    badgeClass += 'badge-danger';   // 红色
+                }
+
+                let levelClass = 'badge ';
+                if (log.level ==="INFO") {
+                    levelClass += 'badge-primary';
+                } else if (log.level ==="DEBUG") {
+                    levelClass += 'badge-secondary';
+                } else if (log.level ==="WARNING") {
+                    levelClass += 'badge-warning';
+                } else if (log.level ==="ERROR") {
+                    levelClass += 'badge-danger';
+                }else if (log.level ==="CRITICAL") {
+                    levelClass += 'badge-dark';
+                }
+                // 添加样式
+                datetimeCell.className = "time-col";
+                level_span.className = levelClass;
+                pathCell.className = "font-monospace";
+                request_bodyCell.className = "req-body";
+                status_code_span.className = badgeClass;
+                response_bodyCell.className = "req-body";
+                duration_msCell.className = "ms-col";
+                // 报文title
+                request_bodyCell.title = JSON.stringify(log.request_body);
+                response_bodyCell.title = JSON.stringify(log.response_body);
             });
         }
         else {
