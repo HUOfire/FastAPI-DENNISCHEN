@@ -56,8 +56,6 @@
     <input type="date" id="end_date" class="form-control mb-2" placeholder="结束日期">
     <label for="level">级别</label>
     <input type="text" id="level" class="form-control mb-2" placeholder="级别">
-    <label for="keyword">关键字</label>
-    <input type="text" id="keyword" class="form-control mb-2" placeholder="关键字">
         <!-- 通过按钮触发日志查询 -->
         <button type="button" class="btn btn-primary mb-2" onclick="seach_logs()">查询</button>
         <table class="table">
@@ -65,7 +63,11 @@
                 <tr>
                     <th>时间</th>
                     <th>级别</th>
-                    <th>信息</th>
+                    <th>接口</th>
+                    <th>请求信息</th>
+                    <th>响应代码</th>
+                    <th>响应信息</th>
+                    <th>耗时</th>
                 </tr>
             </thead>
             <tbody id="logs-table">
