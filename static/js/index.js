@@ -104,8 +104,7 @@ async function seach_logs(){
      const params = new URLSearchParams({
             str_date: document.getElementById('str_date').value,
             end_date: document.getElementById('end_date').value,
-            level: document.getElementById('level').value,
-            keyword: document.getElementById('keyword').value
+            level: document.getElementById('level').value
     });
     try {
         const response = await fetch(`/apilog/get_logs?${params}`, {
@@ -118,16 +117,25 @@ async function seach_logs(){
         const data = await response.json();
         if (data.code === 200) {
             const logs = data.logs;
+            console.log(logs)
             const table = document.getElementById('logs-table');
             table.innerHTML = '';
             logs.forEach(log => {
                 const row = table.insertRow();
                 const datetimeCell = row.insertCell();
                 const levelCell = row.insertCell();
-                const messageCell = row.insertCell();
-                datetimeCell.innerHTML = log.datetime;
+                const pathCell = row.insertCell();
+                const request_bodyCell = row.insertCell();
+                const status_codeCell = row.insertCell();
+                const response_bodyCell = row.insertCell();
+                const duration_msCell = row.insertCell();
+                datetimeCell.innerHTML = log.ltime;
                 levelCell.innerHTML = log.level;
-                messageCell.innerHTML = log.message;
+                pathCell.innerHTML = log.path;
+                request_bodyCell.innerHTML = JSON.stringify(log.request_body);
+                status_codeCell.innerHTML = log.status_code;
+                response_bodyCell.innerHTML = JSON.stringify(log.response_body);
+                duration_msCell.innerHTML = log.duration_ms
             });
         }
         else {
