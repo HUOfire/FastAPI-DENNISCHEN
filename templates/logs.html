@@ -7,6 +7,10 @@
 <link rel="stylesheet" href="../static/css/bootstrap.css">
 <script src="../static/js/jquery-3.5.1.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
+<!-- 引入 Tailwind CSS 用于快速样式 -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- 引入 Font Awesome 图标 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <title>FastAPI-日志管理</title>
 <style>
   body {
@@ -68,24 +72,6 @@
   .filter-bar .form-control {
     height: 34px;
     font-size: 14px;
-  }
-
-  /* 深色统计卡片 */
-  .stat-card {
-    background-color: #333333;
-    color: #fff;
-    border-radius: 6px;
-    padding: 16px 20px;
-    margin-bottom: 16px;
-  }
-  .stat-card .stat-label {
-    font-size: 13px;
-    color: #b8b8b8;
-    margin-bottom: 4px;
-  }
-  .stat-card .stat-value {
-    font-size: 24px;
-    font-weight: 700;
   }
 
   /* 表格卡片 */
@@ -202,7 +188,7 @@
       <div class="page-header d-flex justify-content-between align-items-center">
         <h4 class="mb-0">FastAPI 接口日志</h4>
         <div>
-          <button class="btn btn-primary btn-sm" onclick="seach_logs()">查询</button>
+          <button class="btn btn-primary btn-sm" onclick="read_logs()">查询</button>
           <button class="btn btn-outline-secondary btn-sm ml-2">刷新</button>
           <button class="btn btn-outline-secondary btn-sm ml-2">导出</button>
         </div>
@@ -224,33 +210,71 @@
         <span class="text-muted" style="font-size: 13px;">共 3 条记录</span>
       </div>
 
-      <!-- 统计卡片 -->
-      <div class="row">
-        <div class="col-12 col-md-3">
-          <div class="stat-card">
-            <div class="stat-label">总请求数</div>
-            <div class="stat-value" id="stat-total">0</div>
-          </div>
+ <!-- 统计卡片区域 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+
+            <!-- 总请求数 -->
+            <div class="stat-card bg-white rounded-xl p-6 shadow-sm border border-gray-100 relative overflow-hidden group">
+                <div class="absolute right-0 top-0 h-full w-1 bg-blue-500"></div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 mb-1">总请求数</p>
+                        <h3 class="text-3xl font-bold text-gray-900" id="stat-total">0</h3>
+                    </div>
+                    <div class="p-3 bg-blue-50 rounded-lg text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-server text-xl"></i>
+                    </div>
+                </div>
+                <div class="mt-4 flex items-center text-xs text-gray-400">
+                    <span>累计所有接口调用</span>
+                </div>
+            </div>
+
+            <!-- 成功请求 (2xx) -->
+            <div class="stat-card bg-white rounded-xl p-6 shadow-sm border border-gray-100 relative overflow-hidden group">
+                <div class="absolute right-0 top-0 h-full w-1 bg-green-500"></div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 mb-1">成功</p>
+                        <h3 class="text-3xl font-bold text-gray-900" id="stat-success">0</h3>
+                    </div>
+                    <div class="p-3 bg-green-50 rounded-lg text-green-600 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-check-circle text-xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 失败请求 (4xx/5xx) -->
+            <div class="stat-card bg-white rounded-xl p-6 shadow-sm border border-gray-100 relative overflow-hidden group">
+                <div class="absolute right-0 top-0 h-full w-1 bg-red-500"></div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 mb-1">失败</p>
+                        <h3 class="text-3xl font-bold text-gray-900" id="stat-fail">0</h3>
+                    </div>
+                    <div class="p-3 bg-red-50 rounded-lg text-red-600 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 平均耗时 -->
+            <div class="stat-card bg-white rounded-xl p-6 shadow-sm border border-gray-100 relative overflow-hidden group">
+                <div class="absolute right-0 top-0 h-full w-1 bg-purple-500"></div>
+                <div class="flex justify-between items-start">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 mb-1">平均耗时 (ms)</p>
+                        <h3 class="text-3xl font-bold text-gray-900" id="stat-avgTime">0</h3>
+                    </div>
+                    <div class="p-3 bg-purple-50 rounded-lg text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                        <i class="fa-solid fa-stopwatch text-xl"></i>
+                    </div>
+                </div>
+                <div class="mt-4 flex items-center text-xs text-gray-400">
+                    <span>P99 延迟监控中</span>
+                </div>
+            </div>
         </div>
-        <div class="col-12 col-md-3">
-          <div class="stat-card">
-            <div class="stat-label">成功</div>
-            <div class="stat-value" id="stat-success">0</div>
-          </div>
-        </div>
-        <div class="col-12 col-md-3">
-          <div class="stat-card">
-            <div class="stat-label">失败</div>
-            <div class="stat-value" id="stat-fail">0</div>
-          </div>
-        </div>
-        <div class="col-12 col-md-3">
-          <div class="stat-card">
-            <div class="stat-label">平均耗时（ms）</div>
-            <div class="stat-value" id="stat-avgTime">0</div>
-          </div>
-        </div>
-      </div>
 
       <!-- 日志表格卡片 -->
       <div class="card log-card">
