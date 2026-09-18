@@ -148,22 +148,40 @@ function UPDATE_TABLE(data){
             logs.forEach(log => {
                 const row = table.insertRow();
                 const datetimeCell = row.insertCell();
+                //带徽标的level
                 const levelCell = row.insertCell();
                 const level_span = document.createElement('span');
                 level_span.textContent = log.level;
+                //带徽标的level
                 const pathCell = row.insertCell();
                 const request_bodyCell = row.insertCell();
+                //请求体解析按钮
+                const but_requestCell = row.insertCell();
+                const but_request_but = document.createElement('button');
+                but_request_but.textContent = "解析";
+                but_request_but.className = "btn btn-primary btn-sm";
+                //请求体解析按钮
+                //带徽标的status
                 const status_codeCell = row.insertCell();
                 const status_code_span = document.createElement('span');
                 status_code_span.textContent = log.status;
+                //带徽标的status
                 const response_bodyCell = row.insertCell();
+                //响应体解析按钮
+                const but_responseCell = row.insertCell();
+                const but_response_but = document.createElement('button');
+                but_response_but.textContent = "解析";
+                but_response_but.className = "btn btn-primary btn-sm";
+                //响应体解析按钮
                 const duration_msCell = row.insertCell();
                 datetimeCell.innerHTML = log.time;
                 levelCell.appendChild(level_span);
                 pathCell.innerHTML = log.url;
                 request_bodyCell.innerHTML = JSON.stringify(log.request);
-                status_codeCell.appendChild(status_code_span)
+                but_requestCell.appendChild(but_request_but);
+                status_codeCell.appendChild(status_code_span);
                 response_bodyCell.innerHTML = JSON.stringify(log.response);
+                but_responseCell.appendChild(but_response_but);
                 duration_msCell.innerHTML = log.duration
                 // 根据状态码自动换颜色
                 let badgeClass = 'badge ';
@@ -212,7 +230,7 @@ function calculateStats(data){
     if (data.code === 200) {
         const logs = data.message;
         if (!logs || logs.length === 0) {
-                return { total: 0, success: 0, fail: 0, avgTime: 0};
+                return { total: 0, success: 0, fail: 0, avgTime: 0, successRate: 0, failRate: 0 };
             }
 
         const total = logs.length;
@@ -230,15 +248,21 @@ function calculateStats(data){
         const totalDuration = logs.reduce((sum, log) => sum + (log.duration || 0), 0);
         const avgTime = total > 0 ? (totalDuration / total).toFixed(1) : 0;
 
+        // 计算比率
+        const successRate = ((success / total) * 100).toFixed(1);
+        const failRate = ((fail / total) * 100).toFixed(1);
+
         return {
                 total,
                 success,
                 fail,
-                avgTime
+                avgTime,
+                successRate,
+                failRate
             };
 
     }else{
-        return { total: 0, success: 0, fail: 0, avgTime: 0};
+        return { total: 0, success: 0, fail: 0, avgTime: 0, successRate: 0, failRate: 0 };
     }
 }
 
@@ -248,13 +272,18 @@ function updateUI(stats) {
     const elSuccess = document.getElementById('stat-success');
     const elFail = document.getElementById('stat-fail');
     const elAvgTime = document.getElementById('stat-avgTime');
+    const elSuccessRate = document.getElementById('success-rate');
+    const elFailRate = document.getElementById('fail-rate');
     // 添加简单的数字滚动动画效果 (可选)
     animateValue(elTotal, parseInt(elTotal.innerText), stats.total, 500);
     animateValue(elSuccess, parseInt(elSuccess.innerText), stats.success, 500);
     animateValue(elFail, parseInt(elFail.innerText), stats.fail, 500);
 
-            // 平均耗时保留一位小数
+    // 平均耗时保留一位小数
     elAvgTime.innerText = stats.avgTime;
+    // 更新比率文本
+    elSuccessRate.innerText = `成功率: ${stats.successRate}%`;
+    elFailRate.innerText = `失败率: ${stats.failRate}%`;
 }
 
 // --- 4. 辅助工具：数字动画 ---
