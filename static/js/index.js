@@ -1,4 +1,8 @@
 let diff = 0
+// ---------- 2. 状态变量 ----------
+let currentPage = 1;          // 当前页（从1开始）
+let pageSize = 10;            // 每页显示条数，默认10
+
 
 // 页面加载时检查是否已登录
 window.addEventListener('load', async () => {
@@ -127,9 +131,10 @@ async function read_logs(){
         });
         const data = await response.json();
         const Stats = calculateStats(data);
+        //更新状态总览卡片
         updateUI(Stats)
-        // 更新表格
-        UPDATE_TABLE(data);
+        //加载数据
+        init(data)
 
     }
     catch (error) {
@@ -139,99 +144,104 @@ async function read_logs(){
 
 
 
-//更新表格
-function UPDATE_TABLE(data){
-    const table = document.getElementById('logs-table');
-    if (data.code === 200) {
-            const logs = data.message;
-            console.log(logs)
-            table.innerHTML = '';
-            logs.forEach(log => {
-                const row = table.insertRow();
-                const datetimeCell = row.insertCell();
-                //带徽标的level
-                const levelCell = row.insertCell();
-                const level_span = document.createElement('span');
-                level_span.textContent = log.level;
-                //带徽标的level
-                const pathCell = row.insertCell();
-                const request_bodyCell = row.insertCell();
-                //请求体解析按钮
-                const request_str = JSON.stringify(log.request);
-                const but_requestCell = row.insertCell();
-                const but_request_but = document.createElement('button');
-                but_request_but.textContent = "解析";
-                but_request_but.className = "btn btn-primary btn-sm";
-                but_request_but.setAttribute("data-toggle", "modal");
-                but_request_but.setAttribute("data-target", "#basicModal");
-                but_request_but.setAttribute("onclick",`add_json_message(${request_str})`);
-                //请求体解析按钮
-                //带徽标的status
-                const status_codeCell = row.insertCell();
-                const status_code_span = document.createElement('span');
-                status_code_span.textContent = log.status;
-                //带徽标的status
-                const response_bodyCell = row.insertCell();
-                //响应体解析按钮
-                const response_str = JSON.stringify(log.response);
-                const but_responseCell = row.insertCell();
-                const but_response_but = document.createElement('button');
-                but_response_but.textContent = "解析";
-                but_response_but.className = "btn btn-primary btn-sm";
-                but_response_but.setAttribute("data-toggle", "modal");
-                but_response_but.setAttribute("data-target", "#basicModal");
-                but_response_but.setAttribute("onclick",`add_json_message(${response_str})`);
-                //响应体解析按钮
-                const duration_msCell = row.insertCell();
-                datetimeCell.innerHTML = log.time;
-                levelCell.appendChild(level_span);
-                pathCell.innerHTML = log.url;
-                request_bodyCell.innerHTML = request_str;
-                but_requestCell.appendChild(but_request_but);
-                status_codeCell.appendChild(status_code_span);
-                response_bodyCell.innerHTML = response_str;
-                but_responseCell.appendChild(but_response_but);
-                duration_msCell.innerHTML = log.duration
-                // 根据状态码自动换颜色
-                let badgeClass = 'badge ';
-                if (log.status >= 200 && log.status < 300) {
-                    badgeClass += 'badge-success';  // 绿色
-                } else if (log.status >= 300 && log.status < 400) {
-                    badgeClass += 'badge-info';     // 蓝色
-                } else if (log.status >= 400 && log.status < 500) {
-                    badgeClass += 'badge-warning';  // 黄色
-                } else if (log.status >= 500) {
-                    badgeClass += 'badge-danger';   // 红色
-                }
 
-                let levelClass = 'badge ';
-                if (log.level ==="INFO") {
-                    levelClass += 'badge-primary';
-                } else if (log.level ==="DEBUG") {
-                    levelClass += 'badge-secondary';
-                } else if (log.level ==="WARNING") {
-                    levelClass += 'badge-warning';
-                } else if (log.level ==="ERROR") {
-                    levelClass += 'badge-danger';
-                }else if (log.level ==="CRITICAL") {
-                    levelClass += 'badge-dark';
-                }
-                // 添加样式
-                datetimeCell.className = "time-col";
-                level_span.className = levelClass;
-                pathCell.className = "font-monospace";
-                request_bodyCell.className = "req-body";
-                status_code_span.className = badgeClass;
-                response_bodyCell.className = "req-body";
-                duration_msCell.className = "ms-col";
-                // 报文title
-                request_bodyCell.title = JSON.stringify(log.request);
-                response_bodyCell.title = JSON.stringify(log.response);
-            });
+
+//更新表格
+function UPDATE_TABLE(data, startIndex){
+    const table = document.getElementById('logs-table');
+    const logs = data;
+    if (logs.length>0){
+        table.innerHTML = '';
+        logs.forEach((log, index) => {
+        const row = table.insertRow();
+        const indexCell =  row.insertCell();
+        const datetimeCell = row.insertCell();
+        const serialNumber  = startIndex + index + 1;  // 序号计算：当前页起始索引 + 当前行索引 + 1
+        //带徽标的level
+        const levelCell = row.insertCell();
+        const level_span = document.createElement('span');
+        level_span.textContent = log.level;
+        //带徽标的level
+        const pathCell = row.insertCell();
+        const request_bodyCell = row.insertCell();
+        //请求体解析按钮
+        const request_str = JSON.stringify(log.request);
+        const but_requestCell = row.insertCell();
+        const but_request_but = document.createElement('button');
+        but_request_but.textContent = "解析";
+        but_request_but.className = "btn btn-primary btn-sm";
+        but_request_but.setAttribute("data-toggle", "modal");
+        but_request_but.setAttribute("data-target", "#basicModal");
+        but_request_but.setAttribute("onclick",`add_json_message(${request_str})`);
+        //请求体解析按钮
+        //带徽标的status
+        const status_codeCell = row.insertCell();
+        const status_code_span = document.createElement('span');
+        status_code_span.textContent = log.status;
+        //带徽标的status
+        const response_bodyCell = row.insertCell();
+        //响应体解析按钮
+        const response_str = JSON.stringify(log.response);
+        const but_responseCell = row.insertCell();
+        const but_response_but = document.createElement('button');
+        but_response_but.textContent = "解析";
+        but_response_but.className = "btn btn-primary btn-sm";
+        but_response_but.setAttribute("data-toggle", "modal");
+        but_response_but.setAttribute("data-target", "#basicModal");
+        but_response_but.setAttribute("onclick",`add_json_message(${response_str})`);
+        //响应体解析按钮
+        const duration_msCell = row.insertCell();
+        indexCell.innerHTML = serialNumber;
+        datetimeCell.innerHTML = log.time;
+        levelCell.appendChild(level_span);
+        pathCell.innerHTML = log.url;
+        request_bodyCell.innerHTML = request_str;
+        but_requestCell.appendChild(but_request_but);
+        status_codeCell.appendChild(status_code_span);
+        response_bodyCell.innerHTML = response_str;
+        but_responseCell.appendChild(but_response_but);
+        duration_msCell.innerHTML = log.duration
+        // 根据状态码自动换颜色
+        let badgeClass = 'badge ';
+        if (log.status >= 200 && log.status < 300) {
+            badgeClass += 'badge-success';  // 绿色
+        } else if (log.status >= 300 && log.status < 400) {
+            badgeClass += 'badge-info';     // 蓝色
+        } else if (log.status >= 400 && log.status < 500) {
+            badgeClass += 'badge-warning';  // 黄色
+        } else if (log.status >= 500) {
+            badgeClass += 'badge-danger';   // 红色
         }
-        else {
-            table.innerHTML = '';
+
+        let levelClass = 'badge ';
+        if (log.level ==="INFO") {
+            levelClass += 'badge-primary';
+        } else if (log.level ==="DEBUG") {
+            levelClass += 'badge-secondary';
+        } else if (log.level ==="WARNING") {
+            levelClass += 'badge-warning';
+        } else if (log.level ==="ERROR") {
+            levelClass += 'badge-danger';
+        }else if (log.level ==="CRITICAL") {
+            levelClass += 'badge-dark';
         }
+        // 添加样式
+        datetimeCell.className = "time-col";
+        level_span.className = levelClass;
+        pathCell.className = "font-monospace";
+        request_bodyCell.className = "req-body";
+        status_code_span.className = badgeClass;
+        response_bodyCell.className = "req-body";
+        duration_msCell.className = "ms-col";
+        // 报文title
+        request_bodyCell.title = JSON.stringify(log.request);
+        response_bodyCell.title = JSON.stringify(log.response);
+        });
+    }else{
+        table.innerHTML = '';
+    }
+
+
 }
 
 //统计数据
@@ -317,4 +327,110 @@ function add_json_message(message){
         //jsonContent.innerText = jsonbox
         $('#jsonContent').text(jsonbox);
     }
+}
+
+//分页逻辑
+function renderTable(data){
+    const paginationInfo = document.getElementById('paginationInfo');
+    // 计算当前页数据切片
+    const totalData = data.message.length;   // 总记录数
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = Math.min(startIndex + pageSize, totalData);
+    const currentPageData = data.message.slice(startIndex, endIndex);
+    console.log(currentPageData);
+    UPDATE_TABLE(currentPageData, startIndex)
+
+    // 更新分页信息 (显示第 x 到 y 条，共 z 条)
+    paginationInfo.textContent = `显示第 ${startIndex + 1} 到 ${endIndex} 条，共 ${totalData} 条`;
+
+    // 渲染分页按钮
+    renderPagination(data,totalData);
+
+}
+
+// ---------- 5. 渲染分页按钮（基于当前页和总页数） ----------
+function renderPagination(data,totalData) {
+    const paginationContainer = document.getElementById('paginationContainer');
+    const totalPages = Math.ceil(totalData / pageSize);
+    // 如果总页数为0（没有数据）则清空分页
+    if (totalPages === 0) {
+        paginationContainer.innerHTML = '';
+        return;
+    }
+
+    let paginationHtml = '';
+
+    // 上一页按钮 (如果当前页为1则禁用)
+    paginationHtml += `
+        <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="${currentPage - 1}" aria-label="上一页">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+    `;
+
+    // 页码按钮：简单显示所有页码（实际项目中如果页数太多可做省略，这里为演示清晰显示全部）
+    for (let i = 1; i <= totalPages; i++) {
+        paginationHtml += `
+            <li class="page-item ${i === currentPage ? 'active' : ''}">
+                <a class="page-link" href="#" data-page="${i}">${i}</a>
+            </li>
+        `;
+    }
+
+    // 下一页按钮 (如果当前页为最后一页则禁用)
+    paginationHtml += `
+        <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <a class="page-link" href="#" data-page="${currentPage + 1}" aria-label="下一页">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    `;
+
+    paginationContainer.innerHTML = paginationHtml;
+
+    // 5.1 为分页按钮绑定点击事件（事件委托，避免重复绑定）
+    // 移除之前可能绑定的监听，使用一次性事件委托在父容器上
+    // 由于每次重新渲染后元素是新的，直接在插入后绑定即可，这里使用事件委托更稳健：
+    // 但为了防止重复绑定，我们先移除旧监听，再添加（或者直接在容器上使用事件委托，但每次重绘会丢失，所以重新绑定）
+    // 简单起见：每次渲染后直接为所有 .page-link 绑定点击事件
+    const pageLinks = paginationContainer.querySelectorAll('.page-link');
+    pageLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetPage = parseInt(this.getAttribute('data-page'), 10);
+            // 有效性检查：targetPage 必须在 1 ~ totalPages 之间，并且不等于当前页(其实等于当前页也可不处理，但防止重复渲染)
+            if (!isNaN(targetPage) && targetPage >= 1 && targetPage <= totalPages) {
+                if (targetPage !== currentPage) {
+                    currentPage = targetPage;
+                    renderTable(data);
+                }
+            }
+        });
+    });
+}
+
+// ---------- 6. 处理每页显示条数变化 ----------
+function handlePageSizeChange(data) {
+    const pageSizeSelect = document.getElementById('pageSizeSelect');
+    const newSize = parseInt(pageSizeSelect.value, 10);
+    if (!isNaN(newSize) && newSize > 0) {
+        pageSize = newSize;
+        // 重置到第一页（因为当前页可能超出新的总页数范围）
+        currentPage = 1;
+        renderTable(data);
+    }
+}
+
+// ---------- 7. 初始化及事件绑定 ----------
+function init(data) {
+    // 设置下拉框默认值（与状态同步）
+    const pageSizeSelect = document.getElementById('pageSizeSelect');
+    pageSizeSelect.value = pageSize;
+
+    // 监听每页显示条数变化
+    pageSizeSelect.addEventListener('change', handlePageSizeChange);
+
+    // 首次渲染
+    renderTable(data);
 }

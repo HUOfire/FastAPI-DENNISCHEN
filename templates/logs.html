@@ -139,6 +139,23 @@
         </div>
 </div>
 
+
+        <!-- 顶部控制栏：每页显示记录数 + 搜索/重置（可选） -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+            <div class="form-inline">
+                <label class="mr-2" for="pageSizeSelect">每页显示：</label>
+                <select class="form-control form-control-sm page-size-selector" id="pageSizeSelect">
+                    <option value="5">5 条</option>
+                    <option value="10" selected>10 条</option>
+                    <option value="15">15 条</option>
+                    <option value="20">20 条</option>
+                </select>
+            </div>
+            <div class="pagination-info text-muted small" id="paginationInfo">
+                显示第 1 到 10 条，共 0 条
+            </div>
+        </div>
+
       <!-- 日志表格卡片 -->
       <div class="card log-card">
         <div class="card-header py-2">
@@ -148,6 +165,7 @@
           <table class="table table-bordered table-hover table-log mb-0">
             <thead>
               <tr>
+                <th style="width: 80px;">#</th>
                 <th style="width: 150px;">时间</th>
                 <th style="width: 80px;">级别</th>
                 <th style="width: 130px;">接口</th>
@@ -164,6 +182,12 @@
             </tbody>
           </table>
         </div>
+          <!-- 分页导航 + 每页选择器也可放在这里，但上面已经有了，这里放分页控件 -->
+        <nav aria-label="表格分页">
+            <ul class="pagination justify-content-center" id="paginationContainer">
+                <!-- 分页按钮动态生成 -->
+            </ul>
+        </nav>
       </div>
 
     </div>
