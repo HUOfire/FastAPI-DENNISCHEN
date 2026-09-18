@@ -51,11 +51,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const $modal = $('#loginModal');
     const $confirmBtn = $('#confirmLoginBtn');
     const element = document.getElementById('docsFrame');
+    const end_date= document.getElementById('end_date');
     //判断iframe标签是否存在，决定是否加载页面内容
     if (element) {
         document.getElementById('docsFrame').src = "/docs";
-    } else {
-        console.log('元素不存在');
+    }
+    if (end_date){
+        const today = new Date();
+        // 获取年、月、日
+        const year = today.getFullYear();
+        // 月份从0开始，需+1；且需补零（如 9 -> 09）
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        // 拼接成 YYYY-MM-DD格式
+        const formattedDate = `${year}-${month}-${day}`;
+        document.getElementById('end_date').value = formattedDate
+        document.getElementById('str_date').value = formattedDate
     }
     // 初始化模态框配置
     // backdrop: 'static' 防止点击背景关闭
@@ -100,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-async function seach_logs(){
+async function read_logs(){
      const params = new URLSearchParams({
             str_date: document.getElementById('str_date').value,
             end_date: document.getElementById('end_date').value,
@@ -122,7 +133,7 @@ async function seach_logs(){
 
     }
     catch (error) {
-        console.error('数据查询错误:', error);
+        console.log('数据查询错误:', error);
     }
 }
 
@@ -130,9 +141,9 @@ async function seach_logs(){
 
 //更新表格
 function UPDATE_TABLE(data){
+    const table = document.getElementById('logs-table');
     if (data.code === 200) {
             const logs = data.message;
-            const table = document.getElementById('logs-table');
             table.innerHTML = '';
             logs.forEach(log => {
                 const row = table.insertRow();
@@ -192,7 +203,7 @@ function UPDATE_TABLE(data){
             });
         }
         else {
-            console.error('表格加载错误:', data.message);
+            table.innerHTML = '';
         }
 }
 
@@ -227,7 +238,7 @@ function calculateStats(data){
             };
 
     }else{
-        console.error('统计卡片错误:', data.message);
+        return { total: 0, success: 0, fail: 0, avgTime: 0};
     }
 }
 
