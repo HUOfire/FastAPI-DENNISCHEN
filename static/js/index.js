@@ -144,6 +144,7 @@ function UPDATE_TABLE(data){
     const table = document.getElementById('logs-table');
     if (data.code === 200) {
             const logs = data.message;
+            console.log(logs)
             table.innerHTML = '';
             logs.forEach(log => {
                 const row = table.insertRow();
@@ -156,10 +157,14 @@ function UPDATE_TABLE(data){
                 const pathCell = row.insertCell();
                 const request_bodyCell = row.insertCell();
                 //请求体解析按钮
+                const request_str = JSON.stringify(log.request);
                 const but_requestCell = row.insertCell();
                 const but_request_but = document.createElement('button');
                 but_request_but.textContent = "解析";
                 but_request_but.className = "btn btn-primary btn-sm";
+                but_request_but.setAttribute("data-toggle", "modal");
+                but_request_but.setAttribute("data-target", "#basicModal");
+                but_request_but.setAttribute("onclick",`add_json_message(${request_str})`);
                 //请求体解析按钮
                 //带徽标的status
                 const status_codeCell = row.insertCell();
@@ -168,19 +173,23 @@ function UPDATE_TABLE(data){
                 //带徽标的status
                 const response_bodyCell = row.insertCell();
                 //响应体解析按钮
+                const response_str = JSON.stringify(log.response);
                 const but_responseCell = row.insertCell();
                 const but_response_but = document.createElement('button');
                 but_response_but.textContent = "解析";
                 but_response_but.className = "btn btn-primary btn-sm";
+                but_response_but.setAttribute("data-toggle", "modal");
+                but_response_but.setAttribute("data-target", "#basicModal");
+                but_response_but.setAttribute("onclick",`add_json_message(${response_str})`);
                 //响应体解析按钮
                 const duration_msCell = row.insertCell();
                 datetimeCell.innerHTML = log.time;
                 levelCell.appendChild(level_span);
                 pathCell.innerHTML = log.url;
-                request_bodyCell.innerHTML = JSON.stringify(log.request);
+                request_bodyCell.innerHTML = request_str;
                 but_requestCell.appendChild(but_request_but);
                 status_codeCell.appendChild(status_code_span);
-                response_bodyCell.innerHTML = JSON.stringify(log.response);
+                response_bodyCell.innerHTML = response_str;
                 but_responseCell.appendChild(but_response_but);
                 duration_msCell.innerHTML = log.duration
                 // 根据状态码自动换颜色
@@ -299,4 +308,13 @@ function animateValue(obj, start, end, duration) {
             }
         };
                 window.requestAnimationFrame(step);
+}
+
+function add_json_message(message){
+    const jsonContent= document.getElementById('jsonContent');
+    if (jsonContent){
+        const jsonbox = JSON.stringify(message, null, 2);
+        //jsonContent.innerText = jsonbox
+        $('#jsonContent').text(jsonbox);
+    }
 }
