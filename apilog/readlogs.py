@@ -44,7 +44,7 @@ def read_logs(str_date = None, end_date = None, level = None):
                             continue
                     try:
                         new_json = ast.literal_eval(json_str)
-                        new_json['ltime'] = lin_time
+                        new_json['time'] = lin_time
                         new_json['level'] = lin_level
                         result.append(new_json)
                     except (ValueError, SyntaxError) as e:
@@ -62,9 +62,9 @@ async def get_logs(str_date : str = None, end_date : str = None, level: str = No
                 ):
     logs = read_logs(str_date, end_date, level)
     if logs:
-        return {"code": 200, "msg": "success", "logs": logs}
+        return {"code": 200, "info": "success", "message": logs}
     else:
-        return {"code": 404, "msg": "not found", "logs": []}
+        return {"code": 404, "info": "not found", "message": []}
 
 
 @logs_router.get("/logs")

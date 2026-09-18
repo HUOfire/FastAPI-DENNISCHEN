@@ -115,8 +115,23 @@ async function seach_logs(){
             },
         });
         const data = await response.json();
-        if (data.code === 200) {
-            const logs = data.logs;
+        const Stats = calculateStats(data);
+        updateUI(Stats)
+        // 更新表格
+        UPDATE_TABLE(data);
+
+    }
+    catch (error) {
+        console.error('数据查询错误:', error);
+    }
+}
+
+
+
+//更新表格
+function UPDATE_TABLE(data){
+    if (data.code === 200) {
+            const logs = data.message;
             const table = document.getElementById('logs-table');
             table.innerHTML = '';
             logs.forEach(log => {
@@ -129,25 +144,25 @@ async function seach_logs(){
                 const request_bodyCell = row.insertCell();
                 const status_codeCell = row.insertCell();
                 const status_code_span = document.createElement('span');
-                status_code_span.textContent = log.status_code;
+                status_code_span.textContent = log.status;
                 const response_bodyCell = row.insertCell();
                 const duration_msCell = row.insertCell();
-                datetimeCell.innerHTML = log.ltime;
+                datetimeCell.innerHTML = log.time;
                 levelCell.appendChild(level_span);
-                pathCell.innerHTML = log.path;
-                request_bodyCell.innerHTML = JSON.stringify(log.request_body);
+                pathCell.innerHTML = log.url;
+                request_bodyCell.innerHTML = JSON.stringify(log.request);
                 status_codeCell.appendChild(status_code_span)
-                response_bodyCell.innerHTML = JSON.stringify(log.response_body);
-                duration_msCell.innerHTML = log.duration_ms
+                response_bodyCell.innerHTML = JSON.stringify(log.response);
+                duration_msCell.innerHTML = log.duration
                 // 根据状态码自动换颜色
                 let badgeClass = 'badge ';
-                if (log.status_code >= 200 && log.status_code < 300) {
+                if (log.status >= 200 && log.status < 300) {
                     badgeClass += 'badge-success';  // 绿色
-                } else if (log.status_code >= 300 && log.status_code < 400) {
+                } else if (log.status >= 300 && log.status < 400) {
                     badgeClass += 'badge-info';     // 蓝色
-                } else if (log.status_code >= 400 && log.status_code < 500) {
+                } else if (log.status >= 400 && log.status < 500) {
                     badgeClass += 'badge-warning';  // 黄色
-                } else if (log.status_code >= 500) {
+                } else if (log.status >= 500) {
                     badgeClass += 'badge-danger';   // 红色
                 }
 
@@ -172,16 +187,76 @@ async function seach_logs(){
                 response_bodyCell.className = "req-body";
                 duration_msCell.className = "ms-col";
                 // 报文title
-                request_bodyCell.title = JSON.stringify(log.request_body);
-                response_bodyCell.title = JSON.stringify(log.response_body);
+                request_bodyCell.title = JSON.stringify(log.request);
+                response_bodyCell.title = JSON.stringify(log.response);
             });
         }
         else {
-            console.error('Search logs error:', data.message);
+            console.error('表格加载错误:', data.message);
         }
-    }
-    catch (error) {
-        console.error('Search logs error:', error);
+}
+
+//统计数据
+function calculateStats(data){
+    if (data.code === 200) {
+        const logs = data.message;
+        if (!logs || logs.length === 0) {
+                return { total: 0, success: 0, fail: 0, avgTime: 0};
+            }
+
+        const total = logs.length;
+
+        // 使用 filter 统计成功和失败
+        // 定义成功：状态码 2xx
+        const successLogs = logs.filter(log => log.status >= 200 && log.status < 300);
+        const success = successLogs.length;
+
+        // 定义失败：状态码 4xx 或 5xx
+        const failLogs = logs.filter(log => log.status >= 400);
+        const fail = failLogs.length;
+
+        // 使用 reduce 计算总耗时，然后求平均
+        const totalDuration = logs.reduce((sum, log) => sum + (log.duration || 0), 0);
+        const avgTime = total > 0 ? (totalDuration / total).toFixed(1) : 0;
+
+        return {
+                total,
+                success,
+                fail,
+                avgTime
+            };
+
+    }else{
+        console.error('统计卡片错误:', data.message);
     }
 }
 
+function updateUI(stats) {
+    // 获取 DOM 元素
+    const elTotal = document.getElementById('stat-total');
+    const elSuccess = document.getElementById('stat-success');
+    const elFail = document.getElementById('stat-fail');
+    const elAvgTime = document.getElementById('stat-avgTime');
+    // 添加简单的数字滚动动画效果 (可选)
+    animateValue(elTotal, parseInt(elTotal.innerText), stats.total, 500);
+    animateValue(elSuccess, parseInt(elSuccess.innerText), stats.success, 500);
+    animateValue(elFail, parseInt(elFail.innerText), stats.fail, 500);
+
+            // 平均耗时保留一位小数
+    elAvgTime.innerText = stats.avgTime;
+}
+
+// --- 4. 辅助工具：数字动画 ---
+function animateValue(obj, start, end, duration) {
+    if (start === end) return;
+    let startTimestamp = null;
+    const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+                window.requestAnimationFrame(step);
+            }
+        };
+                window.requestAnimationFrame(step);
+}

@@ -68,7 +68,7 @@ class LogMiddleware(BaseHTTPMiddleware):
         try:
             request_body_raw = json.loads(body_bytes)
         except Exception:
-            request_body_raw = {"detail_request_body": "空或错误的二进制请求体"}
+            request_body_raw = {"detail_request_body": ""}
 
         # 【关键步骤】对请求 Body 进行脱敏
         safe_request_body = safe_desensitize_body(request_body_raw)
@@ -100,7 +100,7 @@ class LogMiddleware(BaseHTTPMiddleware):
         try:
             response_body_raw = json.loads(response_body_bytes)
         except Exception:
-            response_body_raw = {"detail_request_body": "空或错误的二进制响应体"}
+            response_body_raw = {"detail_request_body": ""}
 
         # 【关键步骤】对响应 Body 进行脱敏
         safe_response_body = safe_desensitize_body(response_body_raw)
@@ -110,11 +110,11 @@ class LogMiddleware(BaseHTTPMiddleware):
 
         # --- E. 组装并记录日志 ---
         log_entry = {
-            "path": url,
-            "request_body": safe_request_body,
-            "status_code": status_code,
-            "response_body": safe_response_body,
-            "duration_ms": round(process_time * 1000, 2)
+            "url": url,
+            "request": safe_request_body,
+            "status": status_code,
+            "response": safe_response_body,
+            "duration": round(process_time * 1000, 2)
         }
 
         logger.info(log_entry)
