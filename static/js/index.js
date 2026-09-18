@@ -144,6 +144,7 @@ function UPDATE_TABLE(data){
     const table = document.getElementById('logs-table');
     if (data.code === 200) {
             const logs = data.message;
+            console.log(logs)
             table.innerHTML = '';
             logs.forEach(log => {
                 const row = table.insertRow();
@@ -160,6 +161,9 @@ function UPDATE_TABLE(data){
                 const but_request_but = document.createElement('button');
                 but_request_but.textContent = "解析";
                 but_request_but.className = "btn btn-primary btn-sm";
+                but_request_but.setAttribute("data-toggle", "modal");
+                but_request_but.setAttribute("data-target", "#basicModal");
+                but_request_but.setAttribute("onclick",`add_json_message(${JSON.stringify(log.request)})`);
                 //请求体解析按钮
                 //带徽标的status
                 const status_codeCell = row.insertCell();
@@ -172,6 +176,9 @@ function UPDATE_TABLE(data){
                 const but_response_but = document.createElement('button');
                 but_response_but.textContent = "解析";
                 but_response_but.className = "btn btn-primary btn-sm";
+                but_response_but.setAttribute("data-toggle", "modal");
+                but_response_but.setAttribute("data-target", "#basicModal");
+                but_response_but.setAttribute("onclick",`add_json_message(${JSON.stringify(log.response)})`);
                 //响应体解析按钮
                 const duration_msCell = row.insertCell();
                 datetimeCell.innerHTML = log.time;
@@ -299,4 +306,13 @@ function animateValue(obj, start, end, duration) {
             }
         };
                 window.requestAnimationFrame(step);
+}
+
+function add_json_message(message){
+    const jsonContent= document.getElementById('jsonContent');
+    if (jsonContent){
+        const jsonbox = JSON.stringify(message, null, 2);
+        //jsonContent.innerText = jsonbox
+        $('#jsonContent').text(jsonbox);
+    }
 }
