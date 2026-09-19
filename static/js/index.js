@@ -116,10 +116,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 async function read_logs(){
+    let data = {}
      const params = new URLSearchParams({
             str_date: document.getElementById('str_date').value,
             end_date: document.getElementById('end_date').value,
-            level: document.getElementById('level').value
+            level: document.getElementById('level').value,
+            url: document.getElementById('url').value,
     });
     try {
         const response = await fetch(`/apilog/get_logs?${params}`, {
@@ -129,11 +131,12 @@ async function read_logs(){
                 'Content-Type': 'application/json'
             },
         });
-        const data = await response.json();
+             data = await response.json();
         const Stats = calculateStats(data);
         //更新状态总览卡片
         updateUI(Stats)
         //加载数据
+        currentPage = 1  //每次查询回到第一页
         init(data)
 
     }

@@ -20,7 +20,7 @@ def chg_date(time_str):
 def partial_match(str1, str2):
     return fuzz.partial_ratio(str1, str2)
 
-def read_logs(str_date = None, end_date = None, level = None):
+def read_logs(str_date = None, end_date = None, level = None, url = None):
     log_file = f"./logs/app.log"
 
     result = []
@@ -46,7 +46,13 @@ def read_logs(str_date = None, end_date = None, level = None):
                         new_json = ast.literal_eval(json_str)
                         new_json['time'] = lin_time
                         new_json['level'] = lin_level
-                        result.append(new_json)
+                        if url:
+                            if new_json['url'] != url:
+                                continue
+                            else:
+                                result.append(new_json)
+                        else:
+                            result.append(new_json)
                     except (ValueError, SyntaxError) as e:
                         print(f"解析错误: {e}")
                     continue
@@ -57,10 +63,10 @@ def read_logs(str_date = None, end_date = None, level = None):
 
 
 @logs_router.get("/get_logs")
-async def get_logs(str_date : str = None, end_date : str = None, level: str = None,
+async def get_logs(str_date : str = None, end_date : str = None, level: str = None, url: str = None,
                    user: dict = Depends(get_current_user)
                 ):
-    logs = read_logs(str_date, end_date, level)
+    logs = read_logs(str_date, end_date, level, url)
     if logs:
         return {"code": 200, "info": "success", "message": logs}
     else:
