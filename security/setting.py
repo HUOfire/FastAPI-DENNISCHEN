@@ -53,8 +53,7 @@ class Settings(BaseSettings):
                 "username": "system",
                 "full_name": "DENNIS CHEN",
                 "email": "dennischen@example.com",
-                # 默认密码: system123
-                #"hashed_password": "$argon2id$v=19$m=65536,t=3,p=4$Y2JQ1adoOUHh5QnxuLExuQ$XsoP4f+0aAP07pl2623oQehm2E66ysuu4ubhMfMEuus",
+                # 默认密码：system
                 "hashed_password": "$argon2id$v=19$m=65536,t=3,p=4$/Aoq+Lu+3gGg/bebIx+sjw$kR2GceT6th43hgQV/Uea25LeFfrrrbe1GqtdyfEWAok",
                 "role": "admin",
                 "disabled": False,
