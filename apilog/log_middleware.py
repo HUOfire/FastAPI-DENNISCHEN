@@ -1,143 +1,125 @@
+"""HTTP 日志中间件 + openapi.json 保护中间件。"""
+from __future__ import annotations
+
+import json
 import logging
 import time
-import json
-import re
-from . import log_config
+from typing import Any, Union
 
 from fastapi import Request
 from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.responses import Response
 
-SENSITIVE_KEYS = log_config.Sensitive_Keys.SENSITIVE_KEYS
-LOGGED_PATHS = log_config.Logged_Paths.LOGGED_PATHS
-logger = log_config.setup_logging()
+from .log_config import LoggedPaths, SensitiveKeys, setup_logging
+from security.setting import settings
 
-def mask_sensitive_data(data):
-    """
-    递归处理字典或列表，对敏感字段值进行脱敏
-    """
+logger: logging.Logger = setup_logging()
+SENSITIVE_KEYS = SensitiveKeys.KEYS
+LOGGED_PATHS = LoggedPaths.PATHS
+
+
+# ===================== 脱敏 =====================
+def mask_sensitive_data(data: Any) -> Any:
+    """递归脱敏 dict / list 中的敏感字段。"""
     if isinstance(data, dict):
-        new_dict = {}
-        for key, value in data.items():
-            if key.lower() in SENSITIVE_KEYS:
-                new_dict[key] = "&zwnj;***MASKED***&zwnj;"
+        masked = {}
+        for k, v in data.items():
+            if isinstance(k, str) and k.lower() in SENSITIVE_KEYS:
+                masked[k] = "***MASKED***"
             else:
-                new_dict[key] = mask_sensitive_data(value)
-        return new_dict
-    elif isinstance(data, list):
+                masked[k] = mask_sensitive_data(v)
+        return masked
+    if isinstance(data, list):
         return [mask_sensitive_data(item) for item in data]
-    else:
-        return data
+    return data
 
 
-def safe_desensitize_body(body_dict: dict) :
-    """
-    安全地反序列化、脱敏并重新序列化 Body
-    """
-    for key in SENSITIVE_KEYS:
-        if key in body_dict:
-            body_dict[key] ="&zwnj;***MASKED***&zwnj;"
-
-    return body_dict
+def _safe_json_loads(raw: Union[bytes, str]) -> Any:
+    try:
+        text = raw.decode("utf-8") if isinstance(raw, bytes) else raw
+        return json.loads(text)
+    except Exception:
+        return None
 
 
-
+# ===================== 日志中间件 =====================
 class LogMiddleware(BaseHTTPMiddleware):
-    """日志中间件"""
-
-    def __init__(self, app):
-        super().__init__(app)
+    """记录指定路径的请求/响应体与耗时。"""
 
     async def dispatch(self, request: Request, call_next):
         start_time = time.time()
-
-        # --- A. 获取请求信息 ---
+        url = request.url.path
         method = request.method
-        url = str(request.url.path)
 
-        # 判断是否需要记录详细日志
-        should_log = any(url.startswith(logged_path) for logged_path in LOGGED_PATHS)
+        should_log = any(url.startswith(p) for p in LOGGED_PATHS)
         if not should_log:
-            # 如果不需记录，直接放行，减少开销
             return await call_next(request)
 
-        # 读取请求 Body
+        # 读取请求体并脱敏
         body_bytes = await request.body()
+        request_body = _safe_json_loads(body_bytes)
+        if request_body is None:
+            request_body = {"raw": body_bytes.decode("utf-8", errors="replace")[:500]}
+        safe_request = mask_sensitive_data(request_body)
 
-        try:
-            request_body_raw = json.loads(body_bytes)
-        except Exception:
-            request_body_raw = {"detail_request_body": ""}
-
-        # 【关键步骤】对请求 Body 进行脱敏
-        safe_request_body = safe_desensitize_body(request_body_raw)
-
-        # --- B. 执行后续处理 ---
+        # 调用下游
         try:
             response = await call_next(request)
         except Exception as e:
-            logger.error(f"Request Error: {method} {url} | Error: {str(e)}")
-            raise e
+            logger.error(
+                "Request Error: %s %s | Error: %s", method, url, str(e)
+            )
+            raise
 
-        # --- C. 获取响应信息 ---
+        # 读取响应体并脱敏
         status_code = response.status_code
-
         response_body_bytes = b""
-        if hasattr(response, 'body_iterator'):
+        if hasattr(response, "body_iterator"):
             async for chunk in response.body_iterator:
                 response_body_bytes += chunk
             new_response = Response(
                 content=response_body_bytes,
                 status_code=status_code,
                 headers=dict(response.headers),
-                media_type=response.media_type
+                media_type=response.media_type,
             )
         else:
-            response_body_bytes = response.body
+            response_body_bytes = getattr(response, "body", b"") or b""
             new_response = response
 
-        try:
-            response_body_raw = json.loads(response_body_bytes)
-        except Exception:
-            response_body_raw = {"detail_request_body": ""}
+        resp_body = _safe_json_loads(response_body_bytes)
+        if resp_body is None:
+            resp_body = {"raw": response_body_bytes.decode("utf-8", errors="replace")[:500]}
+        safe_response = mask_sensitive_data(resp_body)
 
-        # 【关键步骤】对响应 Body 进行脱敏
-        safe_response_body = safe_desensitize_body(response_body_raw)
-
-        # --- D. 计算耗时 ---
-        process_time = time.time() - start_time
-
-        # --- E. 组装并记录日志 ---
-        log_entry = {
-            "url": url,
-            "request": safe_request_body,
-            "status": status_code,
-            "response": safe_response_body,
-            "duration": round(process_time * 1000, 2)
-        }
-
-        logger.info(log_entry)
+        duration_ms = round((time.time() - start_time) * 1000, 2)
+        logger.info(
+            json.dumps(
+                {
+                    "url": url,
+                    "method": method,
+                    "request": safe_request,
+                    "status": status_code,
+                    "response": safe_response,
+                    "duration": duration_ms,
+                    "client_ip": request.client.host if request.client else "",
+                },
+                ensure_ascii=False,
+            )
+        )
         return new_response
 
 
-def log_record(request: Request, call_next):
-    """日志记录中间件函数"""
-    middleware = LogMiddleware(app = None)
-    return middleware.dispatch(request, call_next)
-
-
+# ===================== openapi.json 保护 =====================
 async def openapi_protect_middleware(request: Request, call_next):
-    # 仅拦截openapi.json路径
-    if request.url.path == "/openapi.json":
-        # 此处可替换为项目已有的JWT校验、IP白名单、内部服务鉴权逻辑
-        is_internal_request = request.client.host in ["127.0.0.1","192.168.1.112"]
-        if not is_internal_request:
+    """限制 openapi.json 仅允许白名单 IP 访问；路径做规范化处理防绕过。"""
+    normalized_path = request.url.path.rstrip("/") or "/"
+    if normalized_path == "/openapi.json":
+        client_ip = request.client.host if request.client else ""
+        if client_ip not in settings.openapi_allowed_ip_list:
             return JSONResponse(
                 status_code=403,
-                content={"detail": "Access to openapi.json is forbidden"}
+                content={"detail": "Access to openapi.json is forbidden"},
             )
-    response = await call_next(request)
-    return response
-
-
+    return await call_next(request)

@@ -1,200 +1,160 @@
-import datetime
-from datetime import datetime, timezone ,timedelta
+"""Cookie 认证路由（含页面路由）。"""
+from datetime import datetime, timezone
+from typing import Optional
 
-import jwt
-from fastapi import APIRouter, Depends, HTTPException, status, Request, Response
+from fastapi import APIRouter, Depends, HTTPException, Request, Response, status
 from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi.responses import HTMLResponse
-from fastapi.security import HTTPBearer
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from jwt.exceptions import InvalidTokenError
 
-from .setting import Config as St, LoginRequest, UserInDB
-from .stdjwt import password_hash
+from .deps import login_rate_limit
+from .setting import LoginRequest, settings
+from .jwt_utils import (
+    UserInDB,
+    authenticate_user,
+    create_access_token,
+    decode_access_token,
+    get_user,
+)
 
 cok_router = APIRouter()
-
-# 安全性依赖
-security = HTTPBearer(auto_error=False)
-
-
-# 挂载本地静态资源
 cok_router.mount("/static", StaticFiles(directory="static"), name="static")
 
 templates = Jinja2Templates(directory="templates")
 
-def create_access_token(data: dict):
-    to_encode = data.copy()
-    expire = datetime.now(timezone.utc) + timedelta(minutes=St.ACCESS_TOKEN_EXPIRE_MINUTES)
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, St.SECRET_KEY, algorithm=St.ALGORITHM)
-    return encoded_jwt
 
+# ===================== 当前用户依赖 =====================
+async def get_current_user(request: Request) -> dict:
+    """从 Cookie 或 Authorization 头获取当前登录用户。"""
+    token: Optional[str] = request.cookies.get("auth_token")
 
-def verify_token(token: str):
-    try:
-        payload = jwt.decode(token, St.SECRET_KEY, algorithms=[St.ALGORITHM])
-        username: str = payload.get("sub")
-        exp_timestamp = payload.get("exp")
-        expire_datetime = datetime.fromtimestamp(exp_timestamp, tz=timezone.utc)
-        if username is None:
-            return None
-        return username, expire_datetime
-    except InvalidTokenError:
-        return None
-
-
-# Cookie 认证依赖
-async def get_current_user(request: Request):
-    token = request.cookies.get("auth_token")
-
+    # 兼容 API 调用的 Bearer 头
     if not token:
-        # 也检查 Authorization 头，方便 API 调用
         auth_header = request.headers.get("Authorization")
         if auth_header and auth_header.startswith("Bearer "):
-            token = auth_header.replace("Bearer ", "")
+            token = auth_header[len("Bearer "):]
 
     if not token:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Not authenticated"
+            detail="Not authenticated",
         )
 
-    username, expire_datetime = verify_token(token)
+    payload = decode_access_token(token)
+    if not payload:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or expired token",
+        )
+
+    username = payload.get("sub")
     if not username:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid token"
+            detail="Invalid token payload",
         )
 
-    return {"username": username, "role": "user", "expire_datetime": expire_datetime}
+    user_in_db = get_user(settings.fake_users_db, username)
+    if not user_in_db:
+        raise HTTPException(status_code=401, detail="用户不存在")
+
+    exp_timestamp = payload.get("exp")
+    expire_dt = datetime.fromtimestamp(exp_timestamp, tz=timezone.utc) if exp_timestamp else None
+    return {
+        "username": username,
+        "role": user_in_db.role,
+        "expire_datetime": expire_dt,
+    }
 
 
-def get_user(db, username: str):
-    if username in db:
-        user_dict = db[username]
-        return UserInDB(**user_dict)
-
-
-def verify_password(plain_password, hashed_password):
-    return password_hash.verify(plain_password, hashed_password)
-
-
-def authenticate_user(fake_db, username: str, password: str):
-    # 简单的用户验证逻辑 - 在实际应用中应该查询数据库
-    user = get_user(fake_db, username)
-    if not user:
-        return None
-    if not verify_password(password, user.hashed_password):
-        return None
-    return {"username": user.username, "role": user.role}
-
-
+# ===================== 登录 / 注销 =====================
 @cok_router.post("/api/login", summary="登录操作")
-async def login(login_data: LoginRequest, response: Response):
-    user_role = authenticate_user(St.fake_users_db,login_data.username, login_data.password)
-    if not user_role:
+async def login(
+    login_data: LoginRequest,
+    response: Response,
+    _: None = Depends(login_rate_limit),  # 登录接口限流
+):
+    user = authenticate_user(settings.fake_users_db, login_data.username, login_data.password)
+    if not user:
         raise HTTPException(status_code=401, detail="用户名或密码错误")
 
-    # 创建 JWT token
-    access_token = create_access_token(data={"sub": user_role["username"]})
+    access_token = create_access_token(data={"sub": user.username})
 
-    # 设置 HttpOnly Cookie
     response.set_cookie(
         key="auth_token",
         value=access_token,
         httponly=True,
-        max_age=St.ACCESS_TOKEN_EXPIRE_MINUTES * 60, # 单位：秒
-        secure=False,  # 开发环境设为 False，生产环境设为 True
+        max_age=settings.access_token_expire_minutes * 60,
+        secure=settings.cookie_secure,
         samesite="lax",
-        path="/"
+        path="/",
     )
-
     return {
         "message": "登录成功",
-        "user": user_role,
-        "token_type": "bearer"
+        "user": {"username": user.username, "role": user.role},
+        "token_type": "bearer",
     }
 
-# 注销登录
+
 @cok_router.post("/api/logout", summary="注销操作")
 async def logout(response: Response):
-    # 清除 Cookie
-    response.delete_cookie(
-        key="auth_token",
-        path="/"
-    )
+    response.delete_cookie(key="auth_token", path="/")
     return {"message": "退出登录成功"}
 
-# 验证登录状态
-@cok_router.get("/api/verify", summary="验证cookie")
+
+@cok_router.get("/api/verify", summary="验证登录状态")
 async def verify_token_endpoint(user: dict = Depends(get_current_user)):
     return {"valid": True, "user": user}
 
-# 受保护的 API
-@cok_router.get("/api/protected-data", summary="保护数据案例")
+
+@cok_router.get("/api/protected-data", summary="受保护数据示例")
 async def get_protected_data(user: dict = Depends(get_current_user)):
     return {
         "message": "这是受保护的数据",
         "user": user,
-        "data": ["敏感数据1", "敏感数据2", "敏感数据3"]
+        "data": ["敏感数据1", "敏感数据2", "敏感数据3"],
     }
 
 
-# 文档页面保护
+# ===================== 页面路由 =====================
 @cok_router.get("/docs", response_class=HTMLResponse, include_in_schema=False)
-async def protected_docs(
-        user: dict = Depends(get_current_user)
-):
-    """受 Cookie 保护的 API 文档页面"""
-    std_swagger_ui = get_swagger_ui_html(
+async def protected_docs(user: dict = Depends(get_current_user)):
+    """受 Cookie 保护的 API 文档页面。"""
+    html = get_swagger_ui_html(
         openapi_url="/openapi.json",
         title="受保护的API文档",
         swagger_js_url="/static/swagger-ui/swagger-ui-bundle.js",
         swagger_css_url="/static/swagger-ui/swagger-ui.css",
         swagger_favicon_url="/static/swagger-ui/favicon.png",
         swagger_ui_parameters={
-            "defaultModelsExpandDepth": -1, # 隐藏模型部分
-            "docExpansion": "none", # 隐藏文档折叠按钮
-            "filter": True, # 开启过滤功能
-            "showExtensions": True, # 显示扩展按钮
-            "persistAuthorization": True # 记住授权状态
-        }
+            "defaultModelsExpandDepth": -1,
+            "docExpansion": "none",
+            "filter": True,
+            "showExtensions": True,
+            "persistAuthorization": True,
+        },
     )
-    cust_swagger_ui = std_swagger_ui.body.decode("utf-8")
-    return cust_swagger_ui
+    return html.body.decode("utf-8")
 
 
-
-# 公开的登录页面
 @cok_router.get("/login", summary="登录页面", response_class=HTMLResponse)
 async def goto_login_page(request: Request):
     return templates.TemplateResponse(
         "login.html",
-        context={
-            'request': request,
-            'login_tip': '用户登录'
-        }
+        context={"request": request, "login_tip": "用户登录"},
     )
+
 
 @cok_router.get("/index", summary="主页", response_class=HTMLResponse)
-async def read_item(request: Request, user: dict = Depends(get_current_user)):
+async def index_page(request: Request, user: dict = Depends(get_current_user)):
     return templates.TemplateResponse(
-        "index.html",
-        context={
-            'request': request,
-            "user": user
-        }
+        "index.html", context={"request": request, "user": user}
     )
 
 
-@cok_router.get("/docs_iframe", summary="主页", response_class=HTMLResponse)
-async def read_item(request: Request, user: dict = Depends(get_current_user)):
+@cok_router.get("/docs_iframe", summary="文档页", response_class=HTMLResponse)
+async def docs_iframe_page(request: Request, user: dict = Depends(get_current_user)):
     return templates.TemplateResponse(
-        "docs.html",
-        context={
-            'request': request,
-            "user": user
-        }
+        "docs.html", context={"request": request, "user": user}
     )

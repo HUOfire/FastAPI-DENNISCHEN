@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../static/css/logs_card.css">
 <script src="../static/js/jquery-3.5.1.min.js"></script>
 <script src="../static/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="../static/css/all.min.css">
 <title>FastAPI-日志管理</title>
 </head>
 <body>
@@ -67,9 +67,11 @@
       <!-- 日期筛选 -->
       <div class="filter-bar d-flex align-items-center flex-wrap">
         <label class="mr-1">起始日期</label>
-        <input type="date" id="str_date" class="form-control form-control-sm mr-3" style="width: 150px;" value="2026-09-15">
+        <input type="date" id="str_date" class="form-control form-control-sm mr-3" style="width: 150px;">
         <label class="mr-1">结束日期</label>
-        <input type="date" id="end_date" class="form-control form-control-sm mr-3" style="width: 150px;" value="2026-09-17">
+        <input type="date" id="end_date" class="form-control form-control-sm mr-3" style="width: 150px;">
+        <label class="mr-1">接口地址</label>
+        <input type="text" id="url" class="form-control form-control-sm mr-3" style="width: 180px;">
         <label class="mr-1">日志级别</label>
         <select id="level" class="form-control form-control-sm mr-3" style="width: 110px;">
           <option>全部</option>
@@ -139,6 +141,23 @@
         </div>
 </div>
 
+
+        <!-- 顶部控制栏：每页显示记录数 + 搜索/重置（可选） -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
+            <div class="form-inline">
+                <label class="mr-2" for="pageSizeSelect">每页显示：</label>
+                <select class="form-control form-control-sm page-size-selector" id="pageSizeSelect">
+                    <option value="5">5 条</option>
+                    <option value="10" selected>10 条</option>
+                    <option value="15">15 条</option>
+                    <option value="20">20 条</option>
+                </select>
+            </div>
+            <div class="pagination-info text-muted small" id="paginationInfo">
+                显示第 1 到 10 条，共 0 条
+            </div>
+        </div>
+
       <!-- 日志表格卡片 -->
       <div class="card log-card">
         <div class="card-header py-2">
@@ -148,6 +167,7 @@
           <table class="table table-bordered table-hover table-log mb-0">
             <thead>
               <tr>
+                <th style="width: 80px;">#</th>
                 <th style="width: 150px;">时间</th>
                 <th style="width: 80px;">级别</th>
                 <th style="width: 130px;">接口</th>
@@ -157,6 +177,7 @@
                 <th style="width: 750px;">响应信息</th>
                 <th style="width: 180px;">解析</th>
                 <th style="width: 90px;">耗时(ms)</th>
+                <th style="width: 190px;">ip地址</th>
               </tr>
             </thead>
             <tbody id="logs-table">
@@ -164,6 +185,12 @@
             </tbody>
           </table>
         </div>
+          <!-- 分页导航 + 每页选择器也可放在这里，但上面已经有了，这里放分页控件 -->
+        <nav aria-label="表格分页">
+            <ul class="pagination justify-content-center" id="paginationContainer">
+                <!-- 分页按钮动态生成 -->
+            </ul>
+        </nav>
       </div>
 
     </div>
