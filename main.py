@@ -19,6 +19,7 @@ from apps import FilesManage
 from security import cok_router, jwt_router
 from security.cookie import templates
 from security.setting import settings
+from Ftray.tray import tray_main
 
 
 app = FastAPI(
@@ -70,10 +71,11 @@ async def unhandled_exception_handler(request: Request, exc: Exception):
 
 
 if __name__ == "__main__":
-    uvicorn.run(
-        "main:app",
-        host="0.0.0.0",
-        port=8000,
-        log_level="info",
-        reload=not settings.is_production,
-    )
+    #uvicorn.run(
+    #    "main:app",
+    #    host="0.0.0.0",
+    #    port=8000,
+    #    log_level="info",
+    #    reload=not settings.is_production,
+    #)
+    tray_main()

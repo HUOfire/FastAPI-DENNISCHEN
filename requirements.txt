@@ -8,6 +8,7 @@ Jinja2==3.1.4
 pydantic-settings==2.5.2
 python-dotenv==1.0.1
 typing-extensions==4.12.2
+pystray==0.19.5
 
 # ===== 以下为可选依赖（按需启用）=====
 # slowapi    # 如需更专业的限流（基于 Redis/内存）可启用
