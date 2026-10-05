@@ -32,9 +32,14 @@ def _safe_join(*parts: str) -> str:
     # 允许单段为空
     cleaned = [p for p in parts if p]
     candidate = os.path.realpath(os.path.join(UPLOAD_DIR, *cleaned))
+    # 对路径末尾\判断处理
     # 必须以 UPLOAD_DIR + 分隔符 开头，防止形如 Z:/evil.txt 并列目录被访问
-    if not (candidate == UPLOAD_DIR or candidate.startswith(UPLOAD_DIR + os.sep)):
-        raise HTTPException(status_code=403, detail="非法路径访问")
+    if UPLOAD_DIR.endswith('\\'):
+        if not (candidate == UPLOAD_DIR or candidate.startswith(UPLOAD_DIR)):
+            raise HTTPException(status_code=403, detail="非法路径访问")
+    else:
+        if not (candidate == UPLOAD_DIR or candidate.startswith(UPLOAD_DIR + os.sep)):
+            raise HTTPException(status_code=403, detail="非法路径访问")
     return candidate
 
 
